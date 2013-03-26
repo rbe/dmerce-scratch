@@ -1,0 +1,249 @@
+<html>
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<meta http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<META HTTP-EQUIV="PRAGMA" CONTENT="no-cache">
+<META NAME="REPLY-TO" CONTENT="webmaster@1Ci.de">
+
+
+<title>(var SERVER_NAME) - Suchformular</title>
+
+<script language="JavaScript">
+<!--
+function do_prozentname() {
+
+   if(document.myForm.Suchbegriff.value == "" || document.myForm.Suchbegriff.value == '%%' || document.myForm.Suchbegriff.value == '%')
+      document.myForm.Searchword.value = 'Alles'
+   else {
+      document.myForm.Searchword.value = document.myForm.Suchbegriff.value
+   }
+
+}
+
+function do_allsearch() {
+
+   if(document.Detailsearch.qSearchName_Suchbegriff.value == "" || document.Detailsearch.qSearchName_Suchbegriff.value == '%%' || document.Detailsearch.qSearchName_Suchbegriff.value == '%')
+      document.Detailsearch.qSearchName_Suchbegriff.value = '%'
+   return true;
+   }
+
+//-->
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;Suchen</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+
+      <tr>
+
+      (if '(sql Wordlist.NameDE "ID*50")' != '')
+
+      <td width="25%" valign="top" align="center"><img src="../pic/upload/(sql Wordlist.NameDE "ID*50")" hspace="6" border="0"><br>
+      </td>
+
+      (else)
+
+      <td width="25%">&nbsp;</td>
+
+      (endif)
+
+      <td width="75%" valign="top">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+
+       <tr>
+       <td class="head12b" colspan="2" valign="center">&nbsp;<b>Die (sql Operator.Company "ID*1") - Datenbank  durchsuchen:</b></td>
+       <td width="5%" align="right"><a class="head8" href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="15" border="0"></td>
+       <td>&nbsp;</td>
+       </tr>
+
+
+       <tr>
+       <td class="head12b" colspan="2">&nbsp;Durchsuchen Sie die Texte nach einem Suchbegriff:</td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <form method="post" action="/1Ci/dmerce" name="myForm" onsubmit="javascript:return do_prozentname();" target="content">
+       <input type="hidden" name="qTemplate" value="suchen,liste_text">
+       <input type="hidden" name="Searchword" value="">
+
+       <tr>
+       <td colspan="2">Suchbegriff: <input type="Text" name="Suchbegriff" size="30">&nbsp;&nbsp;<input type="Submit" name="qButton" value="Suchen" class="submit"></td>
+       <td>&nbsp;</td>
+       </tr>
+       </form>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="15" border="0"></td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td>
+       <form method="post" action="/1Ci/dmerce" name="Detailsearch" onsubmit="javascript:return do_allsearch();">
+       <input type="hidden" name="qTemplate" value="Article,list">
+       <input type="hidden" name="SubgroupID" value="0">
+       <input type="hidden" name="qSearchFields_Suchbegriff" value="Article.Name,Article.ShortDescription,Article.DetailDescription">
+<!--       <input type="hidden" name="qSearchBracket_Suchbegriff" value="1">  -->
+       <input type="hidden" name="qSearchFields_MaxPrice" value="Article.PriceGross">
+       <input type="hidden" name="qSearchOp_MaxPrice" value="[*">
+       <input type="hidden" name="qSearchFields_MinPrice" value="Article.PriceGross">
+       <input type="hidden" name="qSearchOp_MinPrice" value="]*">
+       <input type="hidden" name="qSearchFields_Warengruppe" value="Article.ClassOfGoodsID">
+       <input type="hidden" name="qSearchOp_Warengruppe" value="*">
+
+<table border="0" cellpadding="0" cellspacing="0" width="80%">
+
+       <tr>
+       <td class="head12b" colspan="2">&nbsp;Oder starten Sie Ihre spezielle Artikelsuche:</td>
+       </tr>
+
+       <tr>
+       <td class="head8" colspan="2">Bitte beachten Sie da&szlig; alle Suchparameter miteinander <b>und</b> verkn&uuml;pft werden.</td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td nowrap>Suchbegriff:</td>
+       <td width="90%">&nbsp;<input type="Text" name="qSearchName_Suchbegriff" size="50" class="input"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td nowrap>Artikelgruppe:</td>
+       <td width="90%">&nbsp;<select name="qSearchName_Warengruppe" size="1">
+       <option value="">bitte w&auml;hlen</option>
+       (repeat "ClassOfGoods.ID]0{Name")
+       <option value="(sql ClassOfGoods.ID)">(sql ClassOfGoods.Name)</option>
+       (endrepeat)
+       </select>
+       </td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td nowrap>Preis:</td>
+       <td width="90%">&nbsp;<input type="Text" name="qSearchName_MinPrice" size="10" class="input">&nbsp;bis:&nbsp;<input type="Text" name="qSearchName_MaxPrice" size="10" class="input"> &#8364;</td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2" align="right"><input type="Submit" name="suchen" value="suchen !" class="submit">&nbsp;</td>
+       </tr>
+</table>
+
+</form>
+       </td>
+       <td>&nbsp;</td>
+       </tr>
+
+       </table>
+
+       <tr>
+
+       <td>
+
+       (if '(sql Wordlist.NameDE "ID*50")' != '')
+
+       (if (get-myvar login) == 1)
+
+       <form method="post" actin="/1Ci/dmerce" enctype="multipart/form-data">
+       <input type="hidden" name="qTemplate" value="(var qTemplate)">
+       <input type="hidden" name="qTrigger" value="OS.File.Upload">
+       <input type="hidden" name="qUploadKeepRealname" value="Wordlist_NameDE">
+       <input type="hidden" name="qUpdate" value="Wordlist">
+       <input type="hidden" name="Wordlist_ID" value="50">
+       <br>
+       <b>Neues Bild hochladen</b>:<br>
+       <input type="file" name="Wordlist_NameDE" class="input">
+       <input type="Submit" name="qButton" value="&uuml;bernehmen" class="submit">
+       </form>
+
+       (endif)
+
+       </td>
+       </form>
+
+      (else)
+
+      <td valign="top" align="center">&nbsp;
+
+      (if (get-myvar login) == 1)
+
+      <form method="post" actin="/1Ci/dmerce" enctype="multipart/form-data">
+      <input type="hidden" name="qTemplate" value="(var qTemplate)">
+      <input type="hidden" name="qTrigger" value="OS.File.Upload">
+      <input type="hidden" name="qUploadKeepRealname" value="Wordlist_NameDE">
+      <input type="hidden" name="qUpdate" value="Wordlist">
+      <input type="hidden" name="Wordlist_ID" value="50">
+      <br>
+      <b>Ein Bild hochladen</b>:<br>
+      <input type="file" name="Wordlist_NameDE" class="input">
+      <input type="Submit" name="qButton" value="&uuml;bernehmen" class="submit">
+      </form>
+
+      (endif)
+
+      </td>
+
+      (endif)
+
+       </tr>
+</table>
+
+
+
+</body>
+</html>

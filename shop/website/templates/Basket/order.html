@@ -1,0 +1,200 @@
+<html>
+
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<META HTTP-EQUIV="PRAGMA" CONTENT="no-cache">
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>(var SERVER_NAME) - Bestellerdaten eingeben</title>
+
+
+ <script language="JavaScript">
+  <!--
+   function chkFormular()
+  {
+
+   if(document.myForm.LastName.value == "")
+    {
+     alert("Bitte Ihren Namen eingeben!");
+     document.myForm.LastName.focus();
+     return false;
+    }
+
+   if(document.myForm.Street.value == "")
+    {
+     alert("Bitte Ihren Strasse eingeben!");
+     document.myForm.Street.focus();
+     return false;
+    }
+
+   if(document.myForm.ZipCode.value == "")
+    {
+     alert("Bitte Ihre PLZ eingeben!");
+     document.myForm.ZipCode.focus();
+     return false;
+    }
+
+   if(document.myForm.City.value == "")
+    {
+     alert("Bitte Ihren Ort eingeben!");
+     document.myForm.City.focus();
+     return false;
+    }
+
+   if(document.myForm.Email.value.indexOf('@') == -1)
+    {
+     alert("Sie haben keine gültige Email-Adresse eingegeben!");
+     document.myForm.Email.focus();
+     return false;
+    }
+
+  }
+  //-->
+ </script>
+
+
+</head>
+
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;Warenkorb > Bestellen > Ihre Bestelldaten</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="500" border="0" cellspacing="2" cellpadding="0" align="center">
+
+<tr>
+<td colspan="2" class="head12b"><b>Bestellformular</b></td>
+</tr>
+
+<tr>
+<td colspan="2">Bitte f&uuml;llen Sie das Bestellformular m&ouml;glichst vollst&auml;ndig aus. Beachten Sie dabei das die mit einem Sternchen (*) gekennzeichneten Felder ausgef&uuml;llt werden <b>m&uuml;ssen</b>.</td>
+</tr>
+
+<tr>
+<td colspan="2">&nbsp;</td>
+</tr>
+
+<form action="/1Ci/dmerce" method="post" name="myForm" onSubmit="return chkFormular()">
+<input type="hidden" name="qTemplate" value="Basket,order_confirm">
+
+<tr>
+<td class="head8c">&nbsp;<b>Zahlungsart:</b></td>
+<td>&nbsp;<select name="TermsOfPayment" size="1">
+        (exec Db2HTML.Select.Options table='TermsOfPayment',qSuperSearch='ID]0',optionValue='Name',optionName='Name' cexe)
+        </select></td>
+</tr>
+
+<tr>
+<td class="head8c">&nbsp;Vorname:</td>
+<td>&nbsp;<input type="Text" name="FirstName" size="35" class="input"></td>
+</tr>
+
+<tr>
+<td class="head8c">&nbsp;Name*:</td>
+<td>&nbsp;<input type="Text" name="LastName" size="35" class="input"></td>
+</tr>
+
+<tr>
+<td class="head8c">&nbsp;Strasse*:</td>
+<td>&nbsp;<input type="Text" name="Street" size="35" class="input"></td>
+</tr>
+
+<tr>
+<td class="head8c">&nbsp;PLZ/Ort*:</td>
+<td>&nbsp;<input type="Text" name="ZipCode" size="5" class="input">&nbsp;&nbsp;<input type="Text" name="City" size="28" class="input"></td>
+</tr>
+
+<tr>
+<td class="head8c">&nbsp;Telefon:</td>
+<td>&nbsp;<input type="Text" name="Phone" size="35" class="input"></td>
+</tr>
+
+<tr>
+<td class="head8c">&nbsp;Telefax:</td>
+<td>&nbsp;<input type="Text" name="Telefax" size="35" class="input"></td>
+</tr>
+
+<tr>
+<td class="head8c">&nbsp;Mobil:</td>
+<td>&nbsp;<input type="Text" name="Mobile" size="35" class="input"></td>
+</tr>
+
+<tr>
+<td class="head8c">&nbsp;Email*:</td>
+<td>&nbsp;<input type="Text" name="Email" size="35" class="input"></td>
+</tr>
+
+<tr>
+<td class="head8c">&nbsp;URL:</td>
+<td>&nbsp;<input type="Text" name="URL" size="35" class="input" value="http://"></td>
+</tr>
+
+<tr>
+<td class="head8c" valign="top">&nbsp;Bemerkung:</td>
+<td>&nbsp;<textarea type="Text" name="Comment" rows="6" cols="35" class="input">Hier ist gen&uuml;gend Platz f&uuml;r Ihre Bemerkungen...</textarea></td>
+</tr>
+
+
+<tr>
+<td colspan="2">&nbsp;</td>
+</tr>
+
+<tr>
+<td colspan="2">&nbsp;</td>
+</tr>
+
+<tr>
+<td align="right" colspan="2">
+
+<table width="100%" border="0">
+
+       <tr>
+       <td align="right"><input type="Button" name="zur&uuml;ck" value="&auml;ndern" onclick="javascript:history.back(-1)">&nbsp;&nbsp;&nbsp;<input type="Button" name="agb" value="AGB" onclick="parent.content.location.href='/1Ci/dmerce?qTemplate=Textarticle,agb&back=1'">&nbsp;&nbsp;&nbsp;<input
+type="Submit" value="Bestellen!"></td>
+       </tr>
+
+</table>
+
+</td>
+</tr>
+
+</table>
+
+</form>
+
+
+
+</body>
+
+</html>

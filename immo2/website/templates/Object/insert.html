@@ -1,0 +1,678 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>Objekt anlegen</title>
+
+<script language="JavaScript">
+<!--
+
+function do_kp(myfield) {
+        myelem=eval('document.myForm.'+myfield);
+
+        myelem.value = myelem.value.replace(/,/,'.');
+
+        if(isNaN(myelem.value) == true) {
+                alert(myelem.value + " ist keine Zahl!");
+                myelem.focus();
+                myelem.value = '';
+                return false;
+                }
+}
+
+//-->
+</script>
+
+</head>
+
+<body
+(if '(form Infenster)' == '1')
+onLoad="window.resizeTo(850,500)"
+(endif)
+bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+
+
+<form method="post" action="/1Ci/dmerce" name="myForm" enctype="multipart/form-data">
+<input type="hidden" name="qTemplate" value="(form Template)">
+<input type="hidden" name="qInsert" value="Object">
+<input type="hidden" name="Object_SubNavID" value="(form SubgroupID)">
+<input type="hidden" name="SubgroupID" value="(form SubgroupID)">
+<input type="hidden" name="qTrigger" value="HTML.PlainToHTML.FormatFields,OS.File.Upload">
+<input type="hidden" name="qFieldsConvertPlainToHTML" value="Object_Location, Object_DetailDescription, Object_ShortDescription, Object_Misc">
+<input type="hidden" name="qUploadKeepRealname" value="Object_Picture">
+<input type="hidden" name="GroupID" value="(form GroupID)">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;Objekt anlegen</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+       <td width="20%" valign="top">
+
+
+
+<table width="100%" border="0" cellspacing="3" cellpadding="0">
+
+       <tr>
+       <td colspan="2">
+       Laden Sie hier eine Bildatei (.jpg oder .gif) auf den Server. Achten Sie auf die Bildgr&ouml;&szlig;e.
+       <input type="file" name="Object_Picture"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" border="0" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td width="22" class="head8"><img src="../../pic/view.gif" width="16" height="16" border="0" alt="[weitere Ansichten]"></td>
+       <td class="head8">[- weitere Ansichten]</td>
+       </tr>
+
+</table>
+
+
+       <td width="80%" valign="top">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+
+      <tr>
+      <td class="head11" colspan="2"><b>&nbsp;Neues Objekt eintragen</b></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td valign="top">
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Anmerkung</td>
+      <td class="head9">Felder ohne Eingabe werden nicht angezeigt!<br><br>Um ein Feld zu löschen, müssen Sie eine Leertaste in das leere Feld eintragen.</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+
+      <tr>
+      <td class="head11" colspan="2"><b>Usergruppe:</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" width="25%">Usergruppe:</td>
+      <td class="head9"><select name="Object_GruppenID" size="1">
+      <option value="0">Alle User</option>
+
+      (repeat "Usergruppe.ID]0{Usergruppe.ID")
+      <option value="(sql Usergruppe.ID)">(sql index1). (sql Usergruppe.Description)</option>
+      (endrepeat)
+
+       </select>
+      </td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td class="head11" colspan="3"><b>Angaben zum Angebot</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" width="25%" valign="top">Angebotsart</td>
+      <td class="head9">
+
+      <input type="radio" Name="Object_ForRent" value="1" checked> Vermietung
+      <input type="radio" Name="Object_ForRent" value="0"> Verkauf<br>
+      <input type="radio" Name="Object_ForRent" value="2"> Verpachtung
+      <input type="radio" Name="Object_ForRent" value="3"> keine Angabe
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" width="25%">Nutzungsart</td>
+      <td class="head9">
+
+      <input type="radio" Name="Object_ForPrivate" value="1" checked> privat
+      <input type="radio" Name="Object_ForPrivate" value="0"> gewerblich
+      <input type="radio" Name="Object_ForPrivate" value="2"> keine Angabe
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%"><b>Angebot Nummer</b></td>
+      <td class="head9"><input type="Text" name="Object_OfferNo" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%"><b>Angebot Bezeichung</b></td>
+      <td><input type="Text" name="Object_Name" size="35" class="input"></td>
+      </tr>
+
+
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+
+      <tr>
+      <td class="head11" colspan="3"><b>Standort</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Land</td>
+      <td><input type="Text" name="Object_Country" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">PLZ - Ort</td>
+      <td><input type="Text" name="Object_ZipCode" size="5" class="input">&nbsp;-&nbsp;<input type="Text" name="Object_City" size="25" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Strasse</td>
+      <td><input type="Text" name="Object_Street" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Lage</td>
+      <td><textarea name="Object_Location" cols="33" rows="5" class="textarea"></textarea></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Kurzbeschreibung</td>
+      <td><textarea name="Object_ShortDescription" cols="33" rows="5" class="textarea"></textarea></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Detailbeschreibung</td>
+      <td><textarea name="Object_DetailDescription" cols="33" rows="10"class="textarea"></textarea></td>
+      </tr>
+
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+
+      <tr>
+      <td class="head11" colspan="3"><b>Angaben zum Objekt</b></td>
+      <td>&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Wohnfl&auml;che</td>
+      <td><input type="Text" name="Object_LivingSpace" size="10" class="input" onChange="do_kp(this.name)">&nbsp;m&sup2;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Nutzfl&auml;che</td>
+      <td><input type="Text" name="Object_FloorSpace" size="10" class="input" onChange="do_kp(this.name)">&nbsp;m&sup2;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Gewerbefl&auml;che</td>
+      <td><input type="Text" name="Object_CommercialSpace" size="10" class="input" onChange="do_kp(this.name)">&nbsp;m&sup2;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Grundst&uuml;cksfl&auml;che</td>
+      <td><input type="Text" name="Object_RealtySpace" size="10" class="input" onChange="do_kp(this.name)">&nbsp;m&sup2;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Gesamtfl&auml;che</td>
+      <td><input type="Text" name="Object_TotalSpace" size="10" class="input" onChange="do_kp(this.name)">&nbsp;m&sup2;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Zimmer</td>
+      <td><input type="Text" name="Object_Rooms" size="5" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Courtage</td>
+      <td><input type="Text" name="Object_Brokerage" size="5" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Kaltmiete f&uuml;r Mietobjekt</td>
+      <td><input type="Text" name="Object_Rent1" size="10" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Nebenkosten ca.</td>
+      <td><input type="Text" name="Object_ExtraCharges" size="10" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Hausgeld ca.</td>
+      <td><input type="Text" name="Object_ReserveFunds" size="10" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Warmmiete ca.</td>
+      <td><input type="Text" name="Object_Rent2" size="10" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Mietkaution</td>
+      <td><input type="Text" name="Object_Caution" size="10" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Kaufpreis</td>
+      <td><input type="Text" name="Object_Price" size="10" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Renditeerwartung</td>
+      <td><input type="Text" name="Object_Yield" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+      <tr>
+      <td class="head11" colspan="3"><b>Weitere Daten</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Haustyp</td>
+      <td><input type="Text" name="Object_BuildingType" size="35" class="input"></td>
+      </tr>
+
+
+      <tr>
+      <td class="head9c" width="35%">Etagenlage (1./2. Etage)</td>
+      <td><input type="Text" name="Object_Level" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Etagenanzahl gesamt</td>
+      <td><input type="Text" name="Object_LevelAlltogether" size="5" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Vermietbare Fl&auml;che</td>
+      <td><input type="Text" name="Object_RentSpace" size="10" class="input" onChange="do_kp(this.name)">&nbsp;m&sup2;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Mieteinnahmen ca</td>
+      <td><input type="Text" name="Object_RentReturns" size="10" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Aufzug</td>
+      <td>
+
+      <input type="radio" Name="Object_Elevator" value="1"> Ja
+      <input type="radio" Name="Object_Elevator" value="0"> Nein
+      <input type="radio" Name="Object_Elevator" value="2" checked> keine Angabe
+
+      </td>
+      </tr>
+
+
+      <tr>
+      <td class="head9c" width="35%">Unterkellert</td>
+      <td>
+
+      <input type="radio" Name="Object_Basement" value="1"> Ja
+      <input type="radio" Name="Object_Basement" value="0"> Nein
+      <input type="radio" Name="Object_Basement" value="2" checked> keine Angabe
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Keller</td>
+      <td><input type="Text" name="Object_BasementDescription" size="35"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Ausstattung</td>
+      <td><input type="Text" name="Object_Configuration" size="35"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Einbauk&uuml;che</td>
+      <td>
+
+      <input type="radio" Name="Object_FittedKitchen" value="1"> Ja
+      <input type="radio" Name="Object_FittedKitchen" value="0"> Nein
+      <input type="radio" Name="Object_FittedKitchen" value="3" checked> keine Angabe<br>
+      <input type="radio" Name="Object_FittedKitchen" value="2"> &Uuml;bernahmem&ouml;glichkeit
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Fussboden</td>
+      <td><input type="Text" name="Object_Floor" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Hausmeister</td>
+      <td>
+
+      <input type="radio" Name="Object_Caretaker" value="1"> Ja
+      <input type="radio" Name="Object_Caretaker" value="0"> Nein
+      <input type="radio" Name="Object_Caretaker" value="2" checked> keine Angabe
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Hausverwaltung</td>
+      <td><input type="Text" name="Object_PropertyManagement" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Garten</td>
+      <td>
+
+      <input type="radio" Name="Object_Garden" value="1"> Ja
+      <input type="radio" Name="Object_Garden" value="0"> Nein
+      <input type="radio" Name="Object_Garden" value="2" checked> keine Angabe
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Gartenmitbenutzung</td>
+      <td>
+
+      <input type="radio" Name="Object_GardenUse" value="1"> Ja
+      <input type="radio" Name="Object_GardenUse" value="0"> Nein
+      <input type="radio" Name="Object_GardenUse" value="2" checked> keine Angabe
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Balkon/Terrasse</td>
+      <td>
+
+      <input type="radio" Name="Object_BalconyTerrace" value="1"> Ja
+      <input type="radio" Name="Object_BalconyTerrace" value="0"> Nein
+      <input type="radio" Name="Object_BalconyTerrace" value="2" checked> keine Angabe
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Garage/Stellplatz</td>
+      <td>
+
+      <input type="radio" Name="Object_GarageParking" value="1"> Ja
+      <input type="radio" Name="Object_GarageParking" value="0"> Nein
+      <input type="radio" Name="Object_GarageParking" value="2" checked> keine Angabe
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Garage/Stellplatz-Miete</td>
+      <td><input type="Text" name="Object_ParkingRent" size="35" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Garage/Stellplatz-Kaufpreis</td>
+      <td><input type="Text" name="Object_ParkingPrice" size="35" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Anzahl der Parkfl&auml;chen</td>
+      <td><input type="Text" name="Object_ParkingLots" size="10" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Heizungsart</td>
+      <td><input type="Text" name="Object_Heating" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Baujahr</td>
+      <td><input type="Text" name="Object_ConstructionYear" size="5" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Objektzustand</td>
+      <td><input type="Text" name="Object_ObjectStatus" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">WBS erforderlich</td>
+      <td>
+
+      <input type="radio" Name="Object_WBSNeeded" value="1"> Ja
+      <input type="radio" Name="Object_WBSNeeded" value="0"> Nein
+      <input type="radio" Name="Object_WBSNeeded" value="2" checked> keine Angabe
+
+      </td>
+      </tr>
+      (endif)
+
+      <tr>
+      <td class="head9c" width="35%">Haustiere</td>
+      <td>
+
+      <input type="radio" Name="Object_Pets" value="1"> Ja
+      <input type="radio" Name="Object_Pets" value="0"> Nein
+      <input type="radio" Name="Object_Pets" value="2" checked> keine Angabe
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Bezugsfrei ab</td>
+      <td><input type="Text" name="Object_RentFrom" size="10" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Fussweg zu &Ouml;ffentl. Verkehrsmitteln</td>
+      <td><input type="Text" name="Object_WalkBusMin" size="5" class="input">&nbsp;Min</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Fahrzeit zum n&auml;chsten Bahnhof</td>
+      <td><input type="Text" name="Object_TrainMin" size="5" class="input">&nbsp;Min</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Fahrzeit zur n&auml;chsten BAB</td>
+      <td><input type="Text" name="Object_AutobahnMin" size="5" class="input">&nbsp;Min</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Sonstiges</td>
+      <td><textarea name="Object_Misc" cols="33" rows="10"class="textarea"></textarea></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+      <tr>
+      <td class="head11" colspan="3"><b>Kontaktdaten</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Referenznummer</td>
+      <td><input type="Text" name="Object_RefNo" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%"><b>Besichtigungstermin</b></td>
+      <td><input type="Text" name="Object_Visit" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Kontaktperson</td>
+      <td><input type="Text" name="Object_ContactPerson" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Telefon</td>
+      <td><input type="Text" name="Object_Phone" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+      </tr>
+
+      <tr>
+      <td class="head11" colspan="3"><b>Highlightartikel</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Anmerkung</td>
+      <td>Geben Sie hier die Postionsnummer f&uuml;r die Reihenfolge der Anzeige des Objekts ein.<br><br>
+       <b>Tip:</b> Die Positionen f&uuml;r die aktiven Highlightartikel k&ouml;nnen Sie auch &uuml;ber die &Uuml;bersicht in Administration Highlightliste komfortabel bearbeiten.</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Highlight Position</td>
+      <td><input type="Text" name="Object_Highlight" size="3" class="input"></td>
+      </tr>
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+      </tr>
+
+
+</table>
+
+       </td>
+       </tr>
+
+</table>
+
+       </td>
+       </tr>
+
+
+       <tr>
+       <td colspan="2" align="right"><input type="submit" class="submit" name="qButton" value="eintragen"></td>
+       </tr>
+
+</table>
+
+
+</form>
+
+
+</body>
+</html>

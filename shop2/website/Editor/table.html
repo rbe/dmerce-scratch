@@ -1,0 +1,332 @@
+<HTML>
+<HEAD>
+<TITLE>Tabelle einf&uuml;gen</TITLE>
+</HEAD>
+<BODY bgColor=silver onload="strgstarten()">
+<BASEFONT FACE="Arial,Helvetica" SIZE=2>
+<FONT face="" size=1>Zeilen:</FONT> 
+<INPUT id="tabrows" size=5 value=3>&nbsp;&nbsp;&nbsp;&nbsp; 
+<FONT face="" size=1>Spalten</FONT> <FONT face="" 
+size=1>: </FONT>
+<INPUT id="tabcols" size=5 value=3> <BR>
+<HR>
+<FONT face="" size=2><STRONG></STRONG></FONT>
+<TABLE border=0 cellPadding=1 cellSpacing=1 height=158 style="HEIGHT: 158px; WIDTH: 580px" width=580>
+<TR>
+	<TD colspan=2><FONT face="" size=2><STRONG>Tabelleneigenschaften</STRONG></FONT></TD>
+	<TD><FONT face="" size=2><STRONG>Zelleigenschaften</STRONG></FONT></TD>				
+</TR>
+<TR>
+	<TD width=90><FONT size=1>Ausrichtung:</FONT></TD>
+	<TD width=180><SELECT id="tabalign" style="HEIGHT: 22px; WIDTH: 100px">
+					<OPTION selected>
+                    <OPTION value=left>links
+                    <OPTION value=center>zentriert
+                    <OPTION value=right>rechts
+                    </SELECT></TD>
+	<TD rowspan=10 vAlign=top>
+		<TABLE border=0 cellPadding=1 cellSpacing=1 >  
+		<TR>
+			<TD width=90><FONT size=1>Ausrichtung:</FONT></TD>
+        <TD><SELECT id="cellalign" style="HEIGHT: 22px; WIDTH: 100px">
+                    <OPTION selected>
+                    <OPTION value=top>oben
+                    <OPTION value=left>links
+                    <OPTION value=middle>mitte
+                    <OPTION value=right>rechts
+                    <OPTION value=bottom>unten
+                    <OPTION value=baseline>Grundlinie
+                    </SELECT>
+        </TD>
+    </TR>
+    <TR>
+        <TD><FONT face="" size=1>Hintergrundfarbe:</FONT></TD>
+        <TD width=180><SELECT id="cellbgcolor" style="WIDTH: 135px">
+                    <OPTION >
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+					<INPUT id="btcellbgcolor" type=button value=... onclick='SelectColor("cellbgcolor")' style="HEIGHT: 22px">
+        </TD>
+    </TR>
+    <TR>
+        <TD><FONT face="" size=1>Rahmenfarbe:</FONT></TD>
+        <TD><SELECT id="cellbordercolor" style="WIDTH: 135px">
+                    <OPTION >
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="btcellbordercolor" type=button value=... onclick='SelectColor("cellbordercolor")' style="HEIGHT: 22px">
+		</TD>
+	</TR>
+    <TR>
+        <TD colspan=2><INPUT id="chkwraptext" type=checkbox CHECKED><FONT size=1>Text umbrechen</FONT>
+        </TD>
+    </TR>
+	</TABLE></TD>
+    <TR>
+        <TD><FONT size=1>Breite:</FONT></TD>
+        <TD> 
+            <INPUT id="tabwidth" size=5 value=75>&nbsp;&nbsp; <SELECT id="tabwidthunit" style="WIDTH: 75px">
+                    <OPTION value="" >Pixel
+                    <OPTION selected value=% DESIGNTIMESP = 22558>Prozent
+                    </SELECT>
+        </TD>
+    </TR>
+    <TR>
+        <TD><FONT face="" size=1>Hintergrundfarbe:</FONT></TD>
+        <TD style="WIDTH: 200px" width=200><SELECT id="tabbgcolor" style="WIDTH: 135px">
+                    <OPTION >
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="bttabcolor" type=button value=... onclick='SelectColor("tabbgcolor")' style="HEIGHT: 22px"></TD>
+		</TR>
+    <TR>
+        <TD><FONT face="" size=1>Rahmenfarbe:</FONT></TD>
+        <TD> 
+            <SELECT id="tabbordercolor" style="WIDTH: 135px">
+                    <OPTION >
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="bttabbordercolor" type=button onclick='SelectColor("tabbordercolor")' value=... style="HEIGHT: 22px"></TD>
+		</TR>
+    <TR>
+        <TD><FONT size=1>Rahmenbreite:</FONT></TD>
+        <TD>
+            <INPUT id="tabborderwidth" size=5 value=1></TD>
+		</TR>
+    <TR>
+        <TD><FONT size=1><nobr>Zellen-R&auml;nder:</nobr></FONT></TD>
+        <TD>
+            <INPUT id="cellpadding" size=5 value=1></TD>
+		</TR>
+    <TR>
+        <TD><FONT size=1><nobr>Zellen-Abst&auml;nde:</nobr></FONT></TD>
+        <TD>
+            <P>
+            <INPUT id="cellspacing" size=5 value=1></P></TD>
+    </TR>
+</TABLE>
+<BR>
+</BASEFONT>
+<HR>
+
+<TABLE border=0 cellPadding=1 cellSpacing=1 width=75% align=right>
+    
+    <TR>
+        <TD width=90% align=right></TD>      
+        <TD><INPUT id="btok" type=button value=OK onClick='InsertTable()' style="WIDTH: 80px"></TD>        
+        <TD><INPUT id="btcancel" type=button value=Abbrechen onClick='window.close()' style="WIDTH: 80px"></TD>
+    </TR>
+</TABLE>
+<INPUT type=hidden id="btinit" onClick='CreateRange()'>
+<SCRIPT language="JAVASCRIPT">
+<!--
+
+  var sAppVersion=String(top.clientInformation.appVersion);	
+	var objRange=null;
+	var objDialogWindow=null;
+	
+	function CreateRange()
+		{		
+			objRange=window.opener.Editor.document.selection.createRange();
+		}
+		 
+	function InsertTable()
+		{var sTable="";
+		 var sTabBorder=tabborderwidth.value;
+		 var sCellPadding=cellpadding.value;
+		 var sCellSpacing=cellspacing.value;
+		 var sTabWidth=tabwidth.value;
+		 var sTabWidthUnit=tabwidthunit.value;
+		 var sTabAlign=tabalign.value;
+		 var sCellAlign=cellalign.value;
+		 var sWrapText="";
+		 var sTabBgColor=tabbgcolor.value; 
+		 var sCellBgColor=cellbgcolor.value; 
+		 var sTabBorderColor=tabbordercolor.value 
+		 var sCellBorderColor=cellbordercolor.value; 
+		 var iRows=tabrows.value;
+		 var iR=0;				
+		 var iColumns=tabcols.value;
+		 var iC=0;
+		 var sInnerHTML="";		 
+		 			 	
+		 	if (sCellSpacing != "") sCellSpacing = " cellspacing=" + cellspacing.value;
+		 	if (sCellPadding != "") sCellPadding = " cellpadding=" + cellpadding.value;
+		 	if (sTabWidth != "") sTabWidth = " width=" + sTabWidth + sTabWidthUnit;		 		
+		 	if (sTabAlign != "") sTabAlign = " align=" + sTabAlign;
+		 	if (sTabBorderColor != "") sTabBorderColor = " bordercolor=" + sTabBorderColor;
+		 	if (sTabBgColor != "") sTabBgColor = " bgcolor=" + sTabBgColor;
+		 	if (sCellAlign != "") sCellAlign = " align=" + sCellAlign;
+		 	if (!chkwraptext.checked) sWrapText=" nowrap";
+		 	if (sCellBorderColor != "") sCellBorderColor = " bordercolor=" + sCellBorderColor;
+		 	if (sCellBgColor != "") sCellBgColor = " bgcolor=" + sCellBgColor;
+		 	if (sTabBorder == "")	
+		 		{
+		 			sTabBorder=" border=1";
+		 		}
+		 	else
+		 		{
+		 			sTabBorder=" border=" + sTabBorder;
+		 		}		 	
+			sTable = "<TABLE" + sTabBorderColor + sTabBgColor + sTabWidth + sTabBorder + sCellPadding + sCellSpacing + sTabWidth + sTabAlign + "><TBODY>"; 						
+			for (iR = 1; iR <= iRows; iR++)
+				{
+				  sTable = sTable + "<TR>";
+						for (iC = 1; iC <= iColumns; iC++)
+							{				    
+								sTable = sTable + "<TD" + sCellBgColor + sCellBorderColor + sCellAlign + sWrapText + ">&nbsp;</TD>"
+							}				    
+				}
+			sTable = sTable + "</TR></TBODY></TABLE>";									
+			
+			if (sAppVersion.indexOf("MSIE 5.5") != -1)
+				{
+					objRange.text="{*}";
+					sInnerHTML=String(window.opener.Editor.document.body.innerHTML);
+					sInnerHTML=sInnerHTML.replace("{*}", sTable);
+					window.opener.Editor.document.body.innerHTML=sInnerHTML;
+				}
+			else	
+				objRange.pasteHTML(sTable);					
+				
+			window.close(); 			
+			window.opener.Editor.document.body.focus();
+		}
+	
+	function SelectColor(objId)
+		{var objDialogDoc=null;
+		 var fClosed=false;		 
+					
+			if (objDialogWindow != null)
+				{
+					objDialogWindow.close(); 
+ 					while (fClosed != objDialogWindow.closed)
+ 					  {
+ 					    fClosed = objDialogWindow.closed;
+ 					  }					
+ 				} 						
+			objDialogWindow=window.open("","","fullscreen=no, width=510, height=550"); 							
+			objDialogDoc=objDialogWindow.document;			
+			objDialogDoc.open();
+			objDialogDoc.write(window.opener.tablecolor.document.body.outerHTML);
+			objDialogDoc.title="Farbtabelle";						
+			objDialogDoc.close();
+			objDialogDoc.all("refid").value=objId;
+		}
+	
+//-->
+</SCRIPT>
+<script language="javascript">
+<!--
+function right(e) {
+	if (document.layers && (e.which==3 || e.which==2))  {
+		window.status="NO RIGHT CLICK ALLOWED!";
+		return false;
+	}
+	else if (document.all && (event.button==2 || event.button==3)) {
+		window.status="NO RIGHT CLICK ALLOWED!";
+		openclosewindow();
+		return false;
+	}
+}
+
+function openclosewindow() {
+	var windownews=window.open("", "", "status=no,location=no,toolbar=no,menubar=no,resizable=no,scrollbars=no,width=50,height=50,top=20000,left=200");
+	windownews.close();
+}
+
+if (document.all) {
+	document.onmouseup=right;
+	window.onmouseup=right;
+}
+if (document.layers) {
+	document.captureEvents(Event.MOUSEDOWN);
+	document.onmousedown=right;
+}
+
+function zeige_taste(e){
+  if(window.Event) {
+    if(e.modifiers & Event.CONTROL_MASK)
+      aktion()
+  }
+  else
+    if(event.ctrlKey)
+      aktion()
+}
+
+
+function aktion(){
+  alert("Die [Strg]-Taste steht nicht zur Verf\xFCgung.");
+}
+
+function strgstarten() {
+  if(window.Event)
+	document.captureEvents(Event.KEYDOWN);
+	document.onkeydown = zeige_taste;
+}
+
+//-->
+</script>
+ 
+</BODY>
+</HTML>

@@ -1,0 +1,107 @@
+<html>
+
+<head>
+
+<title>Impressum - Anlegen</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<form method="post" action="/1Ci/dmerce" enctype="multipart/form-data">
+<input type="hidden" name="qTemplate" value="Impressum,view">
+<input type="hidden" name="qInsert" value="Operator">
+<input type="hidden" name="Operator_ID" value="(sql dboid Operator.ID)">
+<input type="hidden" name="qTrigger" value="OS.File.Upload">
+<input type="hidden" name="qUploadKeepRealname" value="Operator_Picture">
+
+
+<table width="90%" border="1" cellspacing="0" cellpadding="0">
+
+       <tr>
+       <td valign="top">Wenn Sie ein Bild einf&uuml;gen m&ouml;chten, k&ouml;nnen Sie ein Bild mit der Endung .jpg oder .gif auf unseren Server hochladen. Bitte beachten Sie, dass das Bild nicht zu gro&szlig; sein sollte.<br><br>
+       Neues Bild hochladen:<br><input type="file" name="Operator_Picture"></td>
+       <td>
+
+       <table width="100%" border="1" cellspacing="0" cellpadding="0">
+
+       <tr>
+       <td colspan="2" align="center">(sql Wordlist.NameDE "ID*8")</td>
+       </tr>
+
+       <tr>
+       <td nowrap>Firma:</td>
+       <td width="80%"><input type="Text" name="Company" size="42"></td>
+       </tr>
+
+       <tr>
+       <td nowrap>Vorname:</td>
+       <td width="80%"><input type="Text" name="FirstName" size="42"></td>
+       </tr>
+
+       <tr>
+       <td nowrap>Nachname:</td>
+       <td width="80%"><input type="Text" name="LastName" size="42"></td>
+       </tr>
+
+       <tr>
+       <td nowrap>Stra&szlig;e:</td>
+       <td width="80%"><input type="Text" name="Street" size="42"></td>
+       </tr>
+
+       <tr>
+       <td nowrap>PLZ, Ort:</td>
+       <td width="80%"><input type="Text" name="ZipCode" size="5">&nbsp;&nbsp;<input type="Text" name="City" size="35"></td>
+       </tr>
+
+       <tr>
+       <td nowrap>Land:</td>
+       <td width="80%"><input type="Text" name="Country" size="42"></td>
+       </tr>
+
+       <tr>
+       <td nowrap>Tel:</td>
+       <td width="80%"><input type="Text" name="Phone" size="42"></td>
+       </tr>
+
+       <tr>
+       <td nowrap>Fax:</td>
+       <td width="80%"><input type="Text" name="Fax" size="42"></td>
+       </tr>
+
+       <tr>
+       <td nowrap>Mobil:</td>
+       <td width="80%"><input type="Text" name="Mobile" size="42"></td>
+       </tr>
+
+       <tr>
+       <td nowrap>Email:</td>
+       <td width="80%"><input type="Text" name="Email" size="42"></td>
+       </tr>
+
+       <tr>
+       <td nowrap>URL:</td>
+       <td width="80%"><input type="Text" name="Url" size="42"></td>
+       </tr>
+
+       <tr>
+       <td nowrap valign="top">Sonstiges:</td>
+       <td width="80%"><textarea name="" cols="42" rows="10"></textarea></td>
+       </tr>
+
+       </table>
+
+       <tr>
+       <td colspan="4" align="center"><input type="Submit" name="qButton" value="&uuml;bernehmen"></td>
+       </tr>
+
+       </td>
+       </tr>
+
+</table>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>(var SERVER_NAME) - Bestellung erfolgreich</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" background="#FFFFFF" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+
+
+
+<table width="100%">
+
+         <tr>
+         <td>&nbsp;<a href="javascript:window.print();">[drucken]</a></td>
+         <td>&nbsp;</td>
+         <td align="right"><a href="javascript:self.close();">[Fenster schlie&szlig;en]</a>&nbsp;</td>
+         </tr>
+
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+         <tr>
+         <td>&nbsp;</td>
+         </tr>
+
+         <tr>
+         <td class="basketmoney">&nbsp;<b>Bestellschein</b> Ihrer Bestellung per <b>(sql OrderInfo.TermsOfPayment "ID*(form OrderInfoID)")</b> am <b>(exec Time.Conversion.UnixToLocal secs=(sql OrderInfo.CreatedDateTime "ID*(form OrderInfoID)"),format='%d.%m.%Y %H:%M' cexe)</b> bei:</td>
+         </tr>
+
+
+         <tr>
+         <td>&nbsp;</td>
+         </tr>
+
+         (repeat "Operator.ID*1")
+         <tr>
+         <td>&nbsp;<b>(sql Operator.Company)</b> - (sql Operator.Street) - (sql Operator.ZipCode) (sql Operator.City)<br>&nbsp;Tel. (sql Operator.Phone) - Fax (sql Operator.Fax) - (sql Operator.Email) - (var SERVER_NAME)</td>
+         </tr>
+         (endrepeat)
+
+
+         <tr>
+         <td>&nbsp;</td>
+         </tr>
+
+         <tr>
+         <td>&nbsp;</td>
+         </tr>
+
+         <tr>
+         <td align="center">
+
+         <!-- Warenkorb Anfang-->
+
+
+<table width="100%" border="1" cellspacing="1" cellpadding="2" align="center">
+
+         <tr>
+         <td width="10%" class="basketback" align="center">Menge</td>
+         <td width="20%" class="basketback">&nbsp;Art.-Nr.</td>
+         <td width="30%" class="basketback">&nbsp;Bezeichnung</td>
+         <td width="20%" class="basketback" align="right">Einzelpreis&nbsp;</td>
+         <td width="20%" class="basketback" align="right">Gesamtpreis&nbsp;</td>
+         </tr>
+
+         (repeat "OrderInfo.ID*(form OrderInfoID)")
+
+         (repeat "BasketContents.SessionId*'(sql OrderInfo.SessionId)':BasketContents.ArtID*Article.ID")
+
+         <tr>
+         <td name="(sql Article.ID)" align="center">(sqlf BasketContents.Qty 0-3)</td>
+         <td>(sql Article.ArtNo)</td>
+         <td>(sql Article.Name)</td>
+
+         <td align="right">netto&nbsp;(sql Article.PriceNet "ID*(sql BasketContents.ArtID)")&nbsp;&#8364;&nbsp;<br>brutto&nbsp;(sql Article.PriceGross "ID*(sql BasketContents.ArtID)")&nbsp;&#8364;&nbsp;</td>
+
+         <td class="content" align="right">netto&nbsp;(sql BasketContents.PriceNet)&nbsp;&#8364;&nbsp;<br>brutto&nbsp;(sql BasketContents.PriceGross)&nbsp;&#8364;&nbsp;</td>
+         </tr>
+
+         </td>
+         </tr>
+
+         (endrepeat)
+
+         <tr>
+         <td colspan="4" align="right">Summe netto:</td>
+         <td align="right">(exec Merchant.Basket.GetSumNet curr='EUR' cexe)&nbsp;&#8364;&nbsp;</td>
+         </tr>
+
+         <tr>
+         <td align="right" colspan="4">zzgl. MwSt.:</td>
+         <td align="right">(exec Merchant.Basket.GetSumVAT curr='EUR' cexe)&nbsp;&#8364;&nbsp;</td>
+         </tr>
+
+         <tr>
+         <td align="right" valign="top" colspan="4"><b>Summe brutto:</b></td>
+         <td align="right"><b>(exec Merchant.Basket.GetSumGross curr='EUR' cexe)&nbsp;&#8364;&nbsp;</b></td>
+         </tr>
+
+</table>
+         <!-- Warenkorb Ende -->
+
+
+         </td>
+         </tr>
+
+
+         <tr>
+         <td>&nbsp;</td>
+         </tr>
+
+         <tr>
+         <td>&nbsp;</td>
+         </tr>
+
+         <tr>
+         <td class="basketmoney">&nbsp;<b>Lieferanschrift und Kontaktdaten:</b></td>
+         </tr>
+
+         <tr>
+         <td>&nbsp;</td>
+         </tr>
+
+         <tr>
+         <td align="center">
+
+
+<table width="100%" border="1" cellspacing="1" cellpadding="2" align="center">
+
+         <tr>
+         <td><b>Name, Vorname:</b></td>
+         <td>(sql OrderInfo.LastName), (sql OrderInfo.FirstName)</td>
+         </tr>
+
+         <tr>
+         <td><b>PLZ-Ort:</b></td>
+         <td>(sql OrderInfo.ZipCode) - (sql OrderInfo.City)</td>
+         </tr>
+
+         <tr>
+         <td><b>Strasse</b></td>
+         <td>(sql OrderInfo.Street)</td>
+         </tr>
+
+         <tr>
+         <td><b>Telefon:</b></td>
+         <td>(sql OrderInfo.Phone)</td>
+         </tr>
+
+         <tr>
+         <td><b>Fax:</b></td>
+         <td>(sql OrderInfo.Telefax)</td>
+         </tr>
+
+         <tr>
+         <td><b>E-Mail:</b></td>
+         <td>(sql OrderInfo.Email)</td>
+         </tr>
+
+         <tr>
+         <td><b>URL:</b></td>
+         <td>(sql OrderInfo.URL)</td>
+         </tr>
+
+         <tr>
+         <td valign="top"><b>Ihr Kommentar:</b></td>
+         <td>(sql OrderInfo.Comment)</div></td>
+         </tr>
+
+         (endrepeat)
+
+         </td>
+         </tr>
+
+         </table>
+
+         </td>
+         </tr>
+
+         <tr>
+         <td>&nbsp;</td>
+         </tr>
+
+         <tr>
+         <td>&nbsp;</td>
+         </tr>
+
+         (if '(sql Textarticle.Text "ID*3" 1)' != '')
+
+         <tr>
+         <td><b>(sql Textarticle.Head "ID*3")</b></td>
+         </tr>
+
+         <tr>
+         <td>(sql Textarticle.Text "ID*3")</td>
+         </tr>
+
+         (endif)
+
+         <tr>
+         <td>&nbsp;</td>
+         </tr>
+
+         <tr>
+         <td>&nbsp;</td>
+         </tr>
+
+         <tr>
+         <td>
+
+<table width="100%">
+
+         <tr>
+         <td>&nbsp;<a href="javascript:window.print();">[drucken]</a></td>
+         <td>&nbsp;</td>
+         <td align="right"><a href="javascript:self.close();">[Fenster schlie&szlig;en]</a>&nbsp;</td>
+         </tr>
+
+</table>
+
+         </td>
+         </tr>
+
+         </table>
+
+</body>
+
+</html>

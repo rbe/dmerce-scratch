@@ -1,0 +1,152 @@
+<html>
+
+<head>
+
+<LINK rel="stylesheet" type="text/css" href="../../style_admin.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>BEARBEITEN der Highlightliste</title>
+
+<script language="JavaScript" src="../../javascript/dmerce_textedit.js" type="text/javascript"></script>
+
+<script language="JavaScript">
+
+      <!--
+      var myFormName = "myForm";
+      //-->
+
+</script>
+
+<script language="JavaScript">
+<!--
+var X=100
+var Y=160
+
+function NavFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=500
+        myheight=500
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+newWin = window.open(myurl,'Fenster',par);
+newWin.focus();
+}
+
+//-->
+</script>
+
+</head>
+
+
+</head>
+
+<body onLoad="window.resizeTo(500,500);" bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>Highlightliste</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head8">&nbsp;Bearbeiten sind die Highlightliste nach Ihrer Wahl:</td>
+      </tr>
+
+</table>
+
+
+
+<table  bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+(repeat "Object.Highlight]0{Highlight")
+
+         <form method="post" action="/1Ci/dmerce" name="myForm(sql Object.ID)" enctype="multipart/form-data">
+         <input type="hidden" name="qTemplate" value="(var qTemplate)">
+         <input type="hidden" name="Template" value="Object,highlight_list">
+         <input type="hidden" name="qUpdate" value="Object">
+         <input type="hidden" name="Object_ID" value="(sql Object.ID)">
+
+         <tr>
+         <td class="head11"><a class="head11" href="javascript:window.opener.parent.content.location.href=('/1Ci/dmerce?qTemplate=Object,view&ObjectID=(sql Object.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)');self.close();">&nbsp;(sql Object.Head)</a>
+         </td>
+         </tr>
+
+         <tr>
+         <td>
+         (if '(sql Object.Head)' != '')
+         &nbsp;(sql Object.Highlighttext)
+         (endif)
+         </td>
+         </tr>
+
+         <tr>
+         <td align="right">aktuelle Highlight Position:&nbsp;<input type="Text" name="Object_Highlight" value="(sql Object.Highlight)" size="3" class="input"><br>
+         <a href="/1Ci/dmerce?qTemplate=(var qTemplate)&qUpdate=Object&Object_ID=(sql Object.ID)&Object_Highlight=0&qButton=1">[aus Highlightliste l&ouml;schen]</a>&nbsp;&nbsp;<a href="javascript:document.myForm(sql Object.ID).submit();" onClick="javascript:document.myForm(sql Object.ID).submit();">[&Auml;nderungen &uuml;bernehmen]</a></td>
+         </tr>
+
+         </form>
+
+(endrepeat)
+
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      </tr>
+
+</table>
+
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td align="center"><a href="/1Ci/dmerce?qTemplate=Object,select_highlight&Infenster=1&Template=Object,insert_highlight">neues Angebot hinzuf&uuml;gen</a></td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+
+
+</body>
+</html>

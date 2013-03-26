@@ -1,0 +1,160 @@
+<html>
+
+<head>
+
+<LINK rel="stylesheet" type="text/css" href="../../style_admin.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>BESTELLUNG - Detailansicht</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+(repeat "OrderInfo.ID*(form OrderInfoID)")
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+
+      <tr>
+      <td colspan="2" class="nav10blue">&nbsp;<b>Details Bestellung Nr. (form OrderInfoID)</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head8" colspan="2">Bestelldatum: (exec Time.Conversion.UnixToLocal secs=(sql OrderInfo.CreatedDateTime),format='%d.%m.%Y &nbsp;&nbsp; %H:%M' cexe) Uhr</td>
+      </tr>
+
+      <tr>
+      <td colspan="2">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td align="center" class="menutop">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td class="head8c" colspan="2"><b class="head8">Kundendaten:</b></td>
+      </tr>
+
+      <tr>
+      <td class="head8c">Name:</td>
+      <td width="80%">(sql OrderInfo.FirstName) (sql OrderInfo.LastName)</td>
+      </tr>
+
+      <tr>
+      <td class="head8c">Strasse:</td>
+      <td width="80%">(sql OrderInfo.Street)</td>
+      </tr>
+
+      <tr>
+      <td class="head8c">Ort:</td>
+      <td width="80%">(sql OrderInfo.ZipCode) (sql OrderInfo.City)</td>
+      </tr>
+
+      <tr>
+      <td class="head8c">Telefon:</td>
+      <td width="80%">(sql OrderInfo.Phone)</td>
+      </tr>
+
+      <tr>
+      <td class="head8c">Telefax:</td>
+      <td width="80%">(sql OrderInfo.Telefax)</td>
+      </tr>
+
+      <tr>
+      <td class="head8c">Mobil:</td>
+      <td width="80%">(sql OrderInfo.Mobile)</td>
+      </tr>
+
+      <tr>
+      <td class="head8c">Email:</td>
+      <td width="80%"><a href="mailto:(sql OrderInfo.Email)">(sql OrderInfo.Email)</a></td>
+      </tr>
+
+      <tr>
+      <td class="head8c" valign="top">Bemerkung:</td>
+      <td width="80%">(sql OrderInfo.Comment)</td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+      <tr>
+      <td colspan="2" class="head8c"><img src="../../pic/line.gif" width="5" height="1" border="0" alt=""></td>
+      </tr>
+
+      <tr>
+      <td align="center" class="menutop">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td class="head8c" colspan="3"><b>Bestellung per</b> <b class="head8">(sql OrderInfo.TermsOfPayment):</b></td>
+      </tr>
+
+      <tr>
+      <td class="head8c">Anzahl:</td>
+      <td class="head8c">Artikel:</td>
+      <td class="head8c">Gesamtpreis:</td>
+      </tr>
+
+      (repeat "BasketContents.SessionId*'(sql OrderInfo.SessionID)'")
+
+      <tr>
+      <td width="20%">(sqlf BasketContents.Qty) St&uuml;ck</td>
+      <td width="60%">(sql Article.Name "ID*(sql BasketContents.ArtID)")</td>
+      <td width="20%" align="right">(sqlf BasketContents.PriceGross 2) &#8364;</td>
+      </tr>
+
+      <tr>
+      <td colspan="3">&nbsp;</td>
+      </tr>
+
+      (endrepeat)
+
+      <tr>
+      <td>&nbsp;</td>
+      <td align="right"><b>Gesamtsumme:</b></td>
+      <td align="right">(sqlf OrderInfo.BasketSum 2) &#8364;</td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+      <tr>
+      <td>&nbsp;<a href="javascript:history.back(-10);">[zur&uuml;ck]</a></td>
+      <td align="right"><a href="javascript:window.print()">[drucken]</a>&nbsp;&nbsp;&nbsp;<a href="javascript:self.close();">[Fenster schlie&szlig;en]</a>&nbsp;</td>
+      </tr>
+</table>
+
+      (endrepeat)
+
+</body>
+
+</html>

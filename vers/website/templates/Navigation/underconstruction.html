@@ -1,0 +1,104 @@
+<html>
+
+<head>
+
+<LINK rel="stylesheet" type="text/css" href="../../style_admin.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>WWW &ouml;ffnen / schlie&szlig;en - [Vers] by 1Ci GmbH(R)</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>AKTION</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head8">Hier k&ouml;nnen sie Ihre Webseite f&uuml;r Aussenstehende w&auml;hrend Ihrer Umbauma&szlig;nahmen vor&uuml;bergehend schlie&szlig;en und &ouml;ffnen.</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+
+      <form method="post" action="/1Ci/dmerce" name="myForm" enctype="multipart/form-data">
+      <input type="hidden" name="qTemplate" value="Navigation,closenav">
+      <input type="hidden" name="qUpdate" value="Operator">
+      <input type="hidden" name="Operator_ID" value="1">
+      <input type="hidden" name="qTrigger" value="HTML.PlainToHTML.FormatFields,OS.File.Upload">
+      <input type="hidden" name="qFieldsConvertPlainToHTML" value="Operator_UndConstText">
+      <input type="hidden" name="qUploadKeepRealname" value="Operator_UndConstPic">
+
+      <tr>
+      <td class="head8c">Status:</td>
+      <td class="head8">&nbsp;<select name="Operator_UnderConstruction" size="1">
+      (if (sql Operator.UnderConstruction "ID*1") == 1)
+      <option value="1" selected>Web geschlossen
+      <option value="0">Web offen
+      (endif)
+      (if (sql Operator.UnderConstruction "ID*1") == 0)
+      <option value="1">Web geschlossen
+      <option value="0" selected>Web offen
+      (endif)
+      </select></td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;Bild:</td>
+      <td class="head8">&nbsp;<input type="File" name="Operator_UndConstPic"></td>
+      </tr>
+
+      <tr>
+      <td class="head8c" valign="top">&nbsp;Text:</td>
+      <td class="head8">&nbsp;<textarea name="Operator_UndConstText" cols="55" rows="7">(exec HTML.HTMLToPlain.Format '(sql Operator.UndConstText "ID*1")' cexe)</textarea></a></td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;</td>
+      <td class="head8">Bilder und Texte werden <b>nur</b> bei geschlossenem WWW angezeigt.<br>
+      Um das aktuelle Bild zu &auml;ndern oder zu entfernen, w&auml;hlen Sie ein neues Bild bzw. lassen Sie das Feld frei.</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="2" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="right" colspan="2"><input type="submit" class="submit" name="qButton" value="&auml;ndern"></td>
+      </tr>
+
+</form>
+
+</table>
+
+      </td>
+      </tr>
+
+
+</table>
+
+
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>Highlightliste</title>
+
+<script language="JavaScript">
+<!--
+var X=100
+var Y=160
+
+function NavFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=500
+        myheight=500
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+newWin = window.open(myurl,'Fenster',par);
+newWin.focus();
+}
+
+//-->
+</script>
+
+</head>
+
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+<tr>
+<td align="center" class="head12b">Highlightliste</td>
+</tr>
+</table>
+<br>
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      (repeat "Article.Highlight]2{Highlight")
+
+
+      <tr>
+      <td class="head12b" ><a class="head12b"  href="javascript:window.opener.parent.content.location.href=('/1Ci/dmerce?qTemplate=Article,view&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)');self.close();">&nbsp;(sql index1).&nbsp;(sql Article.Name)</a></td>
+      </tr>
+
+      <tr>
+      <td align="center">
+      (if '(sql Article.Picture)' != '')
+      <a href="javascript:window.opener.parent.content.location.href=('/1Ci/dmerce?qTemplate=Article,view&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)');self.close();"><img src="../pic/upload/(sql Article.Picture)" border="0" hspace="6"></a></td>
+      (else)
+      <b>&nbsp;kein Bild</b>
+      (endif)
+      </tr>
+
+
+      <tr>
+      <td>&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td class="head11">(sql Article.ShortDescription)</td>
+      </tr>
+
+      <tr>
+      <td>&nbsp;</td>
+      </tr>
+
+      (endrepeat)
+
+      <tr>
+      <td>&nbsp;</td>
+      </tr>
+
+
+</table>
+
+
+
+</body>
+</html>

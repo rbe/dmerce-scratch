@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>1Ci - dmerce - Error</title>
+<style>
+  body, td, th {
+    background: #000000;
+    color: #ffffff;
+    font-family: Arial, Helvetica, Helv;
+    font-size: 9pt;
+  }
+  th {
+    background: #0000ff;
+  }
+  th.l {
+    text-align: left;
+  }
+  th.r {
+    text-align: right;
+  }
+  td {
+    background: #0055ff;
+  }
+  td.black {
+    background: #000000;
+  }
+  td.bold {
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+<table border="0" cellspacing="0" cellpadding="3">
+  <tr>
+    <td class="black" rowspan="7">
+      <a target="_new" href="http://www.1ci.de"><img border="0" width="179" height="52" src="http://www.1ci.de/images/1ci_logo_s_200.gif"></a>
+    </td>
+  </tr>
+  <tr>
+    <th colspan="2">An unhandled exception occured with your application</th>
+  </tr>
+  <tr>
+    <td valign="top">Error message:</td>
+    <td class="bold">1109: : Unknown table 'Textarticle' in where clause SELECT Object.ID,Object.Name,Object.OfferNo,Object.ForRent,Object.ForPrivate,Object.Street,Object.ZipCode,Object.City,Object.Rooms,Object.LivingSpace,Object.Rent1,Object.ShortDescription,Object.Picture FROM Object WHERE (Textarticle.GruppenID = 0 OR Textarticle.GruppenID = 0)</td>
+
+  </tr>
+  <tr>
+    <th colspan="2">Detailed information</th>
+  </tr>
+  <tr>
+    <td>Raised:</td>
+    <td>Core.Error.UnknownTableError</td>
+  </tr>
+  <tr>
+  <td valign="top">Error occured in:</td>
+    <td><pre>
+./DTL/dmerce.pyc 1 173 ?
+
+./DTL/dmerce.pyc 1 99 Go
+
+./DTL/dmerce.pyc 1 75 ProcessTemplate
+
+./DTL/Dispatcher.pyc 1 320 ProcessTemplate
+
+./DTL/Processor.pyc 1 590 Go
+
+./DTL/Processor.pyc 1 484 __EvaluateRepeat
+
+./DTL/TemplateRepeat.pyc 1 141 ExecSQLQuery
+
+./DTL/Operator.pyc 1 119 Exec
+
+./DMS/SQLHdlMySQL.pyc 2 111 __getitem__
+
+./DMS/SQLHdlMySQL.pyc 1 123 Get
+
+./DMS/SQLHdlMySQL.pyc 1 265 ExceptionOperational
+
+</pre></td>
+</tr>
+</table>
+</p>
+</body>
+</html>

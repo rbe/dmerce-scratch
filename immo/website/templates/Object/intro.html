@@ -1,0 +1,135 @@
+<html>
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>(var SERVER_NAME) - Intro</title>
+
+</head>
+
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<a name="top">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+(repeat "HeadNav.ID*(form GroupID)")
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;(sql Wordlist.NameDE "ID*2")
+      (if '(form GroupID)' != '')
+      > (sql HeadNav.NameDE "ID*(form GroupID)")
+      (endif)
+      (if '(form SubgroupID)' != '')
+      > (sql SubNav.NameDE "ID*(form SubgroupID)")
+      (endif)
+      </td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+
+      (if '(sql Textarticle.Picture "ID*(sql HeadNav.TextID)")' != '')
+      <td width="20%" valign="top"><img src="../pic/upload/(sql Textarticle.Picture "ID*(sql HeadNav.TextID)")" border="0" hspace="6"></td>
+      (else)
+      <td width="20%" valign="top">&nbsp;</td>
+      (endif)
+
+      <td width="80%" valign="top">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td class="head12b">(sql Textarticle.Head "ID*(sql HeadNav.TextID)")</td>
+      <td class="head8" rowspan"2" align="right"><a href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+
+      (if (get-myvar login) == 1)
+      &nbsp;<a href="/1Ci/dmerce?qTemplate=Object,intro_maintain&GroupID=(form GroupID)"><img src="../../pic/edit.gif" width="16" height="16" border="0" alt="[Diese Seite bearbeiten]"></a></td>
+      (endif)
+      </tr>
+
+      <tr>
+      <td width="90%">(sql Textarticle.Text "ID*(sql HeadNav.TextID)")</td>
+      <td width="10%">&nbsp;</td>
+      </tr>
+
+</table>
+
+
+      (endrepeat)
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="20" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="100%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td  colspan="2"><b>Bitte w&auml;hlen Sie aus den folgenden Rubriken</b></td>
+      <td class="head8" align="right"><a href="#top">... top</a>&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      (repeat "SubNav.active*1:SubNav.HeadNavID*(form GroupID)")
+      (if (sql count Object "active*1:SubNavID*(sql SubNav.ID)") > 0)
+
+      <tr>
+      <td width="10%" class="head11">&nbsp;</td>
+      <td width="90%" class="head8" colspan="2">&nbsp;<img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;<a class="head8" href="/1Ci/dmerce?qTemplate=Object,list&GroupID=(form GroupID)&SubgroupID=(sql SubNav.ID)&qSuperSearch=Object.SubNavID*(sql SubNav.ID)">(sql SubNav.NameDE)</a></td>
+      </tr>
+
+       <tr>
+       <td colspan="3"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+      (endif)
+      (endrepeat)
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+</body>
+
+</html>

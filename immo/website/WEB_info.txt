@@ -1,0 +1,52 @@
+Maﬂe:
+
+--------------------------------------------------------------------------------
+name="topframe" src="/topframe.html" height= 93
+
+empfohlen: 		width="beliebig"
+			height="110" 
+
+sichtbar/Layout: 	width="beliebig"
+			height="90" 
+
+
+MUSTER:
+-----------------------------------------
+001_bg.gif: 		15 x 110
+
+
+
+--------------------------------------------------------------------------------
+name="footer" src="/1Ci/dmerce?qTemplate=Footer,footer"
+height= 14
+
+empfohlen: 		width="beliebig"
+			height="20" 
+
+sichtbar/Layout: 	width="beliebig"
+			height="14" 
+
+
+--------------------------------------------------------------------------------
+name="menue" src="/1Ci/dmerce?qTemplate=Navigation,list&qSuperSearch=ID]0"
+width= 155
+
+empfohlen: 		width="160"
+			height="beliebig" 
+
+sichtbar/Layout: 	width="150"
+			height="beliebig" 
+
+
+
+--------------------------------------------------------------------------------
+name="content" src="/1Ci/dmerce?qTemplate=Index,ex_content&TextarticleID=1"
+width= 100%
+
+
+
+
+
+
+
+

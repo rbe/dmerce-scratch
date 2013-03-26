@@ -1,0 +1,186 @@
+<html>
+
+<head>
+
+<link rel="stylesheet" href="/style.css" type="text/css">
+<meta name="author" content="1Ci GmbH">
+
+<title>STARTSEITE j.1Ci GmbH - Jobzeitmanagement</title>
+
+<script language="JavaScript">
+<!--
+var X=100
+var Y=160
+
+function NeuFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=640
+        myheight=450
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+newWin = window.open(myurl,'Fenster',par);
+newWin.focus();
+}
+
+//-->
+</script>
+
+</head>
+
+(set-myvar Jetzt (exec Time.Conversion.Calc timestamp=1 cexe))
+
+<body marginwidth="0" marginheight="0" leftmargin="0" topmargin="0">
+<br>
+<br>
+
+<table width="90%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+       <tr>
+       <td class="head12" colspan="2">&nbsp;<b>ARBEITSPLAN: (who Vorname)&nbsp;(who Name)</b></td>
+       <td class="head12" align="right"><b>Datum: (exec Time.Conversion.UnixToLocal secs=(get-myvar Jetzt),format='%d.%m.%Y %H:%M' cexe) Uhr</b>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td bgcolor="#000000" colspan="3" ><img src="../dummy.gif" width="1" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="3"><img src="../dummy.gif" width="1" height="3" border="0"></td>
+       </tr>
+
+       <form method="post" action="/1Ci/dmerce">
+       <input type="hidden" name="qTemplate" value="(var qTemplate)">
+       <input type="hidden" name="qUpdate" value="Agent">
+       <input type="hidden" name="Agent_ID" value="(who ID)">
+
+       <tr>
+       <td class="head9c" colspan="2" width="70%">&nbsp;</td>
+       <td class="head9c" valign="bottom" align="right" nowrap>&nbsp;Login:&nbsp;<input type="Text" name="Agent_Login" size="10">&nbsp; Passwort:&nbsp;<input type="Password" name="Agent_passwd" size="8" maxlength="8"> <input type="Submit" name="Button" value="&auml;ndern" class="submit"></td>
+       </tr>
+       </form>
+
+       <tr>
+       <td colspan="3"><img src="../dummy.gif" width="1" height="25" border="0"></td>
+       </tr>
+
+</table>
+
+
+<table width="90%" cellspacing="0" cellpadding="0" align="center" border="0">
+
+
+       <form>
+       <tr>
+       <td class="back2"><div class="head8">&nbsp;<b>JOBS</b>&nbsp;bis zum (exec Time.Conversion.Actual formatDate='europe' cexe)</div></td>
+       <td class="back2" align="right">&nbsp;<input class="submit" type="Button" name="Start" value="Beginn" onClick="parent.window.location.href='/1Ci/dmerce?qTemplate=Index,insert_from'">&nbsp;<input class="submit" type="Button" name="Enddate" value="Ende" onClick="parent.window.location.href='/1Ci/dmerce?qTemplate=Index,insert_until'">&nbsp;<input class="submit" type="Button" name="NewJob" value="Job hinzuf&uuml;gen" onClick="javascript:NeuFenster('/1Ci/dmerce?qTemplate=Job,insert')">&nbsp;</td>
+       </tr>
+       </form>
+
+
+       <tr>
+       <td colspan="2"><img src="../dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2" valign="top">
+
+<table width="100%" border="1" bordercolor="#DEDFDE" cellspacing="0" cellpadding="0">
+       <tr>
+       <td valign="top">
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+
+       <tr>
+       <td class="lightback">&nbsp;Jobtitel</td>
+       <td class="lightback">&nbsp;Status</td>
+       <td class="lightback">&nbsp;Kunde</td>
+       <td class="lightback">&nbsp;Projekt</td>
+       <td class="lightback">&nbsp;Beginn</td>
+       <td class="lightback">&nbsp;Ende</td>
+       <td class="lightback">&nbsp;Dauer</td>
+       </tr>
+
+       <tr>
+       <td class="borderbottom" colspan="7"><img src="../dummy.gif" width="1" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="7"><img src="../dummy.gif" width="1" height="1" border="0"></td>
+       </tr>
+
+(repeat "CreatedBy*(who ID){Gflag desc,Orderflag")
+
+
+       (if (sql Job.Orderflag) == 1)
+       <tr>
+       <td class="navhead">&nbsp;Tag (exec Time.Conversion.UnixToLocal secs=(sql Job.CreatedDateTime),format='%d.%m.%Y' cexe)</td>
+       <td colspan="6" class="">&nbsp;</td>
+       </tr>
+       (endif)
+
+       <tr>
+       <td class="lightback">&nbsp;(sql Job.Titel)</td>
+       <td class="lightback">&nbsp;
+       (if (sql Job.Status) == 0)
+       <font color="#FF0000"><b>0 %</b></font>
+       (endif)
+
+       (if (sql Job.Status) == 25)
+       <font color="#FF6000"><b>25 %</b></font>
+       (endif)
+
+       (if (sql Job.Status) == 50)
+       <font color="#FFE000"><b>50 %</b></font>
+       (endif)
+
+       (if (sql Job.Status) == 75)
+       <font color="#80FF00"><b>75 %</b></font>
+       (endif)
+
+       (if (sql Job.Status) == 100)
+       <font color="#00A000"><b>100 %</b></font>
+       (endif)
+
+       </td>
+       <td class="lightback">&nbsp;(sql Job.Customer)</td>
+       <td class="lightback">&nbsp;(sql Project.Name "ID*(sql Job.ProjectID)")</td>
+       <td class="lightback">&nbsp;
+       (if '(sql Job.Start)' != '')
+       (sql Job.Start) Uhr
+       (endif)
+       </td>
+       <td class="lightback">&nbsp;
+       (if '(sql Job.Until)' != '')
+       (sql Job.Until) Uhr
+       (endif)
+       </td>
+       <td class="lightback">&nbsp;(sql Job.Length) Min.</td>
+       </form>
+
+       </tr>
+
+       (if (sql Job.Orderflag) == 3)
+       <tr>
+       <td colspan="7"><img src="../dummy.gif" width="1" height="8" border="0"></td>
+       </tr>
+       (endif)
+
+
+(endrepeat)
+
+       <tr>
+       <td colspan="7"><img src="../dummy.gif" width="1" height="8" border="0"></td>
+       </tr>
+
+</table>
+       </td>
+       </tr>
+</table>
+       </td>
+       </tr>
+</table>
+
+
+</body>
+
+</html>

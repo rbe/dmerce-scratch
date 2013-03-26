@@ -1,0 +1,179 @@
+<html>
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>(var SERVER_NAME) - STARTSEITE</title>
+<script language="JavaScript">
+<!--
+var X=100
+var Y=160
+
+function NavFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=500
+        myheight=500
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+newWin = window.open(myurl,'Fenster',par);
+newWin.focus();
+}
+
+//-->
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+(repeat "Textarticle.ID*1")
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="/pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;Startseite</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+       <td valign="top">
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td width="20%" valign="top">
+      (if '(sql Textarticle.Picture)' != '')
+      <img src="/pic/upload/(sql Textarticle.Picture)" border="0">
+
+      (else)
+
+      <img src="/pic/dummy.gif" width="1" height="1" border="0">
+      (endif)
+
+      </td>
+      </tr>
+
+      <tr>
+      <td><img src="/pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+
+
+
+      (if (sql count Object "Object.Highlight*1|Object.Highlight*2") != 0)
+
+<table width="80%" border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td class="head11"><b>Unsere Highlights:</b></td>
+      </tr>
+
+      (repeat "Object.Highlight*1|Object.Highlight*2{Highlight")
+
+      (if '(sql Object.Picture)' != '')
+
+      <tr>
+      <td><img src="/pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td><a href="/1Ci/dmerce?qTemplate=Object,view&ObjectID=(sql Object.ID)"><img src="../pic/upload/(sql Object.Picture)" width="120" border="0" hspace="6"></a></td>
+      </tr>
+
+      (endif)
+
+      <tr>
+      <td class="head11"><a href="/1Ci/dmerce?qTemplate=Object,view&ObjectID=(sql Object.ID)">(sql Object.Name)</a></td>
+      </tr>
+
+      (endrepeat)
+
+      (if (sql count Object "Object.Highlight]2") != 0)
+
+
+      <tr>
+      <td><img src="/pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center"><a href="javascript:NavFenster('/1Ci/dmerce?qTemplate=Object,highlight_list2')" class="head8">[Weitere Highlights]</a></td>
+      </tr>
+
+      (endif)
+
+      (endif)
+
+
+</table>
+
+      </td>
+
+      <td width="80%" valign="top">
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td class="head12b">(sql Textarticle.Head)</td>
+      <td class="head8" rowspan"2" align="right"><a href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+
+      (if (get-myvar login) == 1)
+      &nbsp;<a href="/1Ci/dmerce?qTemplate=Index,main_ex_content"><img src="../../pic/edit.gif" width="16" height="16" border="0" alt="[Diese Seite bearbeiten]"></a></td>
+      (endif)
+
+      </tr>
+
+      <tr>
+      <td width="90%" class="head11">(sql Textarticle.Subhead)</td>
+      <td width="10%">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td colspan="2">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td>(sql Textarticle.Text)</td>
+      <td>&nbsp;</td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+(endrepeat)
+
+
+
+</body>
+</html>

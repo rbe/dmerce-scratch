@@ -1,0 +1,140 @@
+<html>
+
+<head>
+
+<LINK rel="stylesheet" type="text/css" href="../../style_admin.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>Passwort &auml;ndern</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+(if '(form old_passwd)' != '(sql Agent.passwd "ID*(who ID)")')
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>AKTION</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head8">&nbsp;Leider stimmt das von Ihnen eingegebene Passwort nicht &uuml;berein!<br>
+      &nbsp;Bitte geben Sie erneut Ihr altes Passwort ein.</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td align="center" class="menutop">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <form method="post" action="/1Ci/dmerce">
+      <input type="hidden" name="qTemplate" value="Navigation,passwd_confirm">
+
+      <tr>
+      <td class="head8c">Altes Passwort:</td>
+      <td class="head8c"><input type="text" name="old_passwd" size="30" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2" align="right"><input type="submit" class="submit" name="qButton" value="check"></td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+(endif)
+
+
+
+(if '(form old_passwd)' == '(sql Agent.passwd "ID*(who ID)")')
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>AKTION</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head8">&nbsp;Bitte geben Sie nun das gew&uuml;nschte Passwort zweimal ein.</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td align="center" class="menutop">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <form method="post" action="/1Ci/dmerce">
+      <input type="hidden" name="qTemplate" value="Navigation,passwd_okay">
+
+      <tr>
+      <td class="head8c">Neues Passwort:</td>
+      <td class="head8c"><input type="password" name="new_passwd1" size="30" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head8c">Best&auml;tigung:</td>
+      <td class="head8c"><input type="password" name="new_passwd2" size="30" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2" align="right"><input type="submit" class="submit" name="qButton" value="eintragen"></td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+(endif)
+
+
+
+
+</body>
+</html>

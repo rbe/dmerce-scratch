@@ -1,0 +1,93 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>USER - bearbeiten</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+       <tr>
+       <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+       </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+
+
+      <tr>
+      <td width="70%" class="head8">Liste aller User</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+       <td class="Nav11">Name, Vorname</td>
+       <td class="Nav11">Email</td>
+       <td class="Nav11">Usergruppe</td>
+       </tr>
+
+(repeat "Agent.ID]0{LastName")
+
+       <tr>
+       <td class="head8c">(sql Agent.LastName), (sql Agent.FirstName)</td>
+       <td class="head8c"><a class="head8" href="mailto:(sql Agent.Email)">(sql Agent.Email)</a></td>
+       <td class="head8c">
+       (if (sql Agent.ID) < 10)
+       Admin User
+       (else)
+       (sql Usergruppe.Description "ID*(sql Agent.GruppenID)")
+       (endif)
+
+       </td>
+       </tr>
+
+
+(endrepeat)
+
+</table>
+
+<table width="97%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+       <tr>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td align="center" class="head8c"><a class="head8" href="javascript:self.close();">[Fenster schlie&szlig;en]</a></td>
+       </tr>
+
+</table>
+
+</body>
+
+</html>

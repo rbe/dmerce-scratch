@@ -1,0 +1,325 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>Sitemap - [Immo] by 1Ci GmbH(R)</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+(if (form Bereich) == 1 or (form Bereich) == 3)
+
+<table bordercolor="#DEDFDE" width="95%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>SiteMap</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head12b">&nbsp;(sql Wordlist.NameDE "ID*1")</td>
+      </tr>
+
+      <tr>
+      <td>
+
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+
+(repeat "Navigation.ID]0")
+
+(set-myvar Subnavcount (sql count Subnavigation "NavigationID*(sql Navigation.ID)"))
+
+(set-myvar Textcount (sql count Textarticle "NavigationID*(sql Navigation.ID)"))
+
+
+      (if (get-myvar Textcount) == 1 and (get-myvar Subnavcount) == 0)
+      <tr>
+      <td class="head8c" width="20%">&nbsp;Navigation:&nbsp;</td>
+      <td class="head8c" width="80%"><a class="head8c" href="/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID "NavigationID*(sql Navigation.ID)")&qSuperSearch=Textarticle.ID*(sql Textarticle.ID "NavigationID*(sql Navigation.ID)")" target="content" onMouseOver="window.status='(sql Navigation.NameDE)';return true"  onMouseOut="window.status='';return true"><b>(sql Navigation.NameDE)</b></a> --> Direkte Verkn&uuml;pfung mit Artikel "(sql Textarticle.Head "NavigationID*(sql Navigation.ID)")"
+      (if (sql Navigation.active) == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+      (endif)
+
+
+      (if (get-myvar Textcount) > 1 and (get-myvar Subnavcount) == 0)
+      <tr>
+      <td class="head8c" width="20%">&nbsp;Navigation:&nbsp;</td>
+      <td class="head8c" width="80%"><a class="head8c"  href="/1Ci/dmerce?qTemplate=Textarticle,all_list&qSuperSearch=Textarticle.NavigationID*(sql Navigation.ID)&NavID=(sql Navigation.ID)" target="content" onMouseOver="window.status='(sql Navigation.NameDE)';return true"  onMouseOut="window.status='';return true"><b>(sql Navigation.NameDE)</b></a> --> Liste mit (get-myvar Textcount) Artikeln
+      (if (sql Navigation.active) == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+      (endif)
+
+
+      (if (get-myvar Subnavcount) > 0 and (get-myvar Textcount) == 0)
+      <tr>
+      <td class="head8c" width="20%">&nbsp;Navigation:&nbsp;</td>
+      <td class="head8c" width="80%"><a class="head8c" href="/1Ci/dmerce?qTemplate=Navigation,list&NavID=(sql Navigation.ID)" target="menue" onclick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Textarticle,intro&NavID=(sql Navigation.ID)'" onMouseOver="window.status='(sql Navigation.NameDE)';return true"  onMouseOut="window.status='';return true"><b>(sql Navigation.NameDE)</b></a> --> (get-myvar Subnavcount) Subnavigationen zugeordnet
+      (if (sql Navigation.active) == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+      (endif)
+
+
+      (if (get-myvar Subnavcount) > 0 and (get-myvar Textcount) == 1)
+      <tr>
+      <td class="head8c" width="20%">&nbsp;Navigation:&nbsp;</td>
+      <td class="head8c" width="80%"><a class="head8c" href="/1Ci/dmerce?qTemplate=Navigation,list&NavID=(sql Navigation.ID)" target="menue" onclick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID "NavigationID*(sql Navigation.ID)")&qSuperSearch=Textarticle.ID*(sql Textarticle.ID "NavigationID*(sql Navigation.ID)")&NavID=(sql Navigation.ID)'" onMouseOver="window.status='(sql Navigation.NameDE)';return true" onMouseOut="window.status='';return true"><b>(sql Navigation.NameDE)</b></a> --> (get-myvar Subnavcount) Subnavigationen zugeordnet und Artikel "(sql Textarticle.Head "NavigationID*(sql Navigation.ID)")" direkt verkn&uuml;pft
+      (if (sql Navigation.active) == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+      (endif)
+
+
+      (if (get-myvar Subnavcount) > 0 and (get-myvar Textcount) > 1)
+      <tr>
+      <td class="head8c" width="20%">&nbsp;Navigation:&nbsp;</td>
+      <td class="head8c" width="80%"><a class="head8c" href="/1Ci/dmerce?qTemplate=Navigation,list&NavID=(sql Navigation.ID)" target="menue" onclick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Textarticle,all_list&qSuperSearch=Textarticle.NavigationID*(sql Navigation.ID)'" onMouseOver="window.status='(sql Navigation.NameDE)';return true"  onMouseOut="window.status='';return true"><b>(sql Navigation.NameDE)</b></a> --> (get-myvar Subnavcount) Subnavigationen und (get-myvar Textcount) Artikel zugeordnet
+      (if (sql Navigation.active) == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+      (endif)
+
+
+      (if (get-myvar Textcount) == 0 and (get-myvar Subnavcount) == 0)
+      <tr>
+      <td class="head8c" width="20%">&nbsp;Navigation:&nbsp;</td>
+      <td class="head8c" width="80%"><a class="head8c" href="#" target="content" onMouseOver="window.status='(sql Navigation.NameDE)';return true"  onMouseOut="window.status='';return true"><b>(sql Navigation.NameDE)</b></a> --> keine Subnavigation und kein Artikel zugeordnet --> <font color="#FF0000">nicht angezeigt</font>
+      (if (sql Navigation.active) == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+      (endif)
+
+
+
+      (repeat "Textarticle.NavigationID*(sql Navigation.ID)")
+      <tr>
+      <td class="head8c" width="20%">&nbsp;Text:&nbsp;</td>
+      <td class="head8c" width="80%"><a class="head8c" href="javascript:window.opener.parent.content.location.href=('/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID)&NavID=(sql Textarticle.NavigationID)&qSuperSearch=Textarticle.NavigationID*(sql Textarticle.NavigationID)');self.close();">(sql Textarticle.Head)</a>
+      (if (sql Textarticle.active) == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+
+(endrepeat)
+
+
+(repeat "Subnavigation.NavigationID*(sql Navigation.ID)")
+
+      (set-myvar SubTextcount (sql count Textarticle "SubnavID*(sql Subnavigation.ID)"))
+
+      (if (get-myvar SubTextcount) > 1)
+      <tr>
+      <td class="head8c">&nbsp;Subnavigation:&nbsp;</td>
+      <td class="head8c"><a class="head8c" href="/1Ci/dmerce?qTemplate=Textarticle,list&SubnavID=(sql Subnavigation.ID)&NavID=(form NavID)" target="content" onMouseOver="window.status='(sql Subnavigation.NameDE)';return true"  onMouseOut="window.status='';return true"><b>(sql Subnavigation.NameDE)</b></a> --> (get-myvar SubTextcount) Artikel zugeordnet
+      (if (sql Subnavigation.active) == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+      (endif)
+
+      (if (get-myvar SubTextcount) == 1)
+      <tr>
+      <td class="head8c">&nbsp;Subnavigation:&nbsp;</td>
+      <td class="head8c"><a class="head8c" href="/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID "SubnavID*(sql Subnavigation.ID)")&NavID=(form NavID)&qSuperSearch=Textarticle.ID*(sql Textarticle.ID "SubnavID*(sql Subnavigation.ID)")" target="content" onMouseOver="window.status='(sql Subnavigation.NameDE)';return true"  onMouseOut="window.status='';return true"><b>(sql Subnavigation.NameDE)</b></a> --> Direkte Verkn&uuml;pfung mit Artikel "(sql Textarticle.Head "SubnavID*(sql Subnavigation.ID)")"
+      (if (sql Subnavigation.active) == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+      (endif)
+
+      (if (get-myvar SubTextcount) == 0)
+      <tr>
+      <td class="head8c">&nbsp;Subnavigation:&nbsp;</td>
+      <td class="head8c"><a class="head8c" href="/1Ci/dmerce?qTemplate=Textarticle,list&SubnavID=(sql Subnavigation.ID)&NavID=(form NavID)" target="content" onMouseOver="window.status='(sql Subnavigation.NameDE)';return true"  onMouseOut="window.status='';return true"><b>(sql Subnavigation.NameDE)</b></a> --> 0 Texte zugeordnet --> <font color="#FF0000">nicht angezeigt</font>
+      (if (sql Subnavigation.active) == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+      (endif)
+
+      (repeat "Textarticle.SubnavID*(sql Subnavigation.ID)")
+      <tr>
+      <td class="head8c">&nbsp;Text:&nbsp;</td>
+      <td class="head8c"><a class="head8c"  href="javascript:window.opener.parent.content.location.href=('/1Ci/dmerce?qTemplate=Textarticle,view&NavID=(sql Subnavigation.NavigationID "ID*(sql Textarticle.SubnavID)")&SubnavID=(sql Textarticle.SubnavID)&TextarticleID=(sql Textarticle.ID)&qSuperSearch=Textarticle.SubnavID*(sql Textarticle.SubnavID)');self.close();"><img src="../../pic/pfeil.gif" width="5" height="9" border="0">&nbsp;(sql Textarticle.Head)</a>
+      (if (sql Textarticle.active) == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+
+(endrepeat)
+
+(endrepeat)
+
+
+(endrepeat)
+
+(endrepeat)
+
+(endif)
+
+      </table>
+
+      </td>
+      </tr>
+
+
+(if (form Bereich) == 2 or (form Bereich) == 3)
+
+      <tr>
+      <td class="head12b">&nbsp;(sql Wordlist.NameDE "ID*2")</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+
+
+(repeat "HeadNav.ID]0")
+
+(set-myvar Subgroupcount (sql count SubNav "HeadNavID*(sql HeadNav.ID)"))
+
+      <tr>
+      <td class="head8c" width="20%">&nbsp;Navigation:&nbsp;</td>
+      <td class="head8c" width="80%"><a class="head8c" href="/1Ci/dmerce?qTemplate=Navigation,list&GroupID=(sql HeadNav.ID)" target="menue" onclick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Object,intro&GroupID=(sql HeadNav.ID)'" onMouseOver="window.status='(sql HeadNav.NameDE)';return true"  onMouseOut="window.status='';return true"><b>(sql HeadNav.NameDE)</b></a> --> (get-myvar Subgroupcount) Subnavigationen zugeordnet</br>
+(set-myvar HeadID (sql HeadNav.ID))
+      </td>
+      </tr>
+
+
+(repeat "SubNav.HeadNavID*(get-myvar HeadID)")
+
+(set-myvar Objectcount (sql count Object "SubNavID*(sql SubNav.ID)"))
+
+      <tr>
+      <td class="head8c">&nbsp;Subnavigation:&nbsp;</td>
+      <td class="head8c"><a class="head8c" href="/1Ci/dmerce?qTemplate=Object,list&SubgroupID=(sql SubNav.ID)&GroupID=(form GroupID)&qSuperSearch=Object.SubNavID*(sql SubNav.ID)" target="content" onMouseOver="window.status='(sql SubNav.NameDE)';return true"  onMouseOut="window.status='';return true"><b>(sql SubNav.NameDE)</b></a> --> (get-myvar Objectcount) Objekte zugeordnet
+(if (get-myvar Objectcount) == 0)
+<font color="#FF0000">nicht angezeigt</font>
+(endif)
+      </td>
+      </tr>
+
+(repeat "Object.SubNavID*(sql SubNav.ID)")
+
+      <tr>
+      <td class="head8c">&nbsp;Objekt:&nbsp;</td>
+      <td class="head8c"><img src="../../pic/pfeil.gif" width="5" height="9" border="0">&nbsp;<a class="head8c"  href="javascript:window.opener.parent.content.location.href=('/1Ci/dmerce?qTemplate=Object,view&ObjectID=(sql Object.ID)&GroupID=(sql SubNav.HeadNavID "ID*(sql Object.SubNavID)")&SubgroupID=(sql Object.SubNavID)');self.close();">(sql Object.Name)</a>
+      </td>
+      </tr>
+
+(endrepeat)
+
+(endrepeat)
+
+(endrepeat)
+
+       </table>
+
+(endif)
+
+
+
+(if (form Bereich) == 3)
+
+      <tr>
+      <td class="head12b">&nbsp;Service</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td class="head8c" width="20%">&nbsp;Navigation:&nbsp;</td>
+      <td class="head8c" width="80%">(sql Wordlist.NameDE "ID*3")
+      (if (sql Wordlist.active "ID*3") == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;Navigation:&nbsp;</td>
+      <td class="head8c">(sql Wordlist.NameDE "ID*4")
+      (if (sql Wordlist.active "ID*4") == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;Navigation:&nbsp;</td>
+      <td class="head8c">(sql Wordlist.NameDE "ID*8")
+      (if (sql Wordlist.active "ID*8") == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;Navigation:&nbsp;</td>
+      <td class="head8c"><b>(sql Wordlist.NameDE "ID*5")</b>
+      (if (sql Wordlist.active "ID*5") == 0)
+      <font color="#FF0000">(inaktiv)</font>
+      (endif)
+      </td>
+      </tr>
+
+      </table>
+
+(endif)
+
+</td>
+</tr>
+
+</table>
+
+</body>
+
+</html>

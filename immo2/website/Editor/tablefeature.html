@@ -1,0 +1,1288 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<TITLE>Tabelle formatieren</TITLE>
+</HEAD>
+<BODY bgColor=silver topmargin=5 onload="strgstarten()">
+<BASEFONT FACE="Arial,Helvetica" SIZE=1>
+<FORM name="tablefeature"><STRONG><FONT 
+face="" size=3>Tabelleneigenschaften</FONT></STRONG>
+<BR>
+<BR>
+    <TABLE border=0 cellPadding=1 cellSpacing=1 width=450>
+        <TR>
+            <TD width=60>
+            <P><FONT face="" size=1>Hintergrundfarbe:</FONT></P>
+            </TD>
+            <TD colSpan=3> 
+            <SELECT id="tablebgcolor"             
+            style="WIDTH: 220px">
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="bttablebgcolor" type=button value=... onclick='SetColor("tablebgcolor")' style="HEIGHT: 22px"></TD>
+				</TR>
+		</TABLE>
+<!BR>
+		<TABLE border=0 cellPadding=1 cellSpacing=1 width=450 height=16 style="HEIGHT: 16px; WIDTH: 450px">		
+        <TR>
+            <TD colSpan=2><STRONG><FONT face="" 
+            size=2>Abmessungen</FONT></STRONG> 
+            </TD>            
+            <TD colspan=2></TD>
+				</TR>
+        <TR>
+            <TD width=60>
+            <P><FONT face="" size=1>H&ouml;he:</FONT></P></TD>
+            <TD width=120><INPUT id="tableheight" size=5 >&nbsp;&nbsp; <FONT 
+            size=1>Pixel</FONT></TD>            
+            <TD width=60><FONT size=1>Breite:</FONT></TD>
+            <TD> 
+            <INPUT id="tablewidth" size=5 >&nbsp;&nbsp; <SELECT id="tablewidthunit" 
+            style="WIDTH: 75px">
+                    <OPTION value="px" selected>Pixel
+                    <OPTION value="%">Prozent
+                    </SELECT></TD></TR>
+    <TR></TR>
+		</TABLE>
+<!BR>
+		<TABLE border=0 cellPadding=1 cellSpacing=1 width=450 style="WIDTH: 450px">
+		<TR>
+		</TR>
+    <TR>        
+        <TD colSpan=2><STRONG><FONT 
+            size=2>Layout</FONT></STRONG>&nbsp;
+            </TD>                        
+            <TD colspan=2><STRONG><FONT size=2>Rahmen</FONT></STRONG></TD></TR>
+        <TR>
+            <TD width=60><FONT size=1>Ausrichtung:</FONT></TD>
+            <TD width=120>
+            <SELECT 
+            id="tablealign" style="HEIGHT: 22px; WIDTH: 75px">
+                    <OPTION selected>
+                    <OPTION value=center>zentriert
+                    <OPTION value=left>links
+                    <OPTION value=right>rechts
+                    </SELECT></TD>
+            <TD width=60><FONT size=1>Breite:</FONT></TD>
+        <TD> 
+						<INPUT id="tableborder" size=5 >
+        </TD>            
+        </TR>
+        <TR>
+            <TD width=60><FONT size=1><nobr>Zellen-R&auml;nder:</nobr></FONT></TD>
+            <TD width=120>
+            <INPUT id="tablecellpadding" size=5 value=1></TD>
+            <TD width=60><FONT size=1>Farbe:</FONT></TD>
+        <TD> 
+            <SELECT id="tablebordercolor" 
+            style="WIDTH: 150px">
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="bttablebordercolor" type=button onClick='SetColor("tablebordercolor")' value=... style="HEIGHT: 22px"> 
+ 
+        </TD>            
+        </TR>
+        <TR>
+            <TD width=60><FONT size=1><nobr>Zellen-Abst&auml;nde:</nobr></FONT></TD>
+            <TD width=120>
+            <INPUT id="tablecellspacing" size=5 value=1></TD>
+            <TD width=60><FONT size=1>Markierung:</FONT></TD>
+        <TD> 
+            <SELECT id="tablemarkcolor" 
+            style="WIDTH: 150px">
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="bttablemarkcolor" type=button onClick='SetColor("tablemarkcolor")' value=... style="HEIGHT: 22px"> 
+ 
+        </TD>            
+        </TR>
+        <TR>
+            <TD width=60></TD>
+            <TD width=120></TD>
+            <TD width=60><FONT size=1>Schatten:</FONT></TD>
+        <TD> 
+            <SELECT id="tableshadowcolor" 
+            style="WIDTH: 150px">
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="bttableshadowcolor" type=button onClick='SetColor("tableshadowcolor")' value=... style="HEIGHT: 22px"> 
+ 
+        </TD>            
+        </TR>
+
+		</TABLE>
+<HR><STRONG><FONT face="" size=3>Zelleigenschaften</FONT></STRONG>
+<BR>
+<BR>
+    <TR></TR>
+
+    <TR>
+        <TD colSpan = 2>
+    <TABLE border=0 cellPadding=1 cellSpacing=1 width=500>
+        <TR>
+            <TD width=60>
+            <P><FONT face="" size=1>Hintergrundfarbe:</FONT> </P> 
+            </TD>
+            <TD colSpan=3> 
+            <SELECT id="cellbgcolor"             
+            style="WIDTH: 220px">
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="btcellbgcolor" type=button value=... onclick='SetColor("cellbgcolor")' style="HEIGHT: 22px"></TD>
+				</TR>
+		</TABLE>		
+<!BR>
+		<TABLE border=0 cellPadding=1 cellSpacing=1 width=450 height=78 style="HEIGHT: 78px; WIDTH: 450px">		
+        <TR>
+            <TD colSpan=2><FONT face="" 
+            size=2><STRONG>Ausrichtung</STRONG></FONT> 
+            </TD>            
+            <TD colspan=2><FONT face="" 
+            size=2><STRONG>Abmessungen</STRONG></FONT></TD>
+				</TR>
+        <TR>
+            <TD width=60>
+            <FONT face="" size=1>Horizontal:</FONT></TD>
+            <TD width=120> <SELECT 
+            id="cellhalign" style="HEIGHT: 22px; WIDTH: 75px">
+                    <OPTION selected>
+                    <OPTION value=center>zentriert
+                    <OPTION value=left>links
+                    <OPTION value=right>rechts
+                    </SELECT>
+                 </TD>
+            <TD width=60><FONT face="" size=1>H&ouml;he:</FONT></TD>
+            <TD> 
+            <INPUT id="cellheight" size=5 >&nbsp;&nbsp; <FONT 
+            size=1>Pixel</FONT></TD>
+				</TR>
+        <TR>
+            <TD>
+            <P><FONT face="" size=1>Vertikal:</FONT></P></TD>
+            <TD> <SELECT 
+            id="cellvalign" style="HEIGHT: 22px; WIDTH: 75px">
+                    <OPTION selected>
+                    <OPTION value=top>oben                    
+                    <OPTION value=middle>mitte                    
+                    <OPTION value=bottom>unten
+                    <OPTION value=baseline>Grundlinie
+                    </SELECT></TD>
+            <TD><FONT size=1>Breite:</FONT></TD>
+            <TD> 
+            <INPUT id="cellwidth" size=5 >&nbsp;&nbsp; <SELECT id="cellwidthunit" 
+            style="WIDTH: 75px">
+                    <OPTION value="px" selected>Pixel
+                    <OPTION value="%">Prozent
+                    </SELECT>
+            <FONT size=2><STRONG></STRONG></FONT></TD></TR>
+    <TR></TR>
+		</TABLE>
+<!BR>
+		<TABLE border=0 cellPadding=1 cellSpacing=1 width=450 style="WIDTH: 450px">
+    <TR>        
+        <TD colSpan=2><STRONG><FONT 
+            size=2>Umfang</FONT></STRONG>&nbsp;
+            </TD>                        
+            <TD colspan=2><STRONG><FONT size=2>Rahmen</FONT></STRONG></TD></TR>
+        <TR>
+            <TD width=60><FONT size=1>Spalten:</FONT></TD>
+            <TD width=120>
+            <INPUT id="cellcolspan" size=5 value=1></TD>
+            <TD width=60><FONT size=1>Farbe:</FONT></TD>
+        <TD> 
+            <SELECT id="cellbordercolor" 
+            style="WIDTH: 150px">
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="btcellbordercolor" type=button onClick='SetColor("cellbordercolor")' value=... style="HEIGHT: 22px"> 
+ 
+        </TD>            
+        </TR>
+        <TR>
+            <TD><FONT size=1>Zeilen:</FONT></TD>
+            <TD>
+            <INPUT id="cellrowspan" size=5 value=1></TD>
+            <TD><FONT size=1>Markierung:</FONT></TD>
+        <TD> 
+            <SELECT id="cellmarkcolor" 
+            style="WIDTH: 150px">
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="btcellbordercolor" type=button onClick='SetColor("cellmarkcolor")' value=... style="HEIGHT: 22px"></TD>
+				</TR>
+        <TR>
+            <TD colSpan=2><INPUT CHECKED id="chkwraptext" type=checkbox> <FONT size=1>Text umbrechen</FONT></TD>
+            <TD><FONT size=1>Schatten:</FONT></TD>
+        <TD> 
+            <SELECT id="cellshadowcolor" 
+            style="WIDTH: 150px">
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="btshadowcolor" type=button onClick='SetColor("cellshadowcolor")' value=... style="HEIGHT: 22px"></TD>
+				</TR>
+		</TABLE>
+<!BR>
+<HR>
+    <TR></TR>
+
+    <TR>
+        <TD colSpan = 2>
+
+<TABLE border=0 cellPadding=1 cellSpacing=1 width=450 align=left height=28 style="HEIGHT: 28px; WIDTH: 450px">
+    <TBODY>
+    
+    <TR>
+        <TD width=60% align=right colspan=3>
+        <INPUT id="btok" type=button value="OK" onClick='FormatTable(1)' style="WIDTH: 80px">        
+        <INPUT id="btaccept" type=button value="&Uuml;bernehmen" onClick='FormatTable(0)' style="WIDTH: 100px">        
+        <INPUT id="btcancel" type=button value="Abbrechen" onClick='Cancel()' style="WIDTH: 80px">&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+    </TR>
+    </TBODY>
+</TABLE> 
+</BASEFONT>
+<P>
+<INPUT type=hidden id="btinit" onClick='Init()' style="LEFT: 313px; TOP: 248px"> </FORM>
+
+<SCRIPT language="JAVASCRIPT">
+<!--
+	
+	var objTable=null;
+	var objTableCell=null;
+	var objDialogWindow=null;
+
+	var ScreenWidth=window.screen.width;
+	var ScreenHeight=window.screen.height;
+	
+	var sCellShadowColor="";
+	var sCellColSpan="";
+	var sCellRowSpan="";
+	var sCellWidth="";
+	var sCellHeight="";
+	var sCellWidthUnit="";		 
+	var sCellHAlign="";
+	var sCellVAlign="";
+	var fNoWrapText="";
+	var sCellMarkColor="";
+	var sCellBgColor="";
+	var sCellBorderColor="";		
+	
+	var sTableShadowColor="";
+	var sTableWidth="";
+	var sTableHeight="";
+	var sTableWidthUnit="";		 
+	var sTableAlign="";
+	var sTableMarkColor="";
+	var sTableBgColor="";
+	var sTableBorderColor="";		
+	var sTableBorder="";		
+	var sTableCellPadding="";
+	var sTableCellSpacing="";
+
+	var ColorName = new Array(145);
+	var ColorCode = new Array(145);
+	var sColorName="";
+	var sColorCode="";
+
+	ColorName[1]="ALICEBLUE";
+	ColorCode[1]="#F0F8FF";
+	ColorName[2]="ANTIQUEWHITE";
+	ColorCode[2]="#FAEBD7";
+	ColorName[3]="AQUA";
+	ColorCode[3]="#00FFFF";
+	ColorName[4]="AQUAMARINE";
+	ColorCode[4]="#7FFFD4";
+	ColorName[5]="AZURE";
+	ColorCode[5]="#F0FFFF";
+	ColorName[6]="BEIGE";
+	ColorCode[6]="#F5F5DC";
+	ColorName[7]="BISQUE";
+	ColorCode[7]="#FFE4C4";
+	ColorName[8]="BLACK";
+	ColorCode[8]="#000000";
+	ColorName[9]="BLANCHEDALMOND";
+	ColorCode[9]="#FFEBCD";
+	ColorName[10]="BLUE";
+	ColorCode[10]="#0000FF";
+	ColorName[11]="BLUEVIOLET";
+	ColorCode[11]="#8A2BE2";
+	ColorName[12]="BLUEVIOLET";
+	ColorCode[12]="#8A2BE2";
+	ColorName[13]="BROWN";
+	ColorCode[13]="#A52A2A";
+	ColorName[14]="BURLYWOOD";
+	ColorCode[14]="#DEB887";
+	ColorName[15]="CADETBLUE";
+	ColorCode[15]="#5F9EA0";
+	ColorName[16]="CHARTREUSE";
+	ColorCode[16]="#7FFF00";
+	ColorName[17]="CHOCOLATE";
+	ColorCode[17]="#D2691E";
+	ColorName[18]="CORAL";
+	ColorCode[18]="#FF7F50";
+	ColorName[19]="CORNFLOWER";
+	ColorCode[19]="#6495ED";
+	ColorName[20]="CORNSILK";
+	ColorCode[20]="#FFF8DC";
+	ColorName[21]="CORNSILK";
+	ColorCode[21]="#FFF8DC";
+	ColorName[22]="CRIMSON";
+	ColorCode[22]="#DC143C";
+	ColorName[23]="CYAN";
+	ColorCode[23]="#00FFFF";
+	ColorName[24]="DARKBLUE";
+	ColorCode[24]="#00008B";
+	ColorName[25]="DARKCYAN";
+	ColorCode[25]="#008B8B";
+	ColorName[26]="DARKGOLDENROD";
+	ColorCode[26]="#B8860B";
+	ColorName[27]="DARKGRAY";
+	ColorCode[27]="#A9A9A9";
+	ColorName[28]="DARKGREEN";
+	ColorCode[28]="#006400";
+	ColorName[29]="DARKKHAKI";
+	ColorCode[29]="#BDB76B";
+	ColorName[30]="DARKMAGENTA";
+	ColorCode[30]="#8B008B";
+	ColorName[31]="DARKOLIVEGREEN";
+	ColorCode[31]="#556B2F";
+	ColorName[32]="DARKORANGE";
+	ColorCode[32]="#FF8C00";
+	ColorName[33]="DARKORCHID";
+	ColorCode[33]="#9932CC";
+	ColorName[34]="DARKRED";
+	ColorCode[34]="#8B0000";
+	ColorName[35]="DARKRED";
+	ColorCode[35]="#8B0000";
+	ColorName[36]="DARKSALMON";
+	ColorCode[36]="#E9967A";
+	ColorName[37]="DARKSEAGREEN";
+	ColorCode[37]="#8FBC8B";
+	ColorName[38]="DARKSLATEBLUE";
+	ColorCode[38]="#483D8B";
+	ColorName[39]="DARKSLATEGRAY";
+	ColorCode[39]="#2F4F4F";
+	ColorName[40]="DARKTURQUOISE";
+	ColorCode[40]="#00CED1";
+	ColorName[41]="DARKVIOLET";
+	ColorCode[41]="#9400D3";
+	ColorName[42]="DEEPPINK";
+	ColorCode[42]="#FF1493";
+	ColorName[43]="DEEPSKYBLUE";
+	ColorCode[43]="#00BFFF";
+	ColorName[44]="DIMGRAY";
+	ColorCode[44]="#696969";
+	ColorName[45]="DODGERBLUE";
+	ColorCode[45]="#1E90FF";
+	ColorName[46]="FIREBRICK";
+	ColorCode[46]="#B22222";
+	ColorName[47]="FLORALWHITE";
+	ColorCode[47]="#FFFAF0";
+	ColorName[48]="FORESTGREEN";
+	ColorCode[48]="#228B22";
+	ColorName[49]="FUCHIA";
+	ColorCode[49]="#FF00FF";
+	ColorName[50]="GAINSBORO";
+	ColorCode[50]="#DCDCDC";
+	ColorName[51]="GHOSTWHITE";
+	ColorCode[51]="#F8F8FF";
+	ColorName[52]="GOLD";
+	ColorCode[52]="#FFD700";
+	ColorName[53]="GOLDENROD";
+	ColorCode[53]="#DAA520";
+	ColorName[54]="GRAY";
+	ColorCode[54]="#808080";
+	ColorName[55]="GREEN";
+	ColorCode[55]="#008000";
+	ColorName[56]="GREENYELLOW";
+	ColorCode[56]="#ADFF2F";
+	ColorName[57]="HONEYDEW";
+	ColorCode[57]="#F0FFF0";
+	ColorName[58]="HOTPINK";
+	ColorCode[58]="#FF69B4";
+	ColorName[59]="INDIANRED";
+	ColorCode[59]="#CD5C5C";
+	ColorName[60]="INDIGO";
+	ColorCode[60]="#4B0082";
+	ColorName[61]="IVORY";
+	ColorCode[61]="#FFFFF0";
+	ColorName[62]="KHAKI";
+	ColorCode[62]="#F0E68C";
+	ColorName[63]="LAVENDER";
+	ColorCode[63]="#E6E6FA";
+	ColorName[64]="LAVENDERBLUSH";
+	ColorCode[64]="#FFF0F5";
+	ColorName[65]="LAWNGREEN";
+	ColorCode[65]="#7CFC00";
+	ColorName[66]="LEMONCHIFFON";
+	ColorCode[66]="#FFFACD";
+	ColorName[67]="LIGHTBLUE";
+	ColorCode[67]="#ADD8E6";
+	ColorName[68]="LIGHTCORAL";
+	ColorCode[68]="#F08080";
+	ColorName[69]="LIGHTCYAN";
+	ColorCode[69]="#E0FFFF";
+	ColorName[70]="LIGHTGOLDENRODYELLOW";
+	ColorCode[70]="#FAFAD2";
+	ColorName[71]="LIGHTGREEN";
+	ColorCode[71]="#90EE90";
+	ColorName[72]="LIGHTGREY";
+	ColorCode[72]="#D3D3D3";
+	ColorName[73]="LIGHTPINK";
+	ColorCode[73]="#FFB6C1";
+	ColorName[74]="LIGHTSALMON";
+	ColorCode[74]="#FFA07A";
+	ColorName[75]="LIGHTSEAGREEN";
+	ColorCode[75]="#20B2AA";
+	ColorName[76]="LIGHTSKYBLUE";
+	ColorCode[76]="#87CEFA";
+	ColorName[77]="LIGHTSLATEGRAY";
+	ColorCode[77]="#778899";
+	ColorName[78]="LIGHTSTEELBLUE";
+	ColorCode[78]="#B0C4DE";
+	ColorName[79]="LIGHTYELLOW";
+	ColorCode[79]="#FFFFE0";
+	ColorName[80]="LIME";
+	ColorCode[80]="#00FF00";
+	ColorName[81]="LIMEGREEN";
+	ColorCode[81]="#32CD32";
+	ColorName[82]="LINEN";
+	ColorCode[82]="#FAF0E6";
+	ColorName[83]="MAGENTA";
+	ColorCode[83]="#FF00FF";
+	ColorName[84]="MAROON";
+	ColorCode[84]="#800000";
+	ColorName[85]="MEDIUMAQUAMARINE";
+	ColorCode[85]="#66CDAA";
+	ColorName[86]="MEDIUMBLUE";
+	ColorCode[86]="#0000CD";
+	ColorName[87]="MEDIUMORCHID";
+	ColorCode[87]="#BA55D3";
+	ColorName[88]="MEDIUMPURPLE";
+	ColorCode[88]="#9370DB";
+	ColorName[89]="MEDIUMSEAGREEN";
+	ColorCode[89]="#3CB371";
+	ColorName[90]="MEDIUMSLATEBLUE";
+	ColorCode[90]="#7B68EE";
+	ColorName[91]="MEDIUMSPRINGGREEN";
+	ColorCode[91]="#00FA9A";
+	ColorName[92]="MEDIUMTURQUOISE";
+	ColorCode[92]="#48D1CC";
+	ColorName[93]="MEDIUMVIOLETRED";
+	ColorCode[93]="#C71585";
+	ColorName[94]="MIDNIGHTBLUE";
+	ColorCode[94]="#191970";
+	ColorName[95]="MINTCREAM";
+	ColorCode[95]="#F5FFFA";
+	ColorName[96]="MISTYROSE";
+	ColorCode[96]="#FFE4E1";
+	ColorName[97]="MOCCASIN";
+	ColorCode[97]="#FFE4B5";
+	ColorName[98]="NAVAJOWHITE";
+	ColorCode[98]="#FFDEAD";
+	ColorName[99]=">NAVY";
+	ColorCode[99]="#000080";
+	ColorName[100]="OLDLACE";
+	ColorCode[100]="#FDF5E6";
+	ColorName[101]="OLIVE";
+	ColorCode[101]="#808000";
+	ColorName[102]="OLIVEDRAB";
+	ColorCode[102]="#6B8E23";
+	ColorName[103]="ORANGE";
+	ColorCode[103]="#FFA500";
+	ColorName[104]="ORANGERED";
+	ColorCode[104]="#FF4500";
+	ColorName[105]="ORCHID";
+	ColorCode[105]="#DA70D6";
+	ColorName[106]="PALEGOLDENROD";
+	ColorCode[106]="#EEE8AA";
+	ColorName[107]="PALEGREEN";
+	ColorCode[107]="#98FB98";
+	ColorName[108]="PALETURQUOISE";
+	ColorCode[108]="#AFEEEE";
+	ColorName[109]="PALEVIOLETRED";
+	ColorCode[109]="#DB7093";
+	ColorName[110]="PAPAYAWHIP";
+	ColorCode[110]="#FFEFD5";
+	ColorName[111]="PEACHPUFF";
+	ColorCode[111]="#FFDAB9";
+	ColorName[112]="PERU";
+	ColorCode[112]="#CD853F";
+	ColorName[113]="PINK";
+	ColorCode[113]="#FFC0CB";
+	ColorName[114]="PLUM";
+	ColorCode[114]="#DDA0DD";
+	ColorName[115]="POWDERBLUE";
+	ColorCode[115]="#B0E0E6";
+	ColorName[116]="PURPLE";
+	ColorCode[116]="#800080";
+	ColorName[117]="RED";
+	ColorCode[117]="#FF0000";
+	ColorName[118]="ROSYBROWN";
+	ColorCode[118]="#BC8F8F";
+	ColorName[119]="ROYALBLUE";
+	ColorCode[119]="#4169E1";
+	ColorName[120]="SADDLEBROWN";
+	ColorCode[120]="#8B4513";
+	ColorName[121]="SALMON";
+	ColorCode[121]="#FA8072";
+	ColorName[122]="SANDYBROWN";
+	ColorCode[122]="#F4A460";
+	ColorName[123]="SEAGREEN";
+	ColorCode[123]="#2E8B57";
+	ColorName[124]="SEASHELL";
+	ColorCode[124]="#FFF5EE";
+	ColorName[125]="SIENNA";
+	ColorCode[125]="#A0522D";
+	ColorName[126]="SILVER";
+	ColorCode[126]="#C0C0C0";
+	ColorName[127]="SKYBLUE";
+	ColorCode[127]="#87CEEB";
+	ColorName[128]="SLATEBLUE";
+	ColorCode[128]="#6A5ACD";
+	ColorName[129]="SLATEGRAY";
+	ColorCode[129]="#708090";
+	ColorName[130]="SNOW";
+	ColorCode[130]="#FFFAFA";
+	ColorName[131]="SPRINGGREEN";
+	ColorCode[131]="#00FF7F";
+	ColorName[132]="STEELBLUE";
+	ColorCode[132]="#4682B4";
+	ColorName[133]="TAN";
+	ColorCode[133]="#D2B48C";
+	ColorName[134]="TEAL";
+	ColorCode[134]="#008080";
+	ColorName[135]="THISTLE";
+	ColorCode[135]="#D8BFD8";
+	ColorName[136]="TOMATO";
+	ColorCode[136]="#FF6347";
+	ColorName[137]="TURQUOISE";
+	ColorCode[137]="#40E0D0";
+	ColorName[138]="VIOLET";
+	ColorCode[138]="#EE82EE";
+	ColorName[139]="WHEAT";
+	ColorCode[139]="#F5DEB3";
+	ColorName[140]="WHITE";
+	ColorCode[140]="#FFFFFF";
+	ColorName[141]="WHITESMOKE";
+	ColorCode[141]="#F5F5F5";
+	ColorName[142]="YELLOW";
+	ColorCode[142]="#FFFF00";
+	ColorName[143]="YELLOWGREEN";
+	ColorCode[143]="#9ACD32";
+
+	function Init()
+		{var sValue="";	
+		 var sText="";
+		 var fFound=false;
+		 var j=0;
+			
+			objTable=window.opener.objTable;					
+			objTableCell=window.opener.objTableCell;					
+
+			//Tabellen-Eigenschaften
+			sTableAlign=objTable.getAttribute("align");			
+			sTableWidth=objTable.width;
+			if (sTableWidth=="") sTableWidth=objTable.style.width;
+			sTableBorder=objTable.border;						
+			sTableCellPadding=objTable.cellPadding;						
+			sTableCellSpacing=objTable.cellSpacing;						
+
+			if (sTableWidth.indexOf("px",0) >0)
+				{
+					sTableWidthUnit="px";
+					sTableWidth=sTableWidth.substring(0,sTableWidth.indexOf("px",0));					
+				}
+			else if (sTableWidth.indexOf("%",0) >0)
+				{
+					sTableWidthUnit="%";
+					sTableWidth=sTableWidth.substring(0,sTableWidth.indexOf("%",0));										
+				}			
+			
+			sTableHeight=objTable.height;			
+			if (sTableHeight=="") sTableHeight=objTable.style.height;
+			sTableBorderColor=objTable.getAttribute("borderColor");
+			sTableMarkColor=objTable.getAttribute("borderColorLight");
+			sTableShadowColor=objTable.getAttribute("borderColorDark");
+			sTableBgColor=objTable.getAttribute("bgColor");			
+			
+			for (var i=0; i<tablefeature.tableshadowcolor.length ; i++)
+				{
+					sValue=tablefeature.tableshadowcolor.item(i).value;
+					sText=tablefeature.tableshadowcolor.item(i).text;
+					if(sValue.toUpperCase() == sTableShadowColor.toUpperCase() || sText.toUpperCase() == sTableShadowColor.toUpperCase())
+						{
+							tablefeature.tableshadowcolor.selectedIndex=i;
+							i=tablefeature.tableshadowcolor.length;  
+							fFound=true;
+						} 
+				}
+				
+			if (!fFound)
+				{
+					for (var i=1; i<144 ; i++)
+						{							
+							if(ColorName[i].toUpperCase()==sTableShadowColor.toUpperCase() || ColorCode[i].toUpperCase()==sTableShadowColor.toUpperCase())
+								{
+									sColorCode=ColorCode[i];
+									sColorName=ColorName[i];
+									i=144;
+									fFound=true;							
+								} 
+						}
+			
+					if (!fFound) 
+						{
+							sColorCode=sTableShadowColor.toUpperCase();
+							sColorName=sColorCode;
+						}	
+					
+					tablefeature.tableshadowcolor.item(0).value=sColorCode;
+					tablefeature.tableshadowcolor.item(0).text=sColorName;
+				}
+				
+			fFound=false;	
+			for (var i=0; i<tablefeature.tablemarkcolor.length ; i++)
+				{
+					sValue=tablefeature.tablemarkcolor.item(i).value;
+					sText=tablefeature.tablemarkcolor.item(i).text;
+					if(sValue.toUpperCase()==sTableMarkColor.toUpperCase() || sText.toUpperCase()==sTableMarkColor.toUpperCase())
+						{
+							tablefeature.tablemarkcolor.selectedIndex=i;
+							i=tablefeature.tablemarkcolor.length;  
+							fFound=true;
+						} 
+				}
+
+			if (!fFound)
+				{
+					for (var i=1; i<144 ; i++)
+						{							
+							if(ColorName[i].toUpperCase()==sTableMarkColor.toUpperCase() || ColorCode[i].toUpperCase()==sTableMarkColor.toUpperCase())
+								{
+									sColorCode=ColorCode[i];
+									sColorName=ColorName[i];
+									i=144;
+									fFound=true;							
+								} 
+						}
+			
+					if (!fFound) 
+						{
+							sColorCode=sTableMarkColor.toUpperCase();
+							sColorName=sColorCode;
+						}	
+					
+					tablefeature.tablemarkcolor.item(0).value=sColorCode;
+					tablefeature.tablemarkcolor.item(0).text=sColorName;
+				}
+
+			fFound=false;	
+			for (var i=0; i<tablefeature.tablebordercolor.length ; i++)
+				{
+					sValue=tablefeature.tablebordercolor.item(i).value;
+					sText=tablefeature.tablebordercolor.item(i).text;
+					if(sValue.toUpperCase()==sTableBorderColor.toUpperCase() || sText.toUpperCase()==sTableBorderColor.toUpperCase())
+						{
+							tablefeature.tablebordercolor.selectedIndex=i;
+							i=tablefeature.tablebordercolor.length;  
+							fFound=true;
+						} 
+				}
+
+			if (!fFound)
+				{
+					for (var i=1; i<144 ; i++)
+						{							
+							if(ColorName[i].toUpperCase()==sTableBorderColor.toUpperCase() || ColorCode[i].toUpperCase()==sTableBorderColor.toUpperCase())
+								{
+									sColorCode=ColorCode[i];
+									sColorName=ColorName[i];
+									i=144;
+									fFound=true;							
+								} 
+						}
+			
+					if (!fFound) 
+						{
+							sColorCode=sTableBorderColor.toUpperCase();
+							sColorName=sColorCode;
+						}	
+					
+					tablefeature.tablebordercolor.item(0).value=sColorCode;
+					tablefeature.tablebordercolor.item(0).text=sColorName;
+				}
+			
+			fFound=false;	
+			for (var i=0; i<tablefeature.tablebgcolor.length ; i++)
+				{
+					sValue=tablefeature.tablebgcolor.item(i).value;
+					sText=tablefeature.tablebgcolor.item(i).text;
+					if(sValue.toUpperCase()==sTableBgColor.toUpperCase() || sText.toUpperCase()==sTableBgColor.toUpperCase())
+						{
+							tablefeature.tablebgcolor.selectedIndex=i;
+							i=tablefeature.tablebgcolor.length;  
+							fFound=true;							
+						} 
+				}
+			if (!fFound)
+				{
+					for (var i=1; i<144 ; i++)
+						{							
+							if(ColorName[i].toUpperCase()==sTableBgColor.toUpperCase() || ColorCode[i].toUpperCase()==sTableBgColor.toUpperCase())
+								{
+									sColorCode=ColorCode[i];
+									sColorName=ColorName[i];
+									i=144;
+									fFound=true;							
+								} 
+						}
+			
+					if (!fFound) 
+						{
+							sColorCode=sTableBgColor.toUpperCase();
+							sColorName=sColorCode;
+						}	
+					
+					tablefeature.tablebgcolor.item(0).value=sColorCode;
+					tablefeature.tablebgcolor.item(0).text=sColorName;
+				}
+			
+			fFound=false;				
+			for (var i=0; i<tablefeature.tablealign.length ; i++)
+				{
+					sValue=tablefeature.tablealign.item(i).value;
+					sText=tablefeature.tablealign.item(i).text;
+					if(sValue.toUpperCase()==sTableAlign.toUpperCase() || sText.toUpperCase()==sTableAlign.toUpperCase())
+						{
+							tablefeature.tablealign.selectedIndex=i;
+							i=tablefeature.tablealign.length;  
+						} 
+				}
+
+			for (var i=0; i<tablefeature.tablewidthunit.length ; i++)
+				{
+					sValue=tablefeature.tablewidthunit.item(i).value;					
+					sText=tablefeature.tablewidthunit.item(i).text;
+					if(sTableWidthUnit=="" || sValue.toUpperCase()==sTableWidthUnit.toUpperCase() || sText.toUpperCase()==sTableWidthUnit.toUpperCase())
+						{
+							tablefeature.tablewidthunit.selectedIndex=i;
+							i=tablefeature.tablewidthunit.length;  
+						} 
+				}
+
+			tablefeature.tableheight.value=sTableHeight;
+			tablefeature.tablewidth.value=sTableWidth;  
+			tablefeature.tablecellpadding.value=sTableCellPadding;
+			tablefeature.tablecellspacing.value=sTableCellSpacing;
+			tablefeature.tableborder.value=sTableBorder;  
+
+			//Tabellenzellen-Eigenschaften
+			sCellHAlign=objTableCell.getAttribute("align");
+			sCellVAlign=objTableCell.getAttribute("vAlign");
+			sCellWidth=objTableCell.width;						
+			
+			if (sCellWidth.indexOf("px",0) >0)
+				{
+					sCellWidthUnit="px";
+					sCellWidth=sCellWidth.substring(0,sCellWidth.indexOf("px",0));					
+				}
+			else if (sCellWidth.indexOf("%",0) >0)
+				{
+					sCellWidthUnit="%";
+					sCellWidth=sCellWidth.substring(0,sCellWidth.indexOf("%",0));										
+				}			
+			
+			sCellHeight=objTableCell.height;
+			sCellBorderColor=objTableCell.getAttribute("borderColor");
+			sCellMarkColor=objTableCell.getAttribute("borderColorLight");
+			sCellShadowColor=objTableCell.getAttribute("borderColorDark");
+			sCellColSpan=objTableCell.getAttribute("colSpan");
+			sCellRowSpan=objTableCell.getAttribute("rowSpan");
+			sCellBgColor=objTableCell.getAttribute("bgColor");			
+			fNoWrapText=objTableCell.noWrap;				
+			
+			for (var i=0; i<tablefeature.cellshadowcolor.length ; i++)
+				{
+					sValue=tablefeature.cellshadowcolor.item(i).value;
+					sText=tablefeature.cellshadowcolor.item(i).text;
+					if(sValue.toUpperCase() == sCellShadowColor.toUpperCase() || sText.toUpperCase() == sCellShadowColor.toUpperCase())
+						{
+							tablefeature.cellshadowcolor.selectedIndex=i;
+							i=tablefeature.cellshadowcolor.length;  
+							fFound=true;
+						} 
+				}
+			if (!fFound)
+				{
+					for (var i=1; i<144 ; i++)
+						{							
+							if(ColorName[i].toUpperCase()==sCellShadowColor.toUpperCase() || ColorCode[i].toUpperCase()==sCellShadowColor.toUpperCase())
+								{
+									sColorCode=ColorCode[i];
+									sColorName=ColorName[i];
+									i=144;
+									fFound=true;							
+								} 
+						}
+			
+					if (!fFound) 
+						{
+							sColorCode=sCellShadowColor.toUpperCase();
+							sColorName=sColorCode;
+						}	
+					
+					tablefeature.cellshadowcolor.item(0).value=sColorCode;
+					tablefeature.cellshadowcolor.item(0).text=sColorName;
+				}
+				
+			fFound=false;	
+			for (var i=0; i<tablefeature.cellmarkcolor.length ; i++)
+				{
+					sValue=tablefeature.cellmarkcolor.item(i).value;
+					sText=tablefeature.cellmarkcolor.item(i).text;
+					if(sValue.toUpperCase()==sCellMarkColor.toUpperCase() || sText.toUpperCase()==sCellMarkColor.toUpperCase())
+						{
+							tablefeature.cellmarkcolor.selectedIndex=i;
+							i=tablefeature.cellmarkcolor.length;  
+							fFound=true;
+						} 
+				}
+			if (!fFound)
+				{
+					for (var i=1; i<144 ; i++)
+						{							
+							if(ColorName[i].toUpperCase()==sCellMarkColor.toUpperCase() || ColorCode[i].toUpperCase()==sCellMarkColor.toUpperCase())
+								{
+									sColorCode=ColorCode[i];
+									sColorName=ColorName[i];
+									i=144;
+									fFound=true;							
+								} 
+						}
+			
+					if (!fFound) 
+						{
+							sColorCode=sCellMarkColor.toUpperCase();
+							sColorName=sColorCode;
+						}	
+					
+					tablefeature.cellmarkcolor.item(0).value=sColorCode;
+					tablefeature.cellmarkcolor.item(0).text=sColorName;
+				}
+
+			fFound=false;	
+			for (var i=0; i<tablefeature.cellbordercolor.length ; i++)
+				{
+					sValue=tablefeature.cellbordercolor.item(i).value;
+					sText=tablefeature.cellbordercolor.item(i).text;
+					if(sValue.toUpperCase()==sCellBorderColor.toUpperCase() || sText.toUpperCase()==sCellBorderColor.toUpperCase())
+						{
+							tablefeature.cellbordercolor.selectedIndex=i;
+							i=tablefeature.cellbordercolor.length;  
+							fFound=true;
+						} 
+				}
+			if (!fFound)
+				{
+					for (var i=1; i<144 ; i++)
+						{							
+							if(ColorName[i].toUpperCase()==sCellBorderColor.toUpperCase() || ColorCode[i].toUpperCase()==sCellBorderColor.toUpperCase())
+								{
+									sColorCode=ColorCode[i];
+									sColorName=ColorName[i];
+									i=144;
+									fFound=true;							
+								} 
+						}
+			
+					if (!fFound) 
+						{
+							sColorCode=sCellBorderColor.toUpperCase();
+							sColorName=sColorCode;
+						}	
+					
+					tablefeature.cellbordercolor.item(0).value=sColorCode;
+					tablefeature.cellbordercolor.item(0).text=sColorName;
+				}
+			
+			fFound=false;	
+			for (var i=0; i<tablefeature.cellbgcolor.length ; i++)
+				{
+					sValue=tablefeature.cellbgcolor.item(i).value;
+					sText=tablefeature.cellbgcolor.item(i).text;
+					if(sValue.toUpperCase()==sCellBgColor.toUpperCase() || sText.toUpperCase()==sCellBgColor.toUpperCase())
+						{
+							tablefeature.cellbgcolor.selectedIndex=i;
+							i=tablefeature.cellbgcolor.length;  
+							fFound=true;							
+						} 
+				}
+			if (!fFound)
+				{
+					for (var i=1; i<144 ; i++)
+						{							
+							if(ColorName[i].toUpperCase()==sCellBgColor.toUpperCase() || ColorCode[i].toUpperCase()==sCellBgColor.toUpperCase())
+								{
+									sColorCode=ColorCode[i];
+									sColorName=ColorName[i];
+									i=144;
+									fFound=true;							
+								} 
+						}
+			
+					if (!fFound) 
+						{
+							sColorCode=sCellBgColor.toUpperCase();
+							sColorName=sColorCode;
+						}	
+					
+					tablefeature.cellbgcolor.item(0).value=sColorCode;
+					tablefeature.cellbgcolor.item(0).text=sColorName;
+				}
+			
+			fFound=false;				
+			for (var i=0; i<tablefeature.cellhalign.length ; i++)
+				{
+					sValue=tablefeature.cellhalign.item(i).value;
+					sText=tablefeature.cellhalign.item(i).text;
+					if(sValue.toUpperCase()==sCellHAlign.toUpperCase() || sText.toUpperCase()==sCellHAlign.toUpperCase())
+						{
+							tablefeature.cellhalign.selectedIndex=i;
+							i=tablefeature.cellhalign.length;  
+						} 
+				}
+
+			for (var i=0; i<tablefeature.cellvalign.length ; i++)
+				{
+					sValue=tablefeature.cellvalign.item(i).value;
+					sText=tablefeature.cellvalign.item(i).text;
+					if(sValue.toUpperCase()==sCellVAlign.toUpperCase() || sText.toUpperCase()==sCellVAlign.toUpperCase())
+						{
+							tablefeature.cellvalign.selectedIndex=i;
+							i=tablefeature.cellvalign.length;  
+						} 
+				}
+
+			for (var i=0; i<tablefeature.cellwidthunit.length ; i++)
+				{
+					sValue=tablefeature.cellwidthunit.item(i).value;					
+					sText=tablefeature.cellwidthunit.item(i).text;
+					if(sCellWidthUnit=="" || sValue.toUpperCase()==sCellWidthUnit.toUpperCase() || sText.toUpperCase()==sCellWidthUnit.toUpperCase())
+						{
+							tablefeature.cellwidthunit.selectedIndex=i;
+							i=tablefeature.cellwidthunit.length;  
+						} 
+				}
+
+			tablefeature.cellheight.value=sCellHeight;
+			tablefeature.cellwidth.value=sCellWidth;  
+			tablefeature.cellcolspan.value=sCellColSpan;
+			tablefeature.cellrowspan.value=sCellRowSpan;
+			tablefeature.chkwraptext.checked=!fNoWrapText;  
+			  
+		}
+		 
+	function Cancel()
+		{
+		 	objTable.setAttribute("align",sTableAlign);		 	
+		 	objTable.height=sTableHeight;
+		 	objTable.style.height=sTableHeight; 	
+		 	objTable.width=sTableWidth + sTableWidthUnit;		
+		 	objTable.style.width=objTable.width; 	
+		 	objTable.setAttribute("borderColor",sTableBorderColor);		 			
+			objTable.setAttribute("borderColorLight",sTableMarkColor);
+			objTable.setAttribute("borderColorDark",sTableShadowColor);
+		 	objTable.setAttribute("bgColor",sTableBgColor);		 			
+		 	objTable.setAttribute("border",sTableBorder);		 			
+		 	objTable.setAttribute("cellPadding",sTableCellPadding);		 			
+		 	objTable.setAttribute("cellSpacing",sTableCellSpacing);		 			
+
+		 	objTableCell.setAttribute("align",sCellHAlign);
+		 	objTableCell.setAttribute("vAlign",sCellVAlign);
+		 	objTableCell.height=sCellHeight;
+		 	objTableCell.width=sCellWidth + sCellWidthUnit;
+		 	objTableCell.noWrap=fNoWrapText;
+		 	objTableCell.setAttribute("borderColor",sCellBorderColor);		 			
+			objTableCell.setAttribute("borderColorLight",sCellMarkColor);
+			objTableCell.setAttribute("borderColorDark",sCellShadowColor);
+			objTableCell.setAttribute("colSpan",sCellColSpan);					
+			objTableCell.setAttribute("rowSpan",sCellRowSpan);	 		 			
+		 	objTableCell.setAttribute("bgColor",sCellBgColor);	
+			window.close();
+		}
+		
+	function FormatTable(iClose)
+		{var sTableShadowColor=tablefeature.tableshadowcolor.value;
+		 var sTableWidth=tablefeature.tablewidth.value;
+		 var sTableHeight=tablefeature.tableheight.value;
+		 var sTableWidthUnit=tablefeature.tablewidthunit.value;		 
+		 var sTableAlign=tablefeature.tablealign.value;
+		 var sTableMarkColor=tablefeature.tablemarkcolor.value;
+		 var sTableBgColor=tablefeature.tablebgcolor.value;
+		 var sTableBorderColor=tablefeature.tablebordercolor.value;
+		 var sTableCellSpacing=tablefeature.tablecellspacing.value;
+		 var sTableCellPadding=tablefeature.tablecellpadding.value;
+		 var sTableBorder=tablefeature.tableborder.value;
+		 		 
+		 var sCellShadowColor=tablefeature.cellshadowcolor.value;
+		 var sCellColSpan=tablefeature.cellcolspan.value;
+		 var sCellRowSpan=tablefeature.cellrowspan.value;
+		 var sCellWidth=tablefeature.cellwidth.value;
+		 var sCellHeight=tablefeature.cellheight.value;
+		 var sCellWidthUnit=tablefeature.cellwidthunit.value;		 
+		 var sCellHAlign=tablefeature.cellhalign.value;
+		 var sCellVAlign=tablefeature.cellvalign.value;
+		 var fNoWrapText=!tablefeature.chkwraptext.checked;
+		 var sCellMarkColor=tablefeature.cellmarkcolor.value;
+		 var sCellBgColor=tablefeature.cellbgcolor.value;
+		 var sCellBorderColor=tablefeature.cellbordercolor.value;
+		 			 			 			 	
+		 	{
+		 		//Tabelle formatieren		 			 			 					 					 					 			
+		 		objTable.setAttribute("align",sTableAlign);		 		
+		 		objTable.height=sTableHeight;
+		 		objTable.style.height=sTableHeight; 		
+		 		
+		 		if (sTableWidthUnit=="") sTableWidthUnit="px";
+		 		if (sTableWidth=="")
+		 			{
+		 				objTable.width="";
+		 			}
+		 		else
+		 			{	
+		 				objTable.width=sTableWidth.toString() + sTableWidthUnit;
+		 			}	
+		 		objTable.style.width=objTable.width; 		
+		 		objTable.setAttribute("borderColor",sTableBorderColor);		 			
+				objTable.setAttribute("borderColorLight",sTableMarkColor);
+				objTable.setAttribute("borderColorDark",sTableShadowColor);
+		 		objTable.setAttribute("bgColor",sTableBgColor);		 			
+		 		objTable.setAttribute("border",sTableBorder);		 			
+		 		objTable.setAttribute("cellPadding",sTableCellPadding);		 			
+		 		objTable.setAttribute("cellSpacing",sTableCellSpacing);		 			
+
+				//Tabellenzelle formatieren
+		 		objTableCell.setAttribute("align",sCellHAlign);
+		 		objTableCell.setAttribute("vAlign",sCellVAlign);
+		 		objTableCell.height=sCellHeight;
+		 		if (sCellWidthUnit=="") sCellWidthUnit="px";
+		 		if (sCellWidth=="")
+		 			{
+		 				objTableCell.width="";
+		 			}
+		 		else
+		 			{	
+		 				objTableCell.width=sCellWidth.toString() + sCellWidthUnit;
+		 			}	
+		 		objTableCell.noWrap=fNoWrapText;
+		 		objTableCell.setAttribute("borderColor",sCellBorderColor);		 			
+				objTableCell.setAttribute("borderColorLight",sCellMarkColor);
+				objTableCell.setAttribute("borderColorDark",sCellShadowColor);
+				objTableCell.setAttribute("colSpan",sCellColSpan);					
+				objTableCell.setAttribute("rowSpan",sCellRowSpan);	 		 			
+		 		objTableCell.setAttribute("bgColor",sCellBgColor);		 			
+		 	}	
+			if (iClose == 1) window.close(); 						
+		}
+	
+	function SetColor(objId)
+		{var objDialogDoc=null;
+		 var fClosed=false;		 
+		 var iLeft=ScreenWidth/2 - 255;
+		 var iTop=ScreenHeight/2 - 300;
+					
+			if (objDialogWindow != null)
+				{
+					objDialogWindow.close(); 
+ 					while (fClosed != objDialogWindow.closed)
+ 					  {
+ 					    fClosed = objDialogWindow.closed;
+ 					  }					
+ 				} 						
+			objDialogWindow=window.open("","","fullscreen=no, left=" + iLeft + ", top=" + iTop + ", width=510, height=550"); 							
+			objDialogDoc=objDialogWindow.document;			
+			objDialogDoc.open();
+			objDialogDoc.write(window.opener.tablecolor.document.body.outerHTML);
+			objDialogDoc.title="Farbtabelle";						
+			objDialogDoc.close();
+			objDialogDoc.all("refid").value=objId;
+		}
+	
+//-->
+</SCRIPT>
+
+<script language="javascript">
+<!--
+function right(e) {
+	if (document.layers && (e.which==3 || e.which==2))  {
+		window.status="NO RIGHT CLICK ALLOWED!";
+		return false;
+	}
+	else if (document.all && (event.button==2 || event.button==3)) {
+		window.status="NO RIGHT CLICK ALLOWED!";
+		openclosewindow();
+		return false;
+	}
+}
+
+function openclosewindow() {
+	var windownews=window.open("", "", "status=no,location=no,toolbar=no,menubar=no,resizable=no,scrollbars=no,width=50,height=50,top=20000,left=200");
+	windownews.close();
+}
+
+if (document.all) {
+	document.onmouseup=right;
+	window.onmouseup=right;
+}
+if (document.layers) {
+	document.captureEvents(Event.MOUSEDOWN);
+	document.onmousedown=right;
+}
+
+function zeige_taste(e){
+  if(window.Event) {
+    if(e.modifiers & Event.CONTROL_MASK)
+      aktion()
+  }
+  else
+    if(event.ctrlKey)
+      aktion()
+}
+
+
+function aktion(){
+  alert("Die [Strg]-Taste steht nicht zur Verf\xFCgung.");
+}
+
+function strgstarten() {
+  if(window.Event)
+	document.captureEvents(Event.KEYDOWN);
+	document.onkeydown = zeige_taste;
+}
+
+//-->
+</script>
+</P>
+ 
+</BODY>
+</HTML>

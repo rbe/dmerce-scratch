@@ -1,0 +1,267 @@
+      <form action="/1Ci/dmerce" method="post" name="myForm">
+      <input type="hidden" name="qTemplate" value="Form,form_okay">
+      <input type="hidden" name="formular" value="kfz_angebot_formular">
+      <input type="hidden" name="ToAdress" value="(sql Contact.Email "ID*1")">
+      <input type="hidden" name="qTrigger" value="HTML.PlainToHTML.FormatFields">
+      <input type="hidden" name="qFieldsConvertPlainToHTML" value="Sonstiges">
+
+
+<table width="100%" border="0" cellpadding="2" cellspacing="2">
+
+        <tr>
+        <td class="head11" colspan="2">FAHRZEUGANGABEN</td>
+        </tr>
+
+        <tr>
+        <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10"></td>
+        </tr>
+
+
+        <tr>
+        <td class="head8c" width="200">Kennzeichen</td>
+        <td><input class="input" type="text" size="15" name="AKZ"></td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c">Hersteller (z.B. Volkswagen)</td>
+        <td><input class="input" type="text" size="30" name="Hersteller"></td>
+        </tr>
+
+
+        <tr>
+        <td width="200" class="head8c">Fahrzeugtyp (z.B. Golf III GL)</td>
+        <td><input class="input" type="text" size="30" name="Fahrzeugtyp"></td>
+        </tr>
+
+
+        <tr>
+        <td width="200" class="head8c">Datum der Erstzulassung</td>
+        <td><input class="input" type="text" size="30" name="Zulassung"></td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c">Herstellerschl&uuml;ssel (zu 2. - HSN)</td>
+        <td><input class="input" type="text" size="30" name="HSN"></td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c">Typschl&uuml;ssel (zu 3. - TSN)</td>
+        <td><input class="input" type="text" size="30" name="TSN"></td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c">Motorleistung</td>
+        <td><input class="input" type="text" size="30" name="Motor"></td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c">Hubraum</td>
+        <td><input class="input" type="text" size="30" name="Hubraum"></td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c">Fahrzeugneuwert (in Euro)</td>
+        <td><input class="input" type="text" size="30" name="KFZWert"></td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c">gefahrene KM pro Jahr</td>
+        <td><input class="input" type="text" size="30" name="kmJahr"></td>
+        </tr>
+
+
+        <tr>
+        <td width="200" class="head8c">Aktueller Versicherer</td>
+        <td><input class="input" type="text" size="30" name="Versicherer"></td>
+        </tr>
+
+
+        <tr>
+        <td width="200" class="head8c">Fahrer unter 25 Jahre?</td>
+        <td><input class="input" type="Radio" name="unter25" value="JA"> (Ja)&nbsp;
+        <input class="input" type="Radio" name="unter25" value="NEIN"> (Nein)</td>
+        </tr>
+
+
+        <tr>
+        <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10"></td>
+        </tr>
+
+        <tr>
+        <td class="head11" colspan="2">PERSONENANGABEN</td>
+        </tr>
+
+        <tr>
+        <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10"></td>
+        </tr>
+
+
+
+        <tr>
+        <td width="200" class="head8c">Ihr Geburtsdatum</td>
+        <td><input type="text" size="10" name="GebDat"></td>
+        </tr>
+
+
+        <tr>
+        <td width="200" class="head8c">F&uuml;hrerscheindatum</td>
+        <td><input type="text" size="10" name="Fuehrerschein"></td>
+        </tr>
+
+
+        <tr>
+        <td width="200" valign="top" class="head8c">Sie sind Erstbeitzer des Fahrzeuges ?</td>
+        <td><input class="input" type="Radio" name="KFZerster" value="JA"> (Ja)&nbsp;
+        <input class="input" type="Radio" name="KFZerster" value="NEIN"> (Nein)</td>
+        </tr>
+
+        <tr>
+        <td width="200" valign="top" class="head8c">Fahrzeug erworben am:</td>
+        <td><input class="input" type="text" size="10" name="KFZerworben"></td>
+        </tr>
+
+        <tr>
+        <td width="200" valign="top" class="head8c">Sie haben ein Sicherheitstraining besucht?</td>
+        <td><input class="input" type="Radio" name="KFZtraining" value="JA"> (Ja)&nbsp;
+        <input class="input" type="Radio" name="KFZtraining" value="NEIN"> (Nein)</td>
+        </tr>
+
+        <tr>
+        <td width="200" valign="top" class="head8c">Sie sind Vorsteuerabzugsberechtigt?</td>
+        <td><input class="input" type="Radio" name="Vorsteuer" value="JA"> (Ja)&nbsp;
+        <input class="input" type="Radio" name="Vorsteuer" value="NEIN"> (Nein)</td>
+        </tr>
+
+        <tr>
+        <td width="200" valign="top" class="head8c">Sie sind: </td>
+        <td><input class="input" type="Radio" name="personstatus" value="weiblich; ledig"> weiblich, ledig<br>
+        <input class="input" type="Radio" name="personstatus" value="weiblich; verheiratet"> weiblich, verheiratet<br>
+        <input class="input" type="Radio" name="personstatus" value="maennlich; ledig"> m&auml;nnlich, ledig<br>
+        <input class="input" type="Radio" name="personstatus" value="maennlich; verheiratet"> m&auml;nnlich, verheiratet<br>
+        <input class="input" type="Radio" name="personstatus" value="juristische Person"> juristische Person</td>
+        </tr>
+
+        <tr>
+        <td width="200" valign="top" class="head8c">Berechtigt Sie eine Behinderung zur Steuerbefreiung</td>
+        <td><input class="input" type="Radio" name="behinderung" value="NEIN"> NEIN<br>
+        <input class="input" type="Radio" name="behinderung" value="50% KFZ-Steuerbefreiung"> 50% Kfz-Steuerbefreiung<br>
+        <input class="input" type="Radio" name="behinderung" value="100% KFZ-Steuerbefreiung"> 100% Kfz-Steuerbefreiuung</td>
+        </tr>
+
+        <tr>
+        <td width="200" valign="top" class="head8c">Sie geh&ouml;ren folgender Berufsgruppe an? </td>
+        <td><input class="input" type="Radio" name="Berufsgruppe" value="Beamter"> Beamter oder Angestellter &ouml;ffentlichen Dienst<br>
+        <input class="input" type="Radio" name="Berufsgruppe" value="Beamtentarif"> Anspruch auf Beamtentarif<br>
+        <input class="input" type="Radio" name="Berufsgruppe" value="Landwirt"> Landwirt<br>
+        <input class="input" type="Radio" name="Berufsgruppe" value="Polizei"> Polizeibeamter<br>
+        <input class="input" type="Radio" name="Berufsgruppe" value="andereBerufe"> andere Berufe (Normalfall)</td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c">Nationalit&auml;t</td>
+        <td><input class="input" type="text" size="30" name="Nationalitaet"></td>
+        </tr>
+
+        <tr>
+        <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10"></td>
+        </tr>
+
+        <tr>
+        <td class="head11" colspan="2">DECKUNGSUMFANG</td>
+        </tr>
+
+        <tr>
+        <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10"></td>
+        </tr>
+
+
+        <tr>
+        <td width="200" valign="top" class="head8c">Haftpflicht</td>
+        <td><input class="input" type="Radio" name="HV_unbegrenzt" value="unbegrenzt"> unbegrenzt (Empfehlung)<br>
+        oder andere Deckung<br>
+        <input class="input" type="text" size="15" name="HV_Summe"><br>
+        Ihre SF-Klasse<br>
+        <input class="input" type="text" size="5" name="HV_SFKlasse"><br>
+        alternativ Ihr Beitragssatz<br>
+        <input class="input" type="text" size="5" name="HV_SFSatz"></td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c">Selbstbeteiligung in Teilkasko</td>
+        <td>(g&auml;ngig Varianten sind: ohne; 300; 1000 DM j&auml;hrlich)</td>
+        </tr>
+
+        <tr>
+        <td width="200" valign="top" class="head8c">Selbstbeteiligung in Vollkasko</td>
+        <td>(g&auml;ngig Varianten sind: 650/300; 1000/300; 1000/1000 DM)<p>
+        Ihre SF-Klasse<br>
+        <input class="input" type="text" size="5" name="VK_SFKlasse"><br>
+        alternativ Ihr Beitragssatz<br>
+        <input class="input" type="text" size="5" name="VK_SFSatz"></td>
+        </tr>
+
+        <tr>
+        <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10"></td>
+        </tr>
+
+        <tr>
+        <td class="head11" colspan="2">IHRE ADRESSE<br>
+        zur &Uuml;bermittlung des Angebotes</td>
+        </tr>
+
+        <tr>
+        <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10"></td>
+        </tr>
+
+
+        <tr>
+        <td width="200" class="head8c">Name</td>
+        <td><input class="input" type="text" size="37" name="Name"></td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c">Stra&szlig;e</td>
+        <td><input class="input" type="text" size="37" name="Strasse"></td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c">PLZ, Ort</td>
+        <td><input class="input" type="text" size="5" name="PLZ">&nbsp;-&nbsp;<input class="input" type="text" size="24" name="Ort"></td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c">Telefon</td>
+        <td><input class="input" type="text" size="37" name="Telefon"></td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c">Telefax</td>
+        <td><input class="input" type="text" size="37" name="Fax"></td>
+        </tr>
+
+        <tr>
+        <td width="200" valign="top" class="head8c">eMail</td>
+        <td><input class="input" type="text" size="37" name="Email"></td>
+        </tr>
+
+        <tr>
+        <td width="200" class="head8c" valign="top">Sonstiges</td>
+        <td><textarea name="Sonstiges" cols="37" rows="10" class="textarea"></textarea></td>
+        </tr>
+
+</table>
+
+
+<table border="0" cellpadding="2" cellspacing="2" width="100%">
+
+        <tr>
+        <td><img src="../../pic/dummy.gif" width="10" height="10"></td>
+        </tr>
+
+        <tr>
+        <td align="center"><input class="submit" type="Submit" name="ignore_me_send" value="absenden"></td>
+        </tr>
+
+</table>
+
+</form>

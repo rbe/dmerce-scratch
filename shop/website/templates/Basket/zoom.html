@@ -1,0 +1,61 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>(var SERVER_NAME) - Zoom</title>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+
+
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
+
+       (repeat "Article.ID*(form ArticleID)")
+
+       <tr>
+       <td align="center" class="head12b">(sql Article.Name)</td>
+       </tr>
+
+       <tr>
+       <td align="center" valign="middle"><a href="javascript:self.close()"><img src="../pic/upload/(sql Article.Picture)" border="0" alt="(sql Article.Name)" name="Bild"></a></td>
+       </tr>
+
+       (endrepeat)
+
+       <tr>
+       <td valign="top" align="center"><a class="head8" href="javascript:self.close()">[Fenster schlie&szlig;en]</a></td>
+       </tr>
+</table>
+
+<script language="JavaScript">
+var height,width
+height = document.Bild.height
+width = document.Bild.width
+height= height + 65
+window.resizeTo(width,height);
+</script>
+
+
+
+</body>
+</html>

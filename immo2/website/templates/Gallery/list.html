@@ -1,0 +1,237 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+
+<LINK rel="stylesheet" type="text/css" href="../style.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>&nbsp;Gallerie Liste</title>
+
+</head>
+
+<body topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0" bgcolor="#FFFFFF">
+
+
+
+(repeat "Object.ID*(form ObjectID)")
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;
+      (sql Wordlist.NameDE "ID*2")
+      (if '(form GroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Object,intro&GroupID=(form GroupID)">(sql HeadNav.NameDE "ID*(form GroupID)")</a>
+      (endif)
+      (if '(form SubgroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Object,list&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)">(sql SubNav.NameDE "ID*(form SubgroupID)")</a>
+      (endif)
+      (if '(form ObjectID)' != '')
+      > (sql Object.Name "ID*(form ObjectID)")</a>
+      (endif)
+      </td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+       <td width="20%" valign="top">
+
+<table width="100%" border="0" cellspacing="3" cellpadding="0">
+
+       <tr>
+       <td colspan="2" align="center">
+
+       (if '(sql Object.Picture)' != '')
+       <img src="../pic/upload/(sql Object.Picture)" width="200" border="0">
+       (else)
+       <b>kein Bild</b><br>
+       <br>
+       (endif)
+
+       </td>
+       </tr>
+
+
+
+       <tr>
+       <td colspan="2">&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" border="0" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td width="22" class="head8">&nbsp;</td>
+       <td class="head8">&nbsp;</td>
+       </tr>
+
+</table>
+
+
+       <td width="80%" valign="top">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+
+      <tr>
+      <td class="head11" colspan="2"><b>&nbsp;(sql Object.Name)</b></td>
+
+      (if (get-myvar login) == 1)
+      <td class="head11" align="right">
+      <a href="/1Ci/dmerce?qTemplate=Object,maintain&ObjectID=(sql Object.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)"><img src="../../pic/edit.gif" width="16" height="16" border="0" alt="[Diese Seite bearbeiten]"></a></td>
+      (else)
+      <td class="head11"><img src="../../pic/dummy.gif" width="1" height="1" border="0"></td>
+      (endif)
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td valign="top">
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+
+      (if (sql Object.ForRent) != 2 or (sql Object.ForRent) != 2)
+      <tr>
+      <td class="head9c" width="35%"><b>Angebotsart:</b></td>
+      <td class="head9">
+
+      (if (sql Object.ForRent) == 1)
+      Vermietung
+      (endif)
+      (if (sql Object.ForRent) == 0)
+      Verkauf
+      (endif)
+
+      (if (sql Object.ForRent) != 2 and (sql Object.ForPrivate) != 2)
+      /
+      (endif)
+
+      (if (sql Object.ForPrivate) == 1)
+      privat
+      (endif)
+      (if (sql Object.ForPrivate) == 0)
+      gewerblich
+      (endif)
+
+      </td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.OfferNo)' != '')
+      <tr>
+      <td class="head9c" width="35%"><b>Angebot Nummer</b></td>
+      <td class="head9">(sql Object.OfferNo)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Name)' != '')
+      <tr>
+      <td class="head9c" width="35%"><b>Angebot Name</b></td>
+      <td>(sql Object.Name)</td>
+      </tr>
+      (endif)
+
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+
+      <tr>
+      <td class="head11" colspan="3"><b>Standort</b></td>
+      </tr>
+
+      (if '(sql Object.Country)' != '')
+      <tr>
+      <td class="head9c" width="35%">Land</td>
+      <td>(sql Object.Country)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.ZipCode)' != '')
+      <tr>
+      <td class="head9c" width="35%">PLZ - Ort</td>
+      <td>(sql Object.ZipCode)&nbsp;-&nbsp;(sql Object.City)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Street)' != '')
+      <tr>
+      <td class="head9c" width="35%">Strasse</td>
+      <td>(sql Object.Street)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Location)' != '')
+      <tr>
+      <td class="head9c" width="35%">Lage</td>
+      <td>(sql Object.Location)</td>
+      </tr>
+      (endif)
+
+</table>
+
+       </td>
+       </tr>
+
+</table>
+
+       </td>
+       </tr>
+
+
+       <tr>
+       <td colspan="2" align="right"><input type="Button" name="Button" value="zur&uuml;ck" onClick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Object,maintain&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&ObjectID=(form ObjectID)'" class="submit"></td></td>
+       </tr>
+
+</table>
+
+
+
+</body>
+</html>

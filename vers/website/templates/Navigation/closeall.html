@@ -1,0 +1,23 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--
+function do_check() {
+                (if '(form NavID)' != '')
+                par = '/1Ci/dmerce?qTemplate=Navigation,list&NavID=(form NavID)'
+                (endif)
+                (if '(form GroupID)' != '')
+                par = '/1Ci/dmerce?qTemplate=Navigation,list&GroupID=(form GroupID)'
+                (endif)
+                (if '(form NavID)' == '')
+                par = '/1Ci/dmerce?qTemplate=Navigation,list'
+                (endif)
+                window.opener.parent.menue.location.href= par
+                self.close();
+}
+//-->
+</script>
+</head>
+<body onload="javascript:do_check()">
+</body>
+</html>

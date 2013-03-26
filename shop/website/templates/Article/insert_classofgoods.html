@@ -1,0 +1,151 @@
+<html>
+
+<head>
+
+<LINK rel="stylesheet" type="text/css" href="../../style_admin.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>NEUE Warengruppe hinzuf&uuml;gen - [Immo] by 1Ci GmbH(R)</title>
+
+<script language="JavaScript">
+<!--
+var X=200
+var Y=250
+
+function NavFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=500
+        myheight=500
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+newWin = window.open(myurl,'Fenster2',par);
+newWin.focus();
+}
+
+function chkFormular()  {
+
+   if(document.myForm.ClassOfGoods_Name.value == "")
+    {
+     alert("Bitte geben sie eine Bezeichnung für die Warengruppe ein!");
+     document.myForm.ClassOfGoods_Name.focus();
+     return false;
+    }
+
+}
+//-->
+</script>
+
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>AKTION</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head8">&nbsp;F&uuml;gen Sie hier eine <b>neue</b> Warengruppe hinzu.</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <form method="post" action="/1Ci/dmerce" name="myForm" onSubmit="return chkFormular()">
+      <input type="hidden" name="qTemplate" value="Article,insert_classofgoods_2">
+      <input type="hidden" name="qInsert" value="ClassOfGoods">
+      <input type="hidden" name="ClassOfGoods_ID" value="(sql dboid ClassOfGoods)">
+      <input type="hidden" name="ClassOfGoodsID" value="(sql dboid ClassOfGoods)">
+
+      <tr>
+      <td class="head8c">&nbsp;Name:</td>
+      <td class="head8">&nbsp;<input type="Text" name="ClassOfGoods_Name" class="input" size="35"></td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;Status:</td>
+      <td class="head8">&nbsp;<select name="ClassOfGoods_active" size="1">
+      <option value="1">aktiv
+      <option value="0">inaktiv
+      </select></td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;</td>
+      <td class="head8">Aktiv = Warengruppe wird angezeigt<br>Inaktiv = Vorbereitet, wird nicht angezeigt</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="2" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="right" colspan="2"><input type="submit" class="submit" name="qButton" value="eintragen" onClick="return chkFormular()"></td>
+      </tr>
+
+</form>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td class="head8c">Ansicht:</td>
+      <td class="head8">&nbsp;<a href="javascript:NavFenster('/1Ci/dmerce?qTemplate=Article,select_classofgoods')"><b>[&Uuml;bersicht]</b></a> angelegter Warengruppen</td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+
+
+
+</body>
+
+</html>

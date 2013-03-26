@@ -1,0 +1,114 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE>Modus Bildauswahl</TITLE>
+</HEAD>
+<BODY bgColor=#C0C0C0 onload="strgstarten()">
+<FONT face="Arial" size=2>
+<FORM name="imageselection">
+
+<INPUT id=radio1 name=imageselection type=radio value="Remote" checked><A onclick="SelectRemote()">Bilddatei vom Server ausw&auml;hlen</A>
+<BR>
+<INPUT id=radio1 name=imageselection type=radio value="EditImage" disabled><A onclick="SelectEditImage()">Bildeigenschaften</A>
+<P>
+<CENTER>
+<INPUT id=btOK type=button value="  OK  " onClick="CheckSelection()">
+&nbsp;
+<INPUT id=btCancel type=button value="Abbrechen" onClick="window.close()">
+</P>
+<strong>Bemerkung:</strong> Wenn Sie ein Bild f&uuml;r Darstellungen im Internet einsetzen, m&uuml;ssen Sie den Servereintrag entfernen.
+</CENTER>
+</FORM>
+</FONT>
+</BODY>
+</HTML>
+<SCRIPT language="javascript">
+        var objRadio=document.imageselection.all("imageselection");
+        var objParentElement=null;
+        var ScreenWidth=window.screen.width;
+        var ScreenHeight=window.screen.height;
+
+        function SelectEditImage()
+                {
+                        if (objRadio(1).disabled == false)
+                                objRadio(1).checked=true;
+                }
+
+        function SelectRemote()
+                {
+                        objRadio(0).checked=true;
+                }
+
+        function CheckSelection()
+                {
+                        if(objRadio(0).checked) //Bild vom Server auswählen
+                                {var objDoc=window.document;
+
+                                        objDoc.location.href="/1Ci/dmerce?qTemplate=Navigation,imageremote";
+                                }
+                        else //Bild bearbeiten
+                                {var objRange=window.opener.document.frames("Editor").document.selection.createRange();
+                                 var HtmlCode=window.opener.document.frames("imagefeature").document.body.outerHTML;
+                                 var objDoc=window.document;
+
+                                        objDoc.open();
+                                        objDoc.write(HtmlCode);
+                                        objDoc.title="Bildeigenschaften bearbeiten";
+                                        objDoc.close();
+                                        window.document.all("btinit").click();
+                                        window.resizeTo(450,350);
+                                        window.moveTo(ScreenWidth/2 - 225,ScreenHeight/2 - 120);
+                                }
+                }
+</SCRIPT>
+<script language="javascript">
+<!--
+function right(e) {
+        if (document.layers && (e.which==3 || e.which==2))  {
+                window.status="NO RIGHT CLICK ALLOWED!";
+                return false;
+        }
+        else if (document.all && (event.button==2 || event.button==3)) {
+                window.status="NO RIGHT CLICK ALLOWED!";
+                openclosewindow();
+                return false;
+        }
+}
+
+function openclosewindow() {
+        var windownews=window.open("", "", "status=no,location=no,toolbar=no,menubar=no,resizable=no,scrollbars=no,width=50,height=50,top=20000,left=200");
+        windownews.close();
+}
+
+if (document.all) {
+        document.onmouseup=right;
+        window.onmouseup=right;
+}
+if (document.layers) {
+        document.captureEvents(Event.MOUSEDOWN);
+        document.onmousedown=right;
+}
+
+function zeige_taste(e){
+  if(window.Event) {
+    if(e.modifiers & Event.CONTROL_MASK)
+      aktion()
+  }
+  else
+    if(event.ctrlKey)
+      aktion()
+}
+
+
+function aktion(){
+  alert("Die [Strg]-Taste steht nicht zur Verf\xFCgung.");
+}
+
+function strgstarten() {
+  if(window.Event)
+        document.captureEvents(Event.KEYDOWN);
+        document.onkeydown = zeige_taste;
+}
+
+//-->
+</script>

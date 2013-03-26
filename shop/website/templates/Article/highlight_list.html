@@ -1,0 +1,113 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>Highlightliste - Bearbeiten</title>
+
+<script language="JavaScript">
+<!--
+var X=100
+var Y=160
+
+function NavFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=500
+        myheight=500
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+newWin = window.open(myurl,'Fenster',par);
+newWin.focus();
+}
+
+//-->
+</script>
+
+</head>
+
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td class="nav10blue" align="center">&nbsp;<b>Highlightliste bearbeiten</b></td>
+      </tr>
+
+      (repeat "Article.Highlight]0{Highlight")
+
+      <form method="post" action="/1Ci/dmerce" name="myForm(sql Article.ID)" enctype="multipart/form-data">
+      <input type="hidden" name="qTemplate" value="(var qTemplate)">
+      <input type="hidden" name="Template" value="Article,highlight_list">
+      <input type="hidden" name="qUpdate" value="Article">
+      <input type="hidden" name="Article_ID" value="(sql Article.ID)">
+
+
+      <tr>
+      <td class="head11">&nbsp;<a class="head11" href="javascript:window.opener.parent.content.location.href=('/1Ci/dmerce?qTemplate=Article,view&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)');self.close();"><b>(sql Article.Name)</b></a></td>
+      </tr>
+
+      <tr>
+      <td align="center">
+
+      (if '(sql Article.Picture)' != '')
+      <a href="javascript:window.opener.parent.content.location.href=('/1Ci/dmerce?qTemplate=Article,view&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)');self.close();"><img src="../pic/upload/(sql Article.Picture)" border="0" hspace="6"></a></td>
+      (else)
+      <b>&nbsp;kein Bild</b>
+      (endif)
+      
+      </tr>
+
+      <tr>
+      <td align="right" class="head8c">aktuelle Highlight Position:&nbsp;<input type="Text" name="Article_Highlight" value="(sql Article.Highlight)" size="3" class="input"></td>
+      </tr>
+
+      <tr>
+      <td align="right" class="head8c"><a href="/1Ci/dmerce?qTemplate=(var qTemplate)&qUpdate=Article&Article_ID=(sql Article.ID)&Article_Highlight=0&qButton=1">[aus Highlightliste l&ouml;schen]</a>&nbsp;&nbsp;<a href="javascript:document.myForm(sql Article.ID).submit();" onClick="javascript:document.myForm(sql Article.ID).submit();">[&Auml;nderungen &uuml;bernehmen]</a></td>
+      </tr>
+
+      </form>
+
+      <tr>
+      <td>&nbsp;</td>
+      </tr>
+
+      (endrepeat)
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td align="left" class="head8c">&nbsp;<a class="head8" href="javascript:self.close();">[Fenster schlie&szlig;en]</a></td>
+      <td align="right" class="head8c"><a class="head8" href="/1Ci/dmerce?qTemplate=Article,select_highlight&Template=Article,insert_highlight">[neuen Artikel hinzuf&uuml;gen]</a>&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td>&nbsp;</td>
+      </tr>
+
+</table>
+
+
+
+</body>
+</html>
+</html>

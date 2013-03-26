@@ -1,0 +1,25 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--
+function do_check() {
+                par = '/1Ci/dmerce?qTemplate=Index,index_2'
+                parent.window.location.href= par
+}
+//-->
+</script>
+</head>
+<body onload="javascript:do_check()">
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+
+(if (who ID) > 0)
+(set-myvar login 1)
+(endif)
+(if (who ID) == 0)
+(set-myvar login 0)
+(endif)
+
+
+</body>
+</html>

@@ -1,0 +1,396 @@
+<html>
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>&nbsp;</title>
+
+</head>
+
+<body topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0" bgcolor="#FFFFFF">
+
+
+
+(repeat "Object.ID*(form ObjectID)")
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;
+      (sql Wordlist.NameDE "ID*2")
+      (if '(form GroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Object,intro&GroupID=(form GroupID)">(sql ObjectHeadGroup.NameDE "ID*(form GroupID)")</a>
+      (endif)
+      (if '(form SubgroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Object,list&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)">(sql ObjectSubGroup.NameDE "ID*(form SubgroupID)")</a>
+      (endif)
+      (if '(form ObjectID)' != '')
+      > (sql Object.Name "ID*(form ObjectID)")</a>
+      (endif)
+      </td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td class="head12b">&nbsp;Weitere Ansichten zum Objekt bearbeiten</td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+      </tr>
+
+</table>
+
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+       <td width="20%" valign="top">
+
+<table width="100%" border="0" cellspacing="3" cellpadding="0">
+
+       <tr>
+       <td colspan="2" align="center">
+
+       (if '(sql Object.Picture)' != '')
+       <img src="../pic/upload/(sql Object.Picture)" width="200" border="0"><br>
+       &nbsp;&nbsp;&nbsp;aktuelles Bild
+       (else)
+       <img src="/pic/x_nopic.gif" width="124" height="102" border="0" alt=""><br>
+       <br>
+       (endif)
+
+       </td>
+       </tr>
+
+
+
+       <tr>
+       <td colspan="2">&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" border="0" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td width="22" class="head8">&nbsp;</td>
+       <td class="head8">&nbsp;</td>
+       </tr>
+
+</table>
+
+
+       <td width="80%" valign="top">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+
+      <tr>
+      <td class="head12b" colspan="2">&nbsp;(sql Object.Name)</td>
+
+      (if (get-myvar login) == 1)
+      <td class="head11" align="right">
+      <a href="/1Ci/dmerce?qTemplate=Object,maintain&ObjectID=(sql Object.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)"><img src="../../pic/edit.gif" width="16" height="16" border="0" alt="[Diese Seite bearbeiten]"></a></td>
+      (else)
+      <td class="head11"><img src="../../pic/dummy.gif" width="1" height="1" border="0"></td>
+      (endif)
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td valign="top">
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+
+      (if (sql Object.ForRent) != 2 or (sql Object.ForRent) != 2)
+      <tr>
+      <td class="head9c" width="35%"><b>Angebotsart</b></td>
+      <td class="head9">
+
+      (if (sql Object.ForRent) == 1)
+      Vermietung
+      (endif)
+      (if (sql Object.ForRent) == 0)
+      Verkauf
+      (endif)
+
+      (if (sql Object.ForRent) != 2 and (sql Object.ForPrivate) != 2)
+      /
+      (endif)
+
+      (if (sql Object.ForPrivate) == 1)
+      privat
+      (endif)
+      (if (sql Object.ForPrivate) == 0)
+      gewerblich
+      (endif)
+
+      </td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.OfferNo)' != '')
+      <tr>
+      <td class="head9c" width="35%"><b>Angebot Nummer</b></td>
+      <td class="head9">(sql Object.OfferNo)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Name)' != '')
+      <tr>
+      <td class="head9c" width="35%"><b>Angebot Name</b></td>
+      <td>(sql Object.Name)</td>
+      </tr>
+      (endif)
+
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+
+      <tr>
+      <td class="head12b" colspan="3">Standort</td>
+      </tr>
+
+      (if '(sql Object.Country)' != '')
+      <tr>
+      <td class="head9c" width="35%">Land</td>
+      <td>(sql Object.Country)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.ZipCode)' != '')
+      <tr>
+      <td class="head9c" width="35%">PLZ - Ort</td>
+      <td>(sql Object.ZipCode)&nbsp;-&nbsp;(sql Object.City)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Street)' != '')
+      <tr>
+      <td class="head9c" width="35%">Strasse</td>
+      <td>(sql Object.Street)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Location)' != '')
+      <tr>
+      <td class="head9c" width="35%" valign="top">Lage</td>
+      <td>(sql Object.Location)</td>
+      </tr>
+      (endif)
+
+</table>
+
+       </td>
+       </tr>
+
+</table>
+
+       </td>
+       </tr>
+
+
+       <tr>
+       <td colspan="2" align="right"><input type="Button" name="Button" value="zur&uuml;ck" onClick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Object,maintain&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&ObjectID=(form ObjectID)'" class="submit"></td></td>
+       </tr>
+
+</table>
+
+
+(endrepeat)
+
+
+<table width="97%"  border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td class="head12b" colspan="2">&nbsp;
+
+(if (sql count ObjectPicture "ObjectPicture.ObjectID*(form ObjectID)") == 0)
+
+Es sind aktuell keine weiteren Bilder zu diesem Objekt eingestellt
+
+(else)
+
+(if (sql count ObjectPicture "ObjectPicture.ObjectID*(form ObjectID)") == 1)
+
+Es ist (sql count ObjectPicture "ObjectPicture.ObjectID*(form ObjectID)") Bild zu diesem Objekt vorhanden.
+
+(else)
+
+Es sind (sql count ObjectPicture "ObjectPicture.ObjectID*(form ObjectID)") Bilder zu diesem Objekt vorhanden.
+
+(endif)
+
+(endif)
+
+      </td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%"  border="0" cellspacing="2" cellpadding="2" align="center">
+
+(repeat "ObjectPicture.ObjectID*(form ObjectID)")
+
+<form method="post" action="/1Ci/dmerce" name="myForm" enctype="multipart/form-data">
+<input type="hidden" name="qTemplate" value="(var qTemplate)">
+<input type="hidden" name="ObjectID" value="(form ObjectID)">
+<input type="hidden" name="SubgroupID" value="(form SubgroupID)">
+<input type="hidden" name="GroupID" value="(form GroupID)">
+<input type="hidden" name="qUpdate" value="ObjectPicture">
+<input type="hidden" name="ObjectPicture_ObjectID" value="(form ObjectID)">
+<input type="hidden" name="ObjectPicture_ID" value="(sql ObjectPicture.ID)">
+<input type="hidden" name="qTrigger" value="OS.File.Upload">
+
+       <tr>
+       <td class="head12b" width="60%">&nbsp;<input class="input" type="Text" name="ObjectPicture_Name" size="35" value="(sql ObjectPicture.Name)"></td>
+       <td class="head12b" width="40%" align="right"><a class="head8" href="/1Ci/dmerce?qTemplate=(var qTemplate)&qDelete=ObjectPicture&ObjectPicture_ID=(sql ObjectPicture.ID)&qButton=1&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&ObjectID=(form ObjectID)">[Eintrag l&ouml;schen]</a></td>
+       </tr>
+
+       <tr>
+       <td class="head8" valign="top">&nbsp;Aktuelles Bild:<br><img src="../../pic/dummy.gif" width="1" height="5" border="0"><br>&nbsp;<img src="../pic/upload/(sql ObjectPicture.Picture)" width="200" border="0" class="textarea"></td>
+       <td class="head8" valign="top">Bildbeschreibung:<br><img src="../../pic/dummy.gif" width="1" height="5" border="0"><br><textarea name="ObjectPicture_Description" cols="33" rows="10" class="textarea">(sql ObjectPicture.Description)</textarea></td>
+       </tr>
+
+       <tr>
+       <td class="head8" valign="top">Zum &Auml;ndern eines Bildes, laden Sie bitte eine neue Bildatei (.jpg oder .gif)<br> auf den Server. Achten Sie auf die Bildgr&ouml;&szlig;e.</td>
+       <td class="head8" valign="top">Bild hochladen:<br><input type="file" name="ObjectPicture_Picture" class="textarea"></td>
+       </tr>
+
+       <tr>
+       <td class="head8" colspan="2"><input type="Submit" name="qButton" value="&uuml;bernehmen" class="submit">&nbsp;Klicken Sie hier um Ihre &Auml;nderungen zu &uuml;bernehmen</td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+
+</form>
+
+(endrepeat)
+
+</table>
+
+(endif)
+
+
+<form method="post" action="/1Ci/dmerce" name="myForm" enctype="multipart/form-data">
+<input type="hidden" name="qTemplate" value="(var qTemplate)">
+<input type="hidden" name="ObjectID" value="(form ObjectID)">
+<input type="hidden" name="SubgroupID" value="(form SubgroupID)">
+<input type="hidden" name="GroupID" value="(form GroupID)">
+<input type="hidden" name="qInsert" value="ObjectPicture">
+<input type="hidden" name="ObjectPicture_ObjectID" value="(form ObjectID)">
+<input type="hidden" name="qTrigger" value="OS.File.Upload">
+
+
+<table width="97%"  border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+       <td class="head12b" colspan="2">&nbsp;Zus&auml;tzliches Objektbild hinzuf&uuml;gen</td>
+       </tr>
+
+       <tr>
+       <td class="head8" width="60%">Bildname:<br><img src="../../pic/dummy.gif" width="1" height="5" border="0"><br><input type="Text" name="ObjectPicture_Name" size="35"></td>
+       <td class="head8" width="40%" valign="top">Bild hochladen:<br><img src="../../pic/dummy.gif" width="1" height="5" border="0"><br><input type="file" name="ObjectPicture_Picture" class="textarea"></td>
+       </tr>
+
+       <tr>
+       <td class="head8" colspan="2">Bildbeschreibung:<br><img src="../../pic/dummy.gif" width="1" height="5" border="0"><br><textarea name="ObjectPicture_Description" cols="33" rows="5" class="textarea"></textarea></td>
+       </tr>
+
+
+       <tr>
+       <td class="head8" colspan="2"><input type="Submit" name="qButton" value="&uuml;bernehmen" class="submit">&nbsp;&nbsp;&nbsp;<input type="Button" name="Button" value="zur&uuml;ck" onClick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Object,maintain&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&ObjectID=(form ObjectID)'" class="submit">&nbsp;Klicken Sie hier um das Bild hinzuzuf&uuml;gen.</td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+
+</table>
+
+</form>
+
+</body>
+
+</html>

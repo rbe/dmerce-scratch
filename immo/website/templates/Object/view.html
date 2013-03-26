@@ -1,0 +1,830 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<script language="JavaScript">
+        <!--
+        var X=100
+        var Y=160
+
+function NeuFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=450
+        myheight=450
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+   newWin = window.open(myurl,'Fenster',par);
+   newWin.focus();
+}
+
+//-->
+</script>
+(repeat "Object.ID*(form ObjectID)")
+<title>(var SERVER_NAME) - Detailansicht Angebot Nr.(sql Object.OfferNo) - (sql Object.Name)</title>
+
+</head>
+
+
+
+<body
+
+(if '(form Infenster)' == '1')
+onLoad="window.resizeTo(850,500);"
+(endif)
+
+bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8">
+      <img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">
+
+      (sql Wordlist.NameDE "ID*2")
+      (if '(form GroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Object,intro&GroupID=(form GroupID)">(sql HeadNav.NameDE "ID*(form GroupID)")</a>
+      (endif)
+      (if '(form SubgroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Object,list&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)&qSuperSearch=Object.SubNavID*(form SubgroupID)">(sql SubNav.NameDE "ID*(form SubgroupID)")</a>
+      (endif)
+      (if '(form ObjectID)' != '')
+      > (sql Object.Name "ID*(form ObjectID)")</a>
+      (endif)
+
+      </td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+       <td width="20%" valign="top">
+
+<table width="100%" border="0" cellspacing="3" cellpadding="0">
+
+       (if '(sql Object.Picture)' != '')
+
+       <tr>
+       <td colspan="2"><img src="../pic/upload/(sql Object.Picture)" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" border="0" width="1" height="10" border="0"></td>
+       </tr>
+
+       (endif)
+
+
+       <tr>
+       <td class="head8"><a class="head8" href="/1Ci/dmerce?qTemplate=Contact,contact&OfferID=(sql Object.ID)"><img src="../../pic/contact.gif" width="16" height="10" border="0" alt="[Kontaktaufnahme]"></a></td>
+       <td class="head8"><a class="head8" href="/1Ci/dmerce?qTemplate=Contact,contact&OfferID=(sql Object.ID)">[- Kontaktaufnahme]</a></td>
+       </tr>
+
+       <tr>
+       <td class="head8"><a class="head8" href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a></td>
+       <td><a class="head8" href="javascript:window.print()">[- Angebot drucken]</a></td>
+       </tr>
+
+       <tr>
+       <td class="head8"><a class="head8" href="/1Ci/dmerce?qTemplate=Textarticle,agb&back=1"><img src="../../pic/further_text_slow.gif" width="9" height="11" border="0" alt="[AGB einsehen]"></a></td>
+       <td><a class="head8" href="/1Ci/dmerce?qTemplate=Textarticle,agb&back=1">[- AGB einsehen]</a></td>
+       </tr>
+
+       (if (sql count ObjectPicture "(form ObjectID)*ObjectPicture.ObjectID") != 0)
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" border="0" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td width="22" class="head8"><img src="../../pic/view.gif" width="16" height="16" border="0" alt="[weitere Ansichten]"></td>
+       <td class="head8">[- weitere Ansichten]</td>
+       </tr>
+
+       (repeat "ObjectPicture.ObjectID*(form ObjectID)")
+
+       <tr>
+       <td class="head8"><a href="javascript:NeuFenster('/1Ci/dmerce?qTemplate=Object,zoom&ObjectPictureID=(sql ObjectPicture.ID)')"><img src="../../pic/picavailable.gif" width="14" height="16" border="0" alt="[Ansicht: (sql ObjectPicture.Name)]"></a></td>
+       <td class="head8"><a href="javascript:NeuFenster('/1Ci/dmerce?qTemplate=Object,zoom&ObjectPictureID=(sql ObjectPicture.ID)')">(sql ObjectPicture.Name)</a></td>
+       </tr>
+
+       (endrepeat)
+
+       (endif)
+
+</table>
+
+       <td width="80%" valign="top">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+
+      <tr>
+      <td class="head12b" colspan="2">&nbsp;(sql Object.Name)</td>
+
+      (if (get-myvar login) == 1)
+      <td class="head12b" align="right">
+      <a href="/1Ci/dmerce?qTemplate=Object,maintain&ObjectID=(sql Object.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)"><img src="../../pic/edit.gif" width="16" height="16" border="0" alt="[Diese Seite bearbeiten]"></a></td>
+      (else)
+      <td class="head12b"><img src="../../pic/dummy.gif" width="1" height="1" border="0"></td>
+      (endif)
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td valign="top">
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+
+      (if (sql Object.ForRent) != 3 or (sql Object.ForRent) != 2)
+      <tr>
+      <td class="head9c" width="35%">Angebotsart</td>
+      <td class="head9">
+
+      (if (sql Object.ForRent) == 2)
+      Verpachtung
+      (endif)
+
+      (if (sql Object.ForRent) == 1)
+      Vermietung
+      (endif)
+
+      (if (sql Object.ForRent) == 0)
+      Verkauf
+      (endif)
+
+      (if (sql Object.ForRent) != 3 and (sql Object.ForPrivate) != 2)
+      /
+      (endif)
+
+      (if (sql Object.ForPrivate) == 1)
+      privat
+      (endif)
+
+      (if (sql Object.ForPrivate) == 0)
+      gewerblich
+      (endif)
+
+      </td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.OfferNo)' != '')
+      <tr>
+      <td class="head9c" width="35%"><b>Angebot Nummer</b></td>
+      <td class="head9">(sql Object.OfferNo)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Name)' != '')
+      <tr>
+      <td class="head9c" width="35%"><b>Angebot Bezeichung</b></td>
+      <td>(sql Object.Name)</td>
+      </tr>
+      (endif)
+
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+
+      <tr>
+      <td class="head12b" colspan="3">Standort</td>
+      </tr>
+
+      (if '(sql Object.Country)' != '')
+      <tr>
+      <td class="head9c" width="35%">Land</td>
+      <td>(sql Object.Country)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.ZipCode)' != '')
+      <tr>
+      <td class="head9c" width="35%">PLZ - Ort</td>
+      <td>(sql Object.ZipCode)&nbsp;-&nbsp;(sql Object.City)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Street)' != '')
+      <tr>
+      <td class="head9c" width="35%">Strasse</td>
+      <td>(sql Object.Street)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Location)' != '')
+      <tr>
+      <td class="head9c" width="35%" valign="top">Lage</td>
+      <td>(sql Object.Location)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.ShortDescription)' != '')
+      <tr>
+      <td class="head9c" width="35%" valign="top">Kurzbeschreibung</td>
+      <td>(sql Object.ShortDescription)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.DetailDescription)' != '')
+      <tr>
+      <td class="head9c" width="35%" valign="top">Detailbeschreibung</td>
+      <td>(sql Object.DetailDescription)</td>
+      </tr>
+      (endif)
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+
+      <tr>
+      <td class="head12b" colspan="3">Angaben zum Objekt</td>
+      <td>&nbsp;</td>
+      </tr>
+
+      (if '(sql Object.LivingSpace)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Wohnfl&auml;che</td>
+      <td>(sqlf Object.LivingSpace)&nbsp;m&sup2;</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.FloorSpace)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Nutzfl&auml;che</td>
+      <td>(sqlf Object.FloorSpace)&nbsp;m&sup2;</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.CommercialSpace)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Gewerbefl&auml;che</td>
+      <td>(sqlf Object.CommercialSpace)&nbsp;m&sup2;</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.RealtySpace)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Grundst&uuml;cksfl&auml;che</td>
+      <td>(sqlf Object.RealtySpace)&nbsp;m&sup2;</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.TotalSpace)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Gesamtfl&auml;che</td>
+      <td>(sqlf Object.TotalSpace)&nbsp;m&sup2;</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Rooms)' != '0')
+      <tr>
+      <td class="head9c" width="35%">Zimmer</td>
+      <td>(sql Object.Rooms)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Brokerage)' != '')
+      <tr>
+      <td class="head9c" width="35%">Courtage</td>
+      <td>(sql Object.Brokerage)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Rent1)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Kaltmiete f&uuml;r Mietobjekt</td>
+      <td>(sqlf Object.Rent1 2)&nbsp;EUR</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.ExtraCharges)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Nebenkosten ca.</td>
+      <td>(sqlf Object.ExtraCharges 2)&nbsp;EUR</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.ReserveFunds)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Hausgeld ca.</td>
+      <td>(sqlf Object.ReserveFunds 2)&nbsp;EUR</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Rent2)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Warmmiete ca.</td>
+      <td>(sqlf Object.Rent2 2)&nbsp;EUR</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Caution)' != '')
+      <tr>
+      <td class="head9c" width="35%">Mietkaution</td>
+      <td>(sql Object.Caution)&nbsp;</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Price)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Kaufpreis</td>
+      <td>(sqlf Object.Price 2)&nbsp;EUR</td>
+      </tr>
+      (endif)
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+      <tr>
+      <td class="head12b" colspan="3">Weitere Daten</td>
+      </tr>
+
+      (if '(sql Object.BuildingType)' != '')
+      <tr>
+      <td class="head9c" width="35%">Haustyp</td>
+      <td>
+      (sql Object.BuildingType)
+      </td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Level)' != '')
+      <tr>
+      <td class="head9c" width="35%">Etagenlage (1./2. Etage)</td>
+      <td>(sql Object.Level)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.LevelAlltogether)' != '0')
+      <tr>
+      <td class="head9c" width="35%">Etagenanzahl gesamt</td>
+      <td>(sql Object.LevelAlltogether)</td>
+      </tr>
+      (endif)
+
+
+      (if '(sql Object.RentReturns)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Mieteinnahmen ca</td>
+      <td>(sqlf Object.RentReturns 2)&nbsp;EUR</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.RentSpace)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Vermietbare Fl&auml;che</td>
+      <td>(sqlf Object.RentSpace 2)&nbsp;m&sup2;</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Elevator)' != '2')
+      <tr>
+      <td class="head9c" width="35%">Aufzug</td>
+      <td>
+
+      (if (sql Object.Elevator) == 1)
+
+      Ja
+
+      (else)
+
+      Nein
+
+      (endif)
+
+      </td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Basement)' != '2')
+      <tr>
+      <td class="head9c" width="35%">Unterkellert</td>
+      <td>
+
+      (if (sql Object.Basement) == 1)
+
+      Ja
+
+      (else)
+
+      Nein
+
+      (endif)
+
+      </td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.BasementDescription)' != '')
+      <tr>
+      <td class="head9c" width="35%">Keller</td>
+      <td>(sql Object.BasementDescription)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Configuration)' != '')
+      <tr>
+      <td class="head9c" width="35%">Ausstattung</td>
+      <td>(sql Object.Configuration)</td>
+      </tr>
+      (endif)
+
+
+      (if (sql Object.FittedKitchen) != 3)
+      <tr>
+      <td class="head9c" width="35%" valign="top">Einbauk&uuml;che</td>
+      <td>
+
+      (if (sql Object.FittedKitchen) == 0)
+      Ja
+      (endif)
+
+      (if (sql Object.FittedKitchen) == 1)
+      Nein
+      (endif)
+
+      (if (sql Object.FittedKitchen) == 2)
+      &Uuml;bernahmem&ouml;glichkeit
+      (endif)
+      </td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Floor)' != '')
+      <tr>
+      <td class="head9c" width="35%">Fussboden</td>
+      <td>(sql Object.Floor)</td>
+      </tr>
+      (endif)
+
+      (if (sql Object.Caretaker) != 2)
+      <tr>
+      <td class="head9c" width="35%">Hausmeister</td>
+      <td>
+
+      (if (sql Object.Caretaker) == 1)
+      Ja
+      (endif)
+
+      (if (sql Object.Caretaker) == 0)
+      Nein
+      (endif)
+
+
+      </td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.PropertyManagement)' != '')
+      <tr>
+      <td class="head9c" width="35%">Hausverwaltung</td>
+      <td>(sql Object.PropertyManagement)</td>
+      </tr>
+      (endif)
+
+
+
+
+      (if '(sql Object.Garden)' != '2')
+      <tr>
+      <td class="head9c" width="35%">Garten</td>
+      <td>
+
+      (if (sql Object.Garden) == 1)
+
+      Ja
+
+      (else)
+
+      Nein
+
+      (endif)
+
+      </td>
+      </tr>
+      (endif)
+
+
+      (if '(sql Object.GardenUse)' != '2')
+      <tr>
+      <td class="head9c" width="35%">Garten mitbenutzung</td>
+      <td>
+
+      (if (sql Object.GardenUse) == 1)
+
+      Ja
+
+      (else)
+
+      Nein
+
+      (endif)
+      </td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.BalconyTerrace)' != '2')
+      <tr>
+      <td class="head9c" width="35%">Balkon/Terrasse</td>
+      <td>
+
+      (if (sql Object.BalconyTerrace) == 1)
+
+      Ja
+
+      (else)
+
+      Nein
+
+      (endif)
+
+      </td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.GarageParking)' != '2')
+      <tr>
+      <td class="head9c" width="35%">Garage/Stellplatz</td>
+      <td>
+
+      (if (sql Object.GarageParking) == 1)
+
+      Ja
+
+      (else)
+
+      Nein
+
+      (endif)
+
+      </td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.ParkingRent)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Garage/Stellplatz-Miete</td>
+      <td>(sqlf Object.ParkingRent 2)&nbsp;EUR</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.ParkingPrice)' != '0.00')
+      <tr>
+      <td class="head9c" width="35%">Garage/Stellplatz-Kaufpreis</td>
+      <td>(sqlf Object.ParkingPrice 2)&nbsp;EUR</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.ParkingLots)' != '0')
+      <tr>
+      <td class="head9c" width="35%">Anzahl der Parkfl&auml;chen</td>
+      <td>(sql Object.ParkingLots)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Heating)' != '')
+      <tr>
+      <td class="head9c" width="35%">Heizungsart</td>
+      <td>(sql Object.Heating)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.ConstructionYear)' != '0')
+      <tr>
+      <td class="head9c" width="35%">Baujahr</td>
+      <td>(sql Object.ConstructionYear)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.ObjectStatus)' != '')
+      <tr>
+      <td class="head9c" width="35%">Objektzustand</td>
+      <td>(sql Object.ObjectStatus)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.WBSNeeded)' != '2')
+      <tr>
+      <td class="head9c" width="35%">WBS erforderlich</td>
+      <td>
+
+      (if (sql Object.WBSNeeded) == 1)
+
+      Ja
+
+      (else)
+
+      Nein
+
+      (endif)
+
+      </td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Pets)' != '2')
+      <tr>
+      <td class="head9c" width="35%">Haustiere</td>
+      <td>
+
+      (if (sql Object.Pets) == 1)
+
+      Ja
+
+      (else)
+
+      Nein
+
+      (endif)
+
+      </td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.RentFrom)' != '')
+      <tr>
+      <td class="head9c" width="35%">Bezugsfrei</td>
+      <td>(sql Object.RentFrom)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.WalkBusMin)' != '0')
+      <tr>
+      <td class="head9c" width="35%">Fussweg zu &Ouml;ffentl. Verkehrsmitteln</td>
+      <td>(sql Object.WalkBusMin)&nbsp;Min</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.TrainMin)' != '0')
+      <tr>
+      <td class="head9c" width="35%">Fahrzeit zum n&auml;chsten Bahnhof</td>
+      <td>(sql Object.TrainMin)&nbsp;Min</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.AutobahnMin)' != '0')
+      <tr>
+      <td class="head9c" width="35%">Fahrzeit zur n&auml;chsten BAB</td>
+      <td>(sql Object.AutobahnMin)&nbsp;Min</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Misc)' != '')
+      <tr>
+      <td class="head9c" width="35%" valign="top">Sonstiges</td>
+      <td>(sql Object.Misc)</td>
+      </tr>
+      (endif)
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+      (if '(sql Object.ContactPerson)' != '')
+      <tr>
+      <td class="head12b" colspan="3">Kontaktdaten</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.RefNo)' != '')
+      <tr>
+      <td class="head9c" width="35%">Referenznummer</td>
+      <td>(sql Object.RefNo)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Visit)' != '')
+      <tr>
+      <td class="head9c" width="35%"><b>Besichtigungstermin</b></td>
+      <td>(sql Object.Visit)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.ContactPerson)' != '')
+      <tr>
+      <td class="head9c" width="35%">Kontaktperson</td>
+      <td>(sql Object.ContactPerson)</td>
+      </tr>
+      (endif)
+
+      (if '(sql Object.Phone)' != '')
+      <tr>
+      <td class="head9c" width="35%">Telefon</td>
+      <td>(sql Object.Phone)</td>
+      </tr>
+      (endif)
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+      </tr>
+
+
+</table>
+
+       </td>
+       </tr>
+
+</table>
+
+       </td>
+       </tr>
+
+</table>
+
+(endrepeat)
+
+
+</form>
+
+
+</body>
+</html>

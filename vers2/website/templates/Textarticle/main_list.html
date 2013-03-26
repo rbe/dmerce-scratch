@@ -1,0 +1,351 @@
+<html>
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>(var SERVER_NAME) - Textartikel - Liste bearbeiten</title>
+<script language="javascript" src="/javascript/edit.js">
+</script>
+
+</head>
+
+
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0" onLoad="initEditor()">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+(repeat "Textarticle.ID*(form TextarticleID)")
+
+<form method="post" action="/1Ci/dmerce" enctype="multipart/form-data" name="thisForm">
+<input type="hidden" name="qTemplate" value="(var qTemplate)">
+<input type="hidden" name="qTrigger" value="OS.File.Upload">
+<input type="hidden" name="qUpdate" value="Textarticle">
+<input type="hidden" name="Textarticle_ID" value="(sql Textarticle.ID)">
+<input type="hidden" name="TextarticleID" value="(form TextarticleID)">
+<input type="hidden" name="SubnavID" value="(form SubnavID)">
+<input type="hidden" name="NavID" value="(form NavID)">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;(sql Wordlist.NameDE "ID*1")
+
+(if '(form NavID)' != '')
+ > (sql Navigation.NameDE "ID*(form NavID)")
+(endif)
+
+(if '(form SubnavID)' != '')
+ > (sql Subnavigation.NameDE "ID*(form SubnavID)")
+(endif)
+
+      </td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+       <td valign="top">
+
+       (if '(sql Textarticle.Picture)' != '')
+       <img src="../pic/upload/(var SERVER_NAME)/(sql Textarticle.Picture)" border="0" alt="" width="100"><br>&nbsp;&nbsp;&nbsp;aktuelles Bild
+       (endif)
+
+       (if '(sql Textarticle.Picture)' == '')
+       <img src="/pic/x_nopic.gif" width="124" height="102" border="0" alt="">
+       (endif)
+
+       </td>
+       <td valign="top">
+
+      <table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td><input type="Text" name="Textarticle_Head" value="(sql Textarticle.Head)" size="80" class="input"></td>
+      </tr>
+
+      <tr>
+       <td><input type="Text" name="Textarticle_Subhead"  value="(sql Textarticle.Subhead)" size="80"  class="input"></td>
+       </tr>
+
+       <tr>
+       <td>
+
+<input type="hidden" name="outputtxt" value='(sql Textarticle.Text)'>
+<input type="hidden" name="Textarticle_Text" >
+
+<script language="javascript">
+        var OriginalData = document.thisForm.outputtxt.value;
+        function Save() {
+                document.thisForm.Textarticle_Text.value = Editor.document.body.innerHTML;
+                document.thisForm.submit();
+        }
+</script>
+<center>
+<table bgColor="silver" border="0" cellPadding="0" cellSpacing="0" width="100%">
+  <tbody>
+    <tr>
+                <td><IMG height=24 src="../pic/r2/shifter1.gif" width=8></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><input id="btSave" onclick="Save()" style="BACKGROUND-IMAGE: url(../pic/r2/save.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Speichern" type="button"></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><IMG height=24 src="../pic/r2/shifter1.gif" width=6></td>
+        <td><input id="btCut" onclick="ExecCommand('Cut','')" style="BACKGROUND-IMAGE: url(../pic/r2/cut.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Ausschneiden" type="button"></td>
+
+        <td><input id="btCopy" onclick="ExecCommand('Copy','')" style="BACKGROUND-IMAGE: url(../pic/r2/copy.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Kopieren" type="button"></td>
+
+        <td><input id="btPaste" onclick="ExecCommand('Paste','')" style="BACKGROUND-IMAGE: url(../pic/r2/paste.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Einf&uuml;gen" type="button"></td>
+
+        <td><IMG height=24 src="../pic/r2/shifter1.gif" width=6></td>
+
+        <td><input id="btUnformat" onclick="ExecCommand('RemoveFormat','')" style="BACKGROUND-IMAGE: url(../pic/r2/aunformat.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Unformat" type="button"></td>
+
+        <td><input id="Bold" onclick="ExecCommand('Bold','')" style="BACKGROUND-IMAGE: url(../pic/r2/abold.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Fett" type="button"></td>
+
+        <td><input id="btItalic" onclick="ExecCommand('Italic','')" style="BACKGROUND-IMAGE: url(../pic/r2/aitalic.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Kursiv" type="button"></td>
+
+        <td><input id="btUnderline" onclick="ExecCommand('UnderLine','')" style="BACKGROUND-IMAGE: url(../pic/r2/aunderline.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Unterstrichen" type="button"></td>
+
+        <td></td>
+
+        <td></td>
+
+        <td>&nbsp;</td>
+
+        <td><select id ="select1" name="cmbFontSize" onclick="DoNotCheckFormat()" onchange="ExecCommand('FontSize' , cmbFontSize.value)" title="Font Size">
+                    <option selected value="">
+                    <option value="1">1
+                    <option value="2">2
+                    <option value="3">3
+                    <option value="4">4
+                    <option value="5">5
+                    <option value="6">6
+                    <option value="7">7
+                    <option value=""></select>
+
+        </td>
+        <td>&nbsp;</td>
+        <td><select id ="select2" name="cmbFontName" onclick="DoNotCheckFormat()" onblur="CheckFormat()" onchange="ExecCommand('FontName',cmbFontName.value)" title="Font Face">
+                        <option selected value="">Standard
+                        <option value="Arial,Geneva,Sans-Serif">Arial
+                        <option value="Courier,Monospace">Courier
+            <option value="Monospace,Courier New">Monospace
+            <option value="Sans-Serif">Sans-Serif
+            <option value="Serif">Serif
+            <option value="Symbol">Symbol
+                        <option value="Times New Roman, Serif">Times New Roman
+                        <option value="Verdana,Arial,Geneva,Sans-Serif">Verdana
+                        <option value="Webdings">Webdings
+            <option value="Wingdings">Wingdings
+            </select>
+
+        </td>
+        <td>&nbsp;</td>
+        <td><input id="btLeft" onclick="ExecCommand('JustifyLeft','')" style="BACKGROUND-IMAGE: url(../pic/r2/left.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Linksb&uuml;ndig" type="button"></td>
+
+        <td><input id="btCenter" onclick="ExecCommand('JustifyCenter','')" style="BACKGROUND-IMAGE: url(../pic/r2/center.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Zentriert" type="button"></td>
+
+        <td><input id="btRight" onclick="ExecCommand('JustifyRight','')" style="BACKGROUND-IMAGE: url(../pic/r2/right.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Rechtsb&uuml;ndig" type="button"></td>
+
+        <td><IMG height=24 src="../pic/r2/shifter1.gif" width=6></td>
+
+        <td><input id="btTabMinus" onclick="TabMinus()" style="BACKGROUND-IMAGE: url(../pic/r2/tabminus.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Einzug verkleinern" type="button"></td>
+
+        <td><input id="btTabPlus" onclick="TabPlus()" style="BACKGROUND-IMAGE: url(../pic/r2/tabplus.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Einzug vergr&ouml;&szlig;ern" type="button"></td>
+
+        <td><IMG height=24 src="../pic/r2/shifter1.gif" width=6></td>
+
+        <td><input id="btList" onclick="ExecCommand('InsertUnorderedList','')" style="BACKGROUND-IMAGE: url(../pic/r2/list.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Aufz&auml;hlungszeichen" type="button"></td>
+
+        <td><input id="btNum" onclick="ExecCommand('InsertOrderedList','')" style="BACKGROUND-IMAGE: url(../pic/r2/num.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Numerierung" type="button"></td>
+
+        <td width="100%"></td>
+    </tr>
+  </tbody>
+</table>
+
+<table bgColor="silver" border="0" cellPadding="0" cellSpacing="0" width="100%">
+        <tbody>
+                <tr>
+                        <td colspan="28"><IMG height=2 src="../pic/r2/3dline.gif" width=100%></td>
+                <tr>
+                <tr>
+                        <td><IMG height=24 src="../pic/r2/shifter1.gif" width=8></td>
+
+                        <td><input id="btInsertTable" onclick="DialogInsertTable()" style="BACKGROUND-IMAGE: url(../pic/r2/table.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Tabelle einf&uuml;gen" type="button"></td>
+
+                <td><input id="btFormatTable" onclick="DialogFormatTable()" style="BACKGROUND-IMAGE: url(../pic/r2/tableformat.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Tabelle bearbeiten" type="button"></td>
+
+                <td><IMG height=24 src="../pic/r2/shifter1.gif" width=6></td>
+
+                        <td><input id="btInsertTableRowBefore" onclick="InsertTableRow(0)" style="BACKGROUND-IMAGE: url(../pic/r2/insertrowbefore.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Zeile einf&uuml;gen vor Auswahl" type="button"></td>
+
+                        <td><input id="btInsertTableRowAfter" onclick="InsertTableRow(1)" style="BACKGROUND-IMAGE: url(../pic/r2/insertrowafter.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Zeile einf&uuml;gen hinter Auswahl" type="button"></td>
+
+                        <td><input id="btDeleteTableRow" onclick="DeleteTableRow()" style="BACKGROUND-IMAGE: url(../pic/r2/deleterow.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Zeile l&ouml;schen" type="button"></td>
+
+                <td><IMG height=24 src="../pic/r2/shifter1.gif" width=6></td>
+
+                        <td><input id="btInsertTableColumnBefore" onclick="InsertTableColumn(0)" style="BACKGROUND-IMAGE: url(../pic/r2/insertcolumnbefore.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Spalte einf&uuml;gen vor Auswahl" type="button"></td>
+
+                        <td><input id="btInsertTableColumnAfter" onclick="InsertTableColumn(1)" style="BACKGROUND-IMAGE: url(../pic/r2/insertcolumnafter.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Spalte einf&uuml;gen hinter Auswahl" type="button"></td>
+
+                        <td><input id="btDeleteTableColumn" onclick="DeleteTableColumn()" style="BACKGROUND-IMAGE: url(../pic/r2/deletecolumn.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Spalte l&ouml;schen" type="button"></td>
+
+                <td><IMG height=24 src="../pic/r2/shifter1.gif" width=6></td>
+
+                        <td><input id="btInsertTableCellBefore" onclick="InsertTableCell(0)" style="BACKGROUND-IMAGE: url(../pic/r2/insertcellbefore.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Zelle einf&uuml;gen vor Auswahl" type="button"></td>
+
+                        <td><input id="btInsertTableCellAfter" onclick="InsertTableCell(1)" style="BACKGROUND-IMAGE: url(../pic/r2/insertcellafter.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Zelle einf&uuml;gen hinter Auswahl" type="button"></td>
+
+                        <td><input id="btDeleteTableCell" onclick="DeleteTableCell()" style="BACKGROUND-IMAGE: url(../pic/r2/deletecell.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Zelle l&ouml;schen" type="button"></td>
+
+                        <td><IMG height=24 src="../pic/r2/shifter1.gif" width=6></td>
+
+                        <td><input id="btInsertHR1" onclick="SetHeadingStyle('H1')" style="BACKGROUND-IMAGE: url(../pic/r2/h1.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="&Uuml;berschrift 1" type="button"></td>
+
+                        <td><input id="btInsertHR2" onclick="SetHeadingStyle('H2')" style="BACKGROUND-IMAGE: url(../pic/r2/h2.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="&Uuml;berschrift 2" type="button"></td>
+
+                        <td><input id="btInsertHR3" onclick="SetHeadingStyle('H3')" style="BACKGROUND-IMAGE: url(../pic/r2/h3.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="&Uuml;berschrift 3" type="button"></td>
+
+                        <td><input id="btInsertHR4" onclick="SetHeadingStyle('H4')" style="BACKGROUND-IMAGE: url(../pic/r2/h4.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="&Uuml;berschrift 4" type="button"></td>
+
+                        <td><input id="btInsertHR5" onclick="SetHeadingStyle('H5')" style="BACKGROUND-IMAGE: url(../pic/r2/h5.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="&Uuml;berschrift 5" type="button"></td>
+
+                        <td><input id="btInsertHR6" onclick="SetHeadingStyle('H6')" style="BACKGROUND-IMAGE: url(../pic/r2/h6.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="&Uuml;berschrift 6" type="button"></td>
+
+                <td><IMG height=24 src="../pic/r2/shifter1.gif" width=6></td>
+
+                <td><input id="btInsertHR" onclick="ExecCommand('InsertHorizontalRule','')" style="BACKGROUND-IMAGE: url(../pic/r2/hr.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Horizontale Linie einf&uuml;gen" type="button"></td>
+
+                        <td><IMG height=24 src="../pic/r2/shifter1.gif" width=6></td>
+
+        <td><input id="btForeColor" onclick="SetColor('EditorSetForeColor')" style="BACKGROUND-IMAGE: url(../pic/r2/forecolor.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Schriftfarbe" type="button"></td>
+
+        <td><input id="btBackColor" onclick="SetColor('EditorSetBackColor')" style="BACKGROUND-IMAGE: url(../pic/r2/backcolor.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Hervorheben" type="button"></td>
+
+        <td><IMG height=24 src="../pic/r2/shifter1.gif" width=6></td>
+
+                <td><input id="btUnlink" onclick="ExecCommand('Unlink','')" style="BACKGROUND-IMAGE: url(../pic/r2/unlink.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Link entfernen" type="button"></td>
+
+        <td><input id="btInsertLink" onclick="DialogInsertLink()" style="BACKGROUND-IMAGE: url(../pic/r2/hyperlink.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Hyperlink einf&uuml;gen" type="button"></td>
+
+        <td></td>
+
+        <td><IMG height=24 src="../pic/r2/shifter1.gif" width=6></td>
+
+        <td><input id="btInsertImage" onclick="InsertImage()" style="BACKGROUND-IMAGE: url(../pic/r2/image.gif); BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; WIDTH: 22px" title="Bild einf&uuml;gen/bearbeiten" type="button"></td>
+
+                        <td></td>
+
+                        <td width="1650"></td>
+                </tr>
+        </tbody>
+</table>
+
+
+<table border="0" cellPadding="0" cellSpacing="0" width="100%">
+        <tr>
+                <td width="100%" colspan="6">
+
+                <iframe style="font-Family:Arial;" frameBorder="1" height="462" id="Editor" width="100%"></iframe>
+                <iframe width="0" scrolling="no" frameBorder="0" frameSpacing="0" height="0" id="imageselect" src="../Editor/imageselect.html"></iframe>
+                <iframe width="0" scrolling="no" frameBorder="0" frameSpacing="0" height="0" id="table" src="../Editor/table.html"></iframe>
+                <iframe width="0" scrolling="no" frameBorder="0" frameSpacing="0" height="0" id="tablefeature" src="../Editor/tablefeature.html"></iframe>
+                <iframe width="0" scrolling="no" frameBorder="0" frameSpacing="0" height="0" id="link" src="../Editor/link.html"></iframe>
+                <iframe width="0" scrolling="no" frameBorder="0" frameSpacing="0" height="0" id="tablecolor" src="../Editor/tablecolor.html"></iframe>
+                <iframe width="0" scrolling="no" frameBorder="0" frameSpacing="0" height="0" id="imagefeature" src="../Editor/imagefeature.html"></iframe>
+                <iframe width="0" scrolling="no" frameBorder="0" frameSpacing="0" height="0" id="properties" src="../Editor/properties.html" ></iframe>
+
+                </td>
+        </tr>
+        <tr>
+                <td height="9"></td>
+        </tr>
+</table>
+
+       </td>
+       </tr>
+       <tr>
+       <td><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td class="text9">M&ouml;chten Sie das aktuelle Bild &auml;ndern, dann laden Sie hier eine neue Bildatei (.jpg oder .gif) auf den Server. Achten Sie auf die Bildgr&ouml;&szlig;e.</td>
+       </tr>
+
+       <tr>
+       <td class="text9">Neues Bild hochladen:&nbsp;&nbsp;<input type="file" name="Textarticle_Picture" class="input"></td>
+       </tr>
+
+
+       <tr>
+       <td><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td class="text9">Klicken Sie auf [&uuml;bernehmen] um Ihre &Auml;nderungen zu speichern&nbsp;&nbsp;<input type="Submit" name="qButton" value="&uuml;bernehmen" class="submit" onClick="Save()">&nbsp;&nbsp;&nbsp;<input type="Button" name="Button" value="zur&uuml;ck" onClick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Textarticle,list&SubnavID=(form SubnavID)&whereIam=(form whereIam)'" class="submit"></td>
+       </tr>
+
+       <tr>
+       <td><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td><br>
+       <br>
+       <table width="100%">
+       <tr><td>Artikel:</td></tr>
+       <tr><td><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td></tr>
+       (repeat "Textarticle.active*1:Textarticle.SubnavID*(form SubnavID)")
+       <tr>
+       <td>- (sql Textarticle.Head)</td>
+       </tr>
+       (endrepeat)
+       </table>
+       </td>
+       </tr>
+
+</table>
+
+       </td>
+       </tr>
+       </form>
+
+</table>
+
+(endrepeat)
+
+</body>
+
+</html>

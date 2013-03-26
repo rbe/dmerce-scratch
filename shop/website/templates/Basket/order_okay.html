@@ -1,0 +1,103 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>(var SERVER_NAME) - Bestellung erfolgreich</title>
+
+
+<script language="JavaScript">
+<!--
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+//-->
+</script>
+
+</head>
+
+
+<body
+
+
+(if '(form Infenster)' == '1')
+onLoad="window.resizeTo(850,500);"
+(endif)
+
+bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0" OnLoad="MM_openBrWindow('/1Ci/dmerce?qTemplate=Basket,order_printview&OrderInfoID=(form OrderInfoID)','Druckansicht','width=520,height=420,resizable=no,menubar=no,scrollbars,locationbar=no')">
+
+<!--
+(exec Messaging.Email.Send template='Email,order_customer',toAddr='(sql OrderInfo.Email "ID*(form OrderInfoID)")',fromAddr='order@(var SERVER_NAME)',subject='Ihre Bestellung',OrderInfoID=(form OrderInfoID) cexe)
+(exec Messaging.Email.Send template='Email,order_operator',toAddr='(sql Operator.Email "ID*1")',fromAddr='order@(var SERVER_NAME)',subject='Neue Bestellung',OrderInfoID=(form OrderInfoID) cexe)
+-->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;Bestellung > Erfolgreich abgeschickt</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td width="20%" valign="top">&nbsp;</td>
+      <td width="80%" valign="top">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td class="head12b">Ihre Bestellung war erfolgreich.</td>
+      <td class="head8" rowspan"2" align="right" valign="top"><a href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+      </tr>
+
+      <tr>
+      <td width="90%">Ihre Bestellung ist erfolgreich bei uns eingetroffen.<br>
+      Innerhalb der n&auml;chsten Minuten erhalten Sie eine Best&auml;tigungs-Email an die von Ihnen angegebene Email Adresse. Sollten Sie innerhalb eines Tages keine Email geschickt bekommen haben f&uuml;hren Sie Ihre Bestellung erneut durch oder wenden sich an : <a href="mailto:(sql Operator.Email "ID*1")">(sql Operator.Email "ID*1")</a></td>
+      <td width="10%">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td colspan="2">&nbsp;</td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+</body>
+</html>

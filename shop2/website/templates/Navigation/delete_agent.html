@@ -1,0 +1,103 @@
+<html>
+
+<head>
+
+<LINK rel="stylesheet" type="text/css" href="../../style_admin.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>L&Ouml;SCHEN der Navigation best&auml;tigen - [Immo] by 1Ci GmbH(R)</title>
+
+<script language="JavaScript">
+<!--
+var X=200
+var Y=250
+
+function NavFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=500
+        myheight=500
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+newWin = window.open(myurl,'Fenster2',par);
+newWin.focus();
+}
+
+//-->
+</script>
+
+</head>
+
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>AKTION</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head8">&nbsp;Bitte best&auml;tigen Sie das <b>L&ouml;schen</b> des Users.</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td align="center" class="menutop">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td class="head8c"><b>User "(sql Agent.LastName "ID*(form AgentID)"), (sql Agent.FirstName "ID*(form AgentID)")" l&ouml;schen:</b></td>
+      </tr>
+
+
+      <tr>
+      <td class="head8">Wollen Sie den User wirklich l&ouml;schen ??<br>Mit OK wird der Eintrag gel&ouml;scht, Mit Abbrechen bleibt der Eintrag erhalten und das Fenster wird geschlossen.</td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="right"><input type="Button" name="Ja" value="Ja" onclick="javascript:parent.window.location.href='/1Ci/dmerce?qTemplate=Navigation,delete_agent_2&AgentID=(form AgentID)'">&nbsp;&nbsp;<input type="Button" name="Nein" value="Abbrechen" onclick="javascript:self.close()"></td>
+      </tr>
+
+(endrepeat)
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+
+</body>
+
+</html>

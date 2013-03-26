@@ -1,0 +1,66 @@
+<html>
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+
+<title>www.immo.1ci.de - Das Immobilienweb</title>
+
+</head>
+
+<body topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0" bgcolor="#FFFFFF">
+
+
+
+
+<table width="88%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center" class="nav11"><b>Artikel w&auml;hlen:</b></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center" class="menutop">
+      <table width="100%" border="0">
+
+      <tr>
+      <td class="head8c">Bezeichnung:</td>
+      <td class="head8c">Status:</td>
+      <td class="head8c">Aktion:</td>
+      </tr>
+
+      (repeat "Article.HeadNavID!*0|Article.SubNavID!*0:Article.Highlight*0{Article.Name")
+
+      <tr>
+      <td>(sql Article.Name)</td>
+      <td>
+      (if (sql Article.active) == 0)
+      <font color="#E00000">inaktiv</font>
+      (else)
+      aktiv
+      (endif)
+      </td>
+      <td><a href="/1Ci/dmerce?qTemplate=(form Template)&ArticleID=(sql Article.ID)">[Okay]</a></td>
+      </tr>
+
+      (endrepeat)
+      </table>
+      </td>
+      </tr>
+
+</table>
+
+
+
+</body>
+</html>

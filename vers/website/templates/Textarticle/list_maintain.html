@@ -1,0 +1,108 @@
+<html>
+
+<head>
+
+<LINK rel="stylesheet" type="text/css" href="../../style_admin.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>Liste nicht zugeordneter Texte - [Immo] by 1Ci GmbH(R)</title>
+
+<script language="JavaScript">
+<!--
+var X=200
+var Y=250
+
+function NavFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=500
+        myheight=500
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+newWin = window.open(myurl,'Fenster2',par);
+newWin.focus();
+}
+
+//-->
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>AKTION</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head8">&nbsp;Liste aller nicht zugeordneter Texte.</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td align="center" class="menutop">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td class="head8c">Bezeichnung:</td>
+      <td class="head8c">&nbsp;</td>
+      <td class="head8c">&nbsp;</td>
+      </tr>
+
+      (repeat "Textarticle.SubnavID*0:Textarticle.NavigationID*0")
+
+      (set-myvar count1 (sql count Navigation "TextarticleID*(sql Textarticle.ID)"))
+      (set-myvar count2 (sql count Subnavigation "TextarticleID*(sql Textarticle.ID)"))
+      (set-myvar count3 (sql count ObjectHeadGroup "TextID*(sql Textarticle.ID)"))
+      (set-myvar count4 (sql count ObjectSubGroup "TextID*(sql Textarticle.ID)"))
+
+      (if (get-myvar count1) == 0 and (get-myvar count2) == 0 and (get-myvar count3) == 0 and (get-myvar count4) == 0 and (sql Textarticle.ID) != 1)
+
+      <tr>
+      <td class="head8"><a href="/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID)&whereIam=(form whereIam) > (sql Textarticle.Head)&Infenster=1">(sql Textarticle.Head)</a></td>
+      <td class="head8" align="center"><a href="/1Ci/dmerce?qTemplate=Textarticle,choose_none&TextarticleID=(sql Textarticle.ID)">[Artikel zuordnen]</a></td>
+      <td class="head8" align="center"><a href="/1Ci/dmerce?qTemplate=Navigation,delete_textarticle&TextarticleID=(sql Textarticle.ID)">[Artikel l&ouml;schen]</a></td>
+      </tr>
+
+      (endif)
+      (endrepeat)
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+
+
+</body>
+</html>

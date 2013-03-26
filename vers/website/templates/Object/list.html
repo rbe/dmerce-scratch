@@ -1,0 +1,169 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>Objekt - Liste</title>
+
+</head>
+
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;(sql Wordlist.NameDE "ID*2")
+      (if '(form GroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Object,intro&GroupID=(form GroupID)">(sql HeadNav.NameDE "ID*(form GroupID)")</a>
+      (endif)
+      (if '(form SubgroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Object,list&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)&qSuperSearch=Object.SubNavID*(form SubgroupID)">(sql SubNav.NameDE "ID*(form SubgroupID)")</a>
+      (endif)
+      </td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+(repeat "SubNav.ID*(form SubgroupID)")
+
+      <tr>
+      (if '(sql Textarticle.Picture "ID*(sql SubNav.TextID)")' != '')
+      <td width="20%" valign="top">
+      <img src="../pic/upload/(sql Textarticle.Picture "ID*(sql SubNav.TextID)")" border="0" alt="">
+      (else)
+      <td width="20%" valign="top">&nbsp;</td>
+      (endif)
+
+      <td width="80%" valign="top">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td class="head12b">(sql Textarticle.Head "ID*(sql SubNav.TextID)")</td>
+      <td class="head8" align="right" valign="top"><a href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+
+
+      (if (get-myvar login) == 1)
+      &nbsp;<a href="/1Ci/dmerce?qTemplate=Object,list_maintain&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)&qSuperSearch=(var qSuperSearch)"><img src="../../pic/edit.gif" width="16" height="16" border="0" alt="[Diese Seite bearbeiten]"></a>
+      (endif)
+      </td>
+      </tr>
+
+      <tr>
+      <td width="90%">(sql Textarticle.Text "ID*(sql SubNav.TextID)")</td>
+      <td width="10%">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+      </tr>
+(endrepeat)
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+
+(if (sql count Object "(var qSuperSearch)") == 0)
+<table width="97%" border="0" cellspacing="0" cellpadding="2">
+
+    <tr>
+    <td class="head11" valign="top"><b>Ihre Suche f&uuml;hrte zu keinem Ergebnis.</b></td>
+    </tr>
+
+    <tr>
+    <td>F&uuml;r Ihre Suchkriterien sind momentan keine Angebote vorhanden.<br>
+    Bitte gehen sie <a href="javascript:history.back(-1)"><b>zur&uuml;ck</b></a> und ver&auml;ndern Sie Ihre Suchkriterien.</td>
+    </tr>
+
+</table>
+(endif)
+
+
+(if (sql count Object "(var qSuperSearch)") > 0)
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+       <tr>
+       <td colspan="2"><b>
+
+(sql count Object "(var qSuperSearch)")
+
+       (if (sql count Object "(var qSuperSearch)") == 1)
+       Angebot
+       (else)
+       Angebote
+       (endif)
+
+       gefunden.
+
+       </b>
+       </td>
+       <td class="head8" align="right"><a href="#top">... top</a>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td colspan="3"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+      (repeat "(var qSuperSearch)")
+
+       <tr>
+       <td width="10%" class="head11">&nbsp;</td>
+       <td width="90%" colspan="2">&nbsp;<a href="/1Ci/dmerce?qTemplate=Object,view&ObjectID=(sql Object.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)">(sql Object.Head)</a></td>
+       </tr>
+
+       (endrepeat)
+
+       <tr>
+       <td colspan="3"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td class="head8" colspan="3" align="right"><a href="#top">... top</a>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+       </tr>
+
+</table>
+
+
+
+</body>
+</html>

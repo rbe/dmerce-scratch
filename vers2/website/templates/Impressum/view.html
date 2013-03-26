@@ -1,0 +1,176 @@
+<html>
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<meta http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<META HTTP-EQUIV="PRAGMA" CONTENT="no-cache">
+<META NAME="REPLY-TO" CONTENT="webmaster@1Ci.de">
+
+
+<title>(var SERVER_NAME) - Impressum</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;(sql Wordlist.NameDE "ID*8")</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+(repeat "Operator.ID*1")
+
+       <tr>
+       (if '(sql Operator.Picture)' != '')
+       <td width="20%" valign="top"><img src="../pic/upload/(var SERVER_NAME)/(sql Operator.Picture)" hspace="6" border="0"></td>
+       (else)
+       <td width="20%" valign="top">&nbsp;</td>
+       (endif)
+
+       <td width="80%"valign="top">
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+
+       <tr>
+       <td colspan="2" class="head11"><b>(sql Operator.Head)</b></td>
+       <td width="10%" align="right" valign="top"><a class="head8" href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+
+       (if (get-myvar login) == 1)
+       &nbsp;<a href="/1Ci/dmerce?qTemplate=Impressum,maintain"><img src="../../pic/edit.gif" width="16" height="17" border="0" alt="Bearbeiten"></a></td>
+       (else)
+       &nbsp;</td>
+       (endif)
+       </tr>
+
+       <tr>
+       <td colspan="2">(sql Operator.Textfield)</td>
+       <td>&nbsp;</td>
+       </tr>
+
+      <tr>
+      <td colspan="3"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3" class="head12b">&nbsp;Kontaktdaten:</td>
+      </tr>
+
+       <tr>
+       <td width="20%" class="head8c">&nbsp;Firma:</td>
+       <td width="70%"class="head8">(sql Operator.Company)</td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">&nbsp;Vorname:</td>
+       <td width="70%"class="head8">(sql Operator.FirstName)</td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">&nbsp;Nachname:</td>
+       <td width="70%"class="head8">(sql Operator.LastName)</td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">&nbsp;Stra&szlig;e:</td>
+       <td width="70%"class="head8">(sql Operator.Street)</td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">&nbsp;PLZ, Ort:</td>
+       <td width="70%"class="head8">(sql Operator.ZipCode)&nbsp;&nbsp;(sql Operator.City)</td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">&nbsp;Land:</td>
+       <td width="70%"class="head8">(sql Operator.Country)</td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">&nbsp;Tel:</td>
+       <td width="70%"class="head8">(sql Operator.Phone)</td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">&nbsp;Fax:</td>
+       <td width="70%"class="head8">(sql Operator.Fax)</td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">&nbsp;Email:</td>
+       <td width="70%"class="head8"><a class="head8" href="mailto:(sql Operator.Email)">(sql Operator.Email)</a></td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">&nbsp;URL:</td>
+       <td width="70%"class="head8"><a class="head8" href="http://(sql Operator.Url)">(sql Operator.Url)</a></td>
+       <td>&nbsp;</td>
+       </tr>
+
+      (repeat "ID]0{ID")
+
+       <tr>
+       <td class="head8c">&nbsp;(sql Imprintfields.Name):</td>
+       <td width="70%"class="head8">(sql Imprintfields.Value)</td>
+       <td>&nbsp;</td>
+       </tr>
+
+      (endrepeat)
+
+
+</table>
+
+       </td>
+       </tr>
+
+(endrepeat)
+
+
+
+</table>
+
+
+
+</body>
+
+</html>

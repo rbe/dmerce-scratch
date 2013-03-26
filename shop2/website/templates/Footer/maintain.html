@@ -1,0 +1,277 @@
+<html>
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<meta http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+<META NAME="REPLY-TO" CONTENT="webmaster@1Ci.de">
+
+<title>Fussleiste - bearbeiten</title>
+
+</head>
+
+<script language="JavaScript" src="../javascript/dmerce_openwindow.js"></script>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+
+
+
+(repeat "Operator.ID*1")
+
+<form method="post" action="/1Ci/dmerce">
+<input type="hidden" name="qTemplate" value="Footer,close">
+<input type="hidden" name="qUpdate" value="Operator">
+<input type="hidden" name="Operator_ID" value="(sql Operator.ID)">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td colspan="3" class="nav10blue" align="center">Fussleiste bearbeiten</td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <th width="20%" align="center">Anzeigen</th>
+      <th width="20%" align="center">Bezeichnung</th>
+      <th align="center">Ihre Angaben</th>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center">
+      (if (sql Operator.ShowCompany) == 1)
+      <input type="Radio" name="Operator_ShowCompany" value="1" checked> Ja
+      <input type="Radio" name="Operator_ShowCompany" value="0"> Nein
+      (endif)
+      (if (sql Operator.ShowCompany) == 0)
+      <input type="Radio" name="Operator_ShowCompany" value="1"> Ja
+      <input type="Radio" name="Operator_ShowCompany" value="0" checked> Nein
+      (endif)
+      </td>
+      <td align="center">Firmenname:</td>
+      <td>&nbsp;<input type="Text" name="Operator_Company" value="(sql Operator.Company)" size="40" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center">
+      (if (sql Operator.ShowFirstName) == 1)
+      <input type="Radio" name="Operator_ShowFirstName" value="1" checked> Ja
+      <input type="Radio" name="Operator_ShowFirstName" value="0"> Nein
+      (endif)
+      (if (sql Operator.ShowFirstName) == 0)
+      <input type="Radio" name="Operator_ShowFirstName" value="1"> Ja
+      <input type="Radio" name="Operator_ShowFirstName" value="0" checked> Nein
+      (endif)
+      </td>
+      <td align="center">Vorname:</td>
+      <td>&nbsp;<input type="Text" name="Operator_FirstName" value="(sql Operator.FirstName)" size="40" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center">
+      (if (sql Operator.ShowLastName) == 1)
+      <input type="Radio" name="Operator_ShowLastName" value="1" checked> Ja
+      <input type="Radio" name="Operator_ShowLastName" value="0"> Nein
+      (endif)
+      (if (sql Operator.ShowLastName) == 0)
+      <input type="Radio" name="Operator_ShowLastName" value="1"> Ja
+      <input type="Radio" name="Operator_ShowLastName" value="0" checked> Nein
+      (endif)
+      </td>
+      <td align="center">Nachname:</td>
+      <td>&nbsp;<input type="Text" name="Operator_LastName" value="(sql Operator.LastName)" size="40" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center">
+      (if (sql Operator.ShowStreet) == 1)
+      <input type="Radio" name="Operator_ShowStreet" value="1" checked> Ja
+      <input type="Radio" name="Operator_ShowStreet" value="0"> Nein
+      (endif)
+      (if (sql Operator.ShowStreet) == 0)
+      <input type="Radio" name="Operator_ShowStreet" value="1"> Ja
+      <input type="Radio" name="Operator_ShowStreet" value="0" checked> Nein
+      (endif)
+      </td>
+      <td align="center">Strasse:</td>
+      <td>&nbsp;<input type="Text" name="Operator_Street" value="(sql Operator.Street)" size="40" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center">
+      (if (sql Operator.ShowZipCode) == 1)
+      <input type="Radio" name="Operator_ShowZipCode" value="1" checked> Ja
+      <input type="Radio" name="Operator_ShowZipCode" value="0"> Nein
+      (endif)
+      (if (sql Operator.ShowZipCode) == 0)
+      <input type="Radio" name="Operator_ShowZipCode" value="1"> Ja
+      <input type="Radio" name="Operator_ShowZipCode" value="0" checked> Nein
+      (endif)
+      </td>
+      <td align="center">PLZ:</td>
+      <td>&nbsp;<input type="Text" name="Operator_ZipCode" value="(sql Operator.ZipCode)" size="40" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center">
+      (if (sql Operator.ShowCity) == 1)
+      <input type="Radio" name="Operator_ShowCity" value="1" checked> Ja
+      <input type="Radio" name="Operator_ShowCity" value="0"> Nein
+      (endif)
+      (if (sql Operator.ShowCity) == 0)
+      <input type="Radio" name="Operator_ShowCity" value="1"> Ja
+      <input type="Radio" name="Operator_ShowCity" value="0" checked> Nein
+      (endif)
+      </td>
+      <td align="center">Ort:</td>
+      <td>&nbsp;<input type="Text" name="Operator_City" value="(sql Operator.City)" size="40" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center">
+      (if (sql Operator.ShowCountry) == 1)
+      <input type="Radio" name="Operator_ShowCountry" value="1" checked> Ja
+      <input type="Radio" name="Operator_ShowCountry" value="0"> Nein
+      (endif)
+      (if (sql Operator.ShowCountry) == 0)
+      <input type="Radio" name="Operator_ShowCountry" value="1"> Ja
+      <input type="Radio" name="Operator_ShowCountry" value="0" checked> Nein
+      (endif)
+      </td>
+      <td align="center">Land:</td>
+      <td>&nbsp;<input type="Text" name="Operator_Country" value="(sql Operator.Country)" size="40" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center">
+      (if (sql Operator.ShowPhone) == 1)
+      <input type="Radio" name="Operator_ShowPhone" value="1" checked> Ja
+      <input type="Radio" name="Operator_ShowPhone" value="0"> Nein
+      (endif)
+      (if (sql Operator.ShowPhone) == 0)
+      <input type="Radio" name="Operator_ShowPhone" value="1"> Ja
+      <input type="Radio" name="Operator_ShowPhone" value="0" checked> Nein
+      (endif)
+      </td>
+      <td align="center">Telefon:</td>
+      <td>&nbsp;<input type="Text" name="Operator_Phone" value="(sql Operator.Phone)" size="40" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center">
+      (if (sql Operator.ShowFax) == 1)
+      <input type="Radio" name="Operator_ShowFax" value="1" checked> Ja
+      <input type="Radio" name="Operator_ShowFax" value="0"> Nein
+      (endif)
+      (if (sql Operator.ShowFax) == 0)
+      <input type="Radio" name="Operator_ShowFax" value="1"> Ja
+      <input type="Radio" name="Operator_ShowFax" value="0" checked> Nein
+      (endif)
+      </td>
+      <td align="center">Fax:</td>
+      <td>&nbsp;<input type="Text" name="Operator_Fax" value="(sql Operator.Fax)" size="40" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center">
+      (if (sql Operator.ShowEmail) == 1)
+      <input type="Radio" name="Operator_ShowEmail" value="1" checked> Ja
+      <input type="Radio" name="Operator_ShowEmail" value="0"> Nein
+      (endif)
+      (if (sql Operator.ShowEmail) == 0)
+      <input type="Radio" name="Operator_ShowEmail" value="1"> Ja
+      <input type="Radio" name="Operator_ShowEmail" value="0" checked> Nein
+      (endif)
+      </td>
+      <td align="center">Email:</td>
+      <td>&nbsp;<input type="Text" name="Operator_Email" value="(sql Operator.Email)" size="40" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center">
+      (if (sql Operator.ShowUrl) == 1)
+      <input type="Radio" name="Operator_ShowUrl" value="1" checked> Ja
+      <input type="Radio" name="Operator_ShowUrl" value="0"> Nein
+      (endif)
+      (if (sql Operator.ShowUrl) == 0)
+      <input type="Radio" name="Operator_ShowUrl" value="1"> Ja
+      <input type="Radio" name="Operator_ShowUrl" value="0" checked> Nein
+      (endif)
+      </td>
+      <td align="right">URL:&nbsp;&nbsp; http://</td>
+      <td>&nbsp;<input type="Text" name="Operator_Url" value="(sql Operator.Url)" size="40" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3" align="center"><input type="Submit" name="qButton" value="&uuml;bernehmen"></td>
+      </tr>
+
+</table>
+
+</form>
+
+(endrepeat)
+
+
+
+</body>
+</html>

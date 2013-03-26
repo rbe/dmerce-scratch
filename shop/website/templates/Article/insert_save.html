@@ -1,0 +1,310 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>Neuen Artikel eintragen</title>
+
+<script language="JavaScript">
+<!--
+
+function do_kp(myfield) {
+        myelem=eval('document.myForm.'+myfield);
+
+        myelem.value = myelem.value.replace(/,/,'.');
+
+        if(isNaN(myelem.value) == true) {
+                alert(myelem.value + " ist keine Zahl!");
+                myelem.focus();
+                myelem.value = '';
+                return false;
+                }
+}
+
+//-->
+</script>
+
+</head>
+
+<body
+(if '(form Infenster)' == '1')
+onLoad="window.resizeTo(850,500)"
+(endif)
+bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+
+
+<form method="post" action="/1Ci/dmerce" name="myForm" enctype="multipart/form-data">
+<input type="hidden" name="qTemplate" value="(form Template)">
+<input type="hidden" name="qInsert" value="Article">
+<input type="hidden" name="Article_SubNavID" value="(form SubgroupID)">
+<input type="hidden" name="SubgroupID" value="(form SubgroupID)">
+<input type="hidden" name="qTriggerAfter" value="Merchant.Article.CalcPrices">
+<input type="hidden" name="Article_ID" value="(sql dboid Article)">
+<input type="hidden" name="qTrigger" value="OS.File.Upload">
+<input type="hidden" name="qUploadKeepRealname" value="Article_Picture">
+<input type="hidden" name="GroupID" value="(form GroupID)">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;Artikel anlegen</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+       <td width="20%" valign="top">
+
+
+
+<table width="100%" border="0" cellspacing="3" cellpadding="0">
+
+       <tr>
+       <td colspan="2">
+       Laden Sie hier eine Bildatei (.jpg oder .gif) auf den Server. Achten Sie auf die Bildgr&ouml;&szlig;e.
+       <input type="file" name="Article_Picture"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" border="0" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td width="22" class="head8"><img src="../../pic/view.gif" width="16" height="16" border="0" alt="[weitere Ansichten]"></td>
+       <td class="head8">[- weitere Ansichten]</td>
+       </tr>
+
+</table>
+
+
+       <td width="80%" valign="top">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+
+      <tr>
+      <td class="head11" colspan="2"><b>&nbsp;Neuen Artikel eintragen</b></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td valign="top">
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Anmerkung</td>
+      <td colspan="2">Felder ohne Eingabe werden nicht angezeigt!<br><br>Um ein Feld zu l&ouml;schen, m&uuml;ssen Sie eine Leertaste in das leere Feld eintragen.</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+      <tr>
+      <td class="head11" colspan="3"><b>Angaben zum Produkt</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%"><b>Artikel Nummer</b></td>
+      <td class="head9"><input type="Text" name="Article_ArtNo" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%"><b>Artikel Bezeichnung</b></td>
+      <td><input type="Text" name="Article_Name" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%"><b>Artikel Hersteller</b></td>
+      <td><input type="Text" name="Article_Producer" size="35" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Warengruppe</td>
+      <td><select name="Article_ClassOfGoodsID" size="1" class="select">
+      <option value="0">Bitte w&auml;hlen</option>
+      (exec Db2HTML.Select.Options table='ClassOfGoods',qSuperSearch='ID]0',optionValue='ID',optionName='Name' cexe)
+      </select></td>
+      </tr>
+
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Kurzbeschreibung</td>
+      <td><textarea name="Article_ShortDescription" cols="33" rows="5" class="textarea"></textarea></td>
+      </tr>
+
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Detailbeschreibung</td>
+      <td><textarea name="Article_DetailDescription" cols="33" rows="10"class="textarea"></textarea></td>
+      </tr>
+
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+
+      <tr>
+      <td class="head9c" width="35%">Verkaufspreis</td>
+      <td><input type="Text" name="Article_PriceGross" size="10" class="input" value="0.00" onChange="do_kp(this.name)">&nbsp;&#8364;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">inkl. Mwst.</td>
+      <td><input type="Text" name="Article_TaxRate" size="10" class="input" value="16" onChange="do_kp(this.name)">&nbsp;%</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Ma&szlig;e (B x H x T)</td>
+      <td><input type="Text" name="Article_Width" size="10" class="input" onChange="do_kp(this.name)">&nbsp;x&nbsp;<input type="Text" name="Article_Height" size="10" class="input" onChange="do_kp(this.name)">&nbsp;x&nbsp;<input type="Text" name="Article_Depth" size="10" class="input" onChange="do_kp(this.name)">&nbsp;cm</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Gewicht</td>
+      <td><input type="Text" name="Article_Weight" size="10" class="input" onChange="do_kp(this.name)">&nbsp;Kg</td>
+      </tr>
+
+      (repeat "ID]0{ID")
+
+      <input type="hidden" name="qInsert" value="ArticleAdditionalFields">
+      <input type="hidden" name="ArticleAdditionalFields_AdditionalFieldsID" value="(sql AdditionalFields.ID)">
+      <input type="hidden" name="ArticleAdditionalFields_ArticleID" value="(sql dboid Article)">
+
+      <tr>
+      <td class="head9c" width="35%">(sql AdditionalFields.Name)</td>
+      <td><input type="Text" name="ArticleAdditionalFields_Value" size="35" class="input">&nbsp;</td>
+      </tr>
+
+      (endrepeat)
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td class="head11" colspan="3"><b>Highlightartikel</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Anmerkung</td>
+      <td>Geben Sie hier die Postionsnummer f&uuml;r die Reihenfolge der Anzeige des Objekts ein.<br><br>
+      Tip: Die Positionen f&uuml;r die aktiven Highlightartikel k&ouml;nnen Sie auch &uuml;ber die &Uuml;bersicht unter "Administration Highlightliste" komfortabel bearbeiten.</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Highlight Position</td>
+      <td><input type="Text" name="Article_Highlight" size="3" class="input"></td>
+      </tr>
+
+
+      <tr>
+      <td class="head9c">Als 'NEU' kennzeichnen</td>
+      <td><input type="radio" Name="Article_New" value="1"> Ja
+          <input type="radio" Name="Article_New" value="0"> Nein</td>
+      </tr>
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+      </tr>
+
+
+</table>
+
+       </td>
+       </tr>
+
+</table>
+
+       </td>
+       </tr>
+
+
+       <tr>
+       <td colspan="2" align="right"><input type="submit" class="submit" name="qButton" value="eintragen"></td>
+       </tr>
+
+</table>
+
+
+</form>
+
+
+</body>
+</html>

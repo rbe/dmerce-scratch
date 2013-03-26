@@ -1,0 +1,483 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+
+<script language="JavaScript">
+        <!--
+        var X=100
+        var Y=160
+
+function NeuFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=450
+        myheight=450
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+   newWin = window.open(myurl,'Fenster',par);
+   newWin.focus();
+}
+
+//-->
+</script>
+
+<script language="JavaScript">
+<!--
+
+function do_kp(myfield) {
+        myelem=eval('document.myForm.'+myfield);
+
+        myelem.value = myelem.value.replace(/,/,'.');
+
+        if(isNaN(myelem.value) == true) {
+                alert(myelem.value + " ist keine Zahl!");
+                myelem.focus();
+                myelem.value = '';
+                return false;
+                }
+}
+
+//-->
+</script>
+
+<title>Artikel bearbeiten</title>
+
+</head>
+
+<body
+(if '(form Infenster)' == '1')
+onLoad="window.resizeTo(850,500)"
+(endif)
+bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+
+
+(repeat "Article.ID*(form ArticleID)")
+
+<form method="post" action="/1Ci/dmerce" name="myForm" enctype="multipart/form-data">
+<input type="hidden" name="qTemplate" value="(var qTemplate)">
+<input type="hidden" name="qUpdate" value="Article">
+<input type="hidden" name="ArticleID" value="(form ArticleID)">
+<input type="hidden" name="SubgroupID" value="(form SubgroupID)">
+<input type="hidden" name="GroupID" value="(form GroupID)">
+<input type="hidden" name="Infenster" value="(form Infenster)">
+<input type="hidden" name="Article_ID" value="(sql Article.ID)">
+<input type="hidden" name="Article_SubNavID" value="(sql Article.SubNavID)">
+<input type="hidden" name="qTrigger" value="OS.File.Upload, HTML.PlainToHTML.FormatFields">
+<input type="hidden" name="qUploadKeepRealname" value="Article_Picture">
+<input type="hidden" name="qTriggerAfter" value="Merchant.Article.CalcPrices">
+<input type="hidden" name="qFieldsConvertPlainToHTML" value="Article_DetailDescription, Article_ShortDescription">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">
+      (sql Wordlist.NameDE "ID*2")
+      (if '(form GroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Article,intro&GroupID=(form GroupID)">(sql HeadNav.NameDE "ID*(form GroupID)")</a>
+      (endif)
+      (if '(form SubgroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Article,list&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)">(sql SubNav.NameDE "ID*(form SubgroupID)")</a>
+      (endif)
+      (if '(form ArticleID)' != '')
+      > (sql Article.Name "ID*(form ArticleID)")</a>
+      (endif)
+      </td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+       <td width="20%" valign="top">
+
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+       <td width="20%" valign="top">
+
+<table width="100%" border="0" cellspacing="3" cellpadding="0">
+
+       <tr>
+       <td colspan="2">
+
+       (if '(sql Article.Picture)' != '')
+       <img src="../pic/upload/(sql Article.Picture)" border="0"><br><img src="../pic/dummy.gif" border="0" width="1" height="20" border="0">
+       (else)
+       <img src="/pic/x_nopic.gif" width="124" height="102" border="0" alt=""><br><img src="../pic/dummy.gif" border="0" width="1" height="30" border="0">
+       (endif)
+
+       </td>
+       </tr>
+
+
+       <tr>
+       <td class="head8" colspan="2">Zum &auml;ndern eines Bildes, laden Sie bitte eine neue Bildatei (.jpg oder .gif) auf den Server. Achten Sie auf die Bildgr&ouml;&szlig;e.<br><img src="../pic/dummy.gif" border="0" width="1" height="10" border="0"><br><input type="file" name="Article_Picture" class="input"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" border="0" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td class="head8"><a class="head9" href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a></td>
+       <td><a class="head8" href="javascript:window.print()">[- Angebot drucken]</a></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" border="0" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td width="22" class="head8"><a href="/1Ci/dmerce?qTemplate=Article,pic_list&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&ArticleID=(form ArticleID)"><img src="../../pic/view.gif" width="16" height="16" border="0" alt="[weitere Ansichten]"></a></td>
+       <td class="head8"><a href="/1Ci/dmerce?qTemplate=Article,pic_list&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&ArticleID=(form ArticleID)">[- weitere Ansichten &auml;ndern]</td>
+       </tr>
+
+
+       (if (sql count ArticlePicture "(form ArticleID)*ArticlePicture.ArticleID") != 0)
+
+       (repeat "ArticlePicture.ArticleID*(form ArticleID)")
+
+       <tr>
+       <td class="head8"><a href="javascript:NeuFenster('/1Ci/dmerce?qTemplate=Article,zoom&ArticlePictureID=(sql ArticlePicture.ID)')"><img src="../../pic/picavailable.gif" width="16" height="16" border="0" alt="{Ansicht: (sql ArticlePicture.Name)]"></a></td>
+       <td class="head8"><a href="javascript:NeuFenster('/1Ci/dmerce?qTemplate=Article,zoom&ArticlePictureID=(sql ArticlePicture.ID)')">(sql ArticlePicture.Name)</a></td>
+       </tr>
+
+       (endrepeat)
+
+       (endif)
+
+</table>
+
+
+
+       <td width="80%" valign="top">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+
+      <tr>
+      <td class="head11" colspan="2"><b>&nbsp;Artikel "(sql Article.Name)" &auml;ndern</b></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td valign="top">
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Anmerkung</td>
+      <td colspan="2">Felder ohne Eingabe werden nicht angezeigt!<br><br>Um ein Feld zu l&ouml;schen, m&uuml;ssen Sie eine Leertaste in das leere Feld eintragen.</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+      <tr>
+      <td class="head11" colspan="3"><b>Angaben zum Produkt</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%"><b>Artikel Nummer</b></td>
+      <td class="head9"><input type="Text" name="Article_ArtNo" size="35" class="input" value="(sql Article.ArtNo)"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%"><b>Artikel Bezeichnung</b></td>
+      <td><input type="Text" name="Article_Name" size="35" class="input" value="(sql Article.Name)"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%"><b>Artikel Hersteller</b></td>
+      <td><input type="Text" name="Article_Producer" size="35" class="input" value="(sql Article.Producer)"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Warengruppe</td>
+      <td><select name="Article_ClassOfGoodsID" size="1" class="select">
+      <option value="0">Bitte w&auml;hlen</option>
+      (exec Db2HTML.Select.Options table='ClassOfGoods',qSuperSearch='ID]0',optionValue='ID',optionName='Name',selected=(sql Article.ClassOfGoodsID) cexe)
+      </select></td>
+      </tr>
+
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Kurzbeschreibung</td>
+      <td><textarea name="Article_ShortDescription" cols="50" rows="5" class="textarea">(exec HTML.HTMLToPlain.Format '(sql Article.ShortDescription)' cexe)</textarea></td>
+      </tr>
+
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Detailbeschreibung</td>
+      <td><textarea name="Article_DetailDescription" cols="50" rows="10" class="textarea">(exec HTML.HTMLToPlain.Format '(sql Article.DetailDescription)' cexe)</textarea></td>
+      </tr>
+
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+
+      <tr>
+      <td class="head9c" width="35%">Verkaufspreis</td>
+      <td><input type="Text" name="Article_PriceGross" size="10" class="input" value="(sql Article.PriceGross)" onChange="do_kp(this.name)">&nbsp;&#8364;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">inkl. Mwst.</td>
+      <td><input type="Text" name="Article_TaxRate" size="10" class="input" value="(sql Article.TaxRate)" onChange="do_kp(this.name)">&nbsp;%</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Ma&szlig;e (B x H x T)</td>
+      <td><input type="Text" name="Article_Width" size="10" class="input" value="(sql Article.Width)" onChange="do_kp(this.name)">&nbsp;x&nbsp;<input type="Text" name="Article_Height" size="10" class="input" value="(sql Article.Height)" onChange="do_kp(this.name)">&nbsp;x&nbsp;<input type="Text" name="Article_Depth" size="10" class="input" value="(sql Article.Depth)" onChange="do_kp(this.name)">&nbsp;cm</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Gewicht</td>
+      <td><input type="Text" name="Article_Weight" size="10" class="input" value="(sql Article.Weight)" onChange="do_kp(this.name)">&nbsp;Kg</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">
+      <select name="Article_AddFieldsName1" size="1">
+      <option value="">bitte w&auml;hlen</option>
+      (set-myvar AddField1 (sql Article.AddFieldsName1))
+      (repeat "ID]0{Name")
+
+      (if '(get-myvar AddField1)' == '(sql AdditionalFields.Name)')
+      <option value="(sql AdditionalFields.Name)" selected>(sql AdditionalFields.Name)</option>
+      (else)
+      <option value="(sql AdditionalFields.Name)">(sql AdditionalFields.Name)</option>
+      (endif)
+
+      (endrepeat)
+      </select>
+      </td>
+      <td><input type="Text" name="Article_AddFieldsVal1" size="35" class="input" value="(sql Article.AddFieldsVal1)">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">
+      <select name="Article_AddFieldsName2" size="1">
+      <option value="">bitte w&auml;hlen</option>
+      (set-myvar AddField2 (sql Article.AddFieldsName2))
+      (repeat "ID]0{Name")
+
+      (if '(get-myvar AddField2)' == '(sql AdditionalFields.Name)')
+      <option value="(sql AdditionalFields.Name)" selected>(sql AdditionalFields.Name)</option>
+      (else)
+      <option value="(sql AdditionalFields.Name)">(sql AdditionalFields.Name)</option>
+      (endif)
+
+      (endrepeat)
+      </select>
+      </td>
+      <td><input type="Text" name="Article_AddFieldsVal2" size="35" class="input" value="(sql Article.AddFieldsVal2)">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">
+      <select name="Article_AddFieldsName3" size="1">
+      <option value="">bitte w&auml;hlen</option>
+      (set-myvar AddField3 (sql Article.AddFieldsName3))
+      (repeat "ID]0{Name")
+
+      (if '(get-myvar AddField3)' == '(sql AdditionalFields.Name)')
+      <option value="(sql AdditionalFields.Name)" selected>(sql AdditionalFields.Name)</option>
+      (else)
+      <option value="(sql AdditionalFields.Name)">(sql AdditionalFields.Name)</option>
+      (endif)
+
+      (endrepeat)
+      </select>
+      </td>
+      <td><input type="Text" name="Article_AddFieldsVal3" size="35" class="input" value="(sql Article.AddFieldsVal3)">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">
+      <select name="Article_AddFieldsName4" size="1">
+      <option value="">bitte w&auml;hlen</option>
+      (set-myvar AddField4 (sql Article.AddFieldsName4))
+      (repeat "ID]0{Name")
+
+      (if '(get-myvar AddField4)' == '(sql AdditionalFields.Name)')
+      <option value="(sql AdditionalFields.Name)" selected>(sql AdditionalFields.Name)</option>
+      (else)
+      <option value="(sql AdditionalFields.Name)">(sql AdditionalFields.Name)</option>
+      (endif)
+
+      (endrepeat)
+      </select>
+      </td>
+      <td><input type="Text" name="Article_AddFieldsVal4" size="35" class="input" value="(sql Article.AddFieldsVal4)">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">
+      <select name="Article_AddFieldsName5" size="1">
+      <option value="">bitte w&auml;hlen</option>
+      (set-myvar AddField5 (sql Article.AddFieldsName5))
+      (repeat "ID]0{Name")
+
+      (if '(get-myvar AddField5)' == '(sql AdditionalFields.Name)')
+      <option value="(sql AdditionalFields.Name)" selected>(sql AdditionalFields.Name)</option>
+      (else)
+      <option value="(sql AdditionalFields.Name)">(sql AdditionalFields.Name)</option>
+      (endif)
+
+      (endrepeat)
+      </select>
+      </td>
+      <td><input type="Text" name="Article_AddFieldsVal5" size="35" class="input" value="(sql Article.AddFieldsVal5)">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td class="head11" colspan="3"><b>Highlightartikel</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Anmerkung</td>
+      <td>Geben Sie hier die Postionsnummer f&uuml;r die Reihenfolge der Anzeige des Objekts ein.<br><br>
+      Tip: Die Positionen f&uuml;r die aktiven Highlightartikel k&ouml;nnen Sie auch &uuml;ber die &Uuml;bersicht unter "Administration Highlightliste" komfortabel bearbeiten.</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Highlight Position</td>
+      <td><input type="Text" name="Article_Highlight" size="3" class="input" value="(sql Article.Highlight)"></td>
+      </tr>
+
+
+      <tr>
+      <td class="head9c">Als 'NEU' kennzeichnen</td>
+      <td><input type="radio" name="Article_New" (exec Db2HTML.Radiobox.isChecked (sql Article.New "ID*(form ArticleID)")==1 cexe) value="1">Ja
+          <input type="radio" name="Article_New" (exec Db2HTML.Radiobox.isChecked (sql Article.New "ID*(form ArticleID)")==0 cexe) value="0">Nein</td>
+        <td>&nbsp;</td>
+      </tr>
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+      </tr>
+
+
+</table>
+
+       </td>
+       </tr>
+
+</table>
+
+       </td>
+       </tr>
+
+
+       <tr>
+       <td colspan="2" align="right">Klicken Sie auf [&uuml;bernehmen] um Ihre &Auml;nderungen zu speichern&nbsp;&nbsp;<input type="Submit" name="qButton" value="&uuml;bernehmen" class="submit">&nbsp;&nbsp;&nbsp;
+
+       (if '(form Infenster)' == '1')
+       <input type="Button" name="Button" value="Fenster schlie&szlig;en" onClick="javascript:self.close();" class="submit">
+       (else)
+
+       (if '(form QSS)' == '')
+       <input type="Button" name="Button" value="zur&uuml;ck" onClick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Article,view&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)'" class="submit">
+       (endif)
+       (if '(form QSS)' != '')
+<input type="Button" name="Button" value="zur&uuml;ck" onClick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Article,list&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&qSuperSearch=(form QSS)'" class="submit">
+       (endif)
+
+       (endif)
+       </td></td>
+       </tr>
+
+</table>
+
+
+</form>
+
+(endrepeat)
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<html>
+
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<META HTTP-EQUIV="PRAGMA" CONTENT="no-cache">
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<script language="JavaScript">
+        <!--
+        var X=100
+        var Y=160
+
+function NeuFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=450
+        myheight=450
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+   newWin = window.open(myurl,'Fenster',par);
+   newWin.focus();
+}
+
+//-->
+</script>
+
+<title>MEN&Uuml; - [Immo] by 1Ci GmbH(R)</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;Warenkorb > Bestellen</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      (if '(sql Wordlist.NameDE "ID*51")' != '')
+      <td width="20%" valign="top" align="center"><img src="../pic/upload/(sql Wordlist.NameDE "ID*51")" border="0" hspace="6"></td>
+      (else)
+      <td width="20%" valign="top">&nbsp;</td>
+      (endif)
+
+       <td width="80%" valign="top">
+
+       <table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+       <tr>
+       <td class="head12b">
+(if (sql count BasketContents "SessionId*'(var qs)'") == 0)
+Ihr Warenkorb ist leer.
+(else)
+(exec Merchant.Basket.SumQty cexe) Artikel im Warenkorb.
+
+
+       </td>
+       </tr>
+
+       <tr>
+       <td>
+
+       <table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+       <tr>
+       <td class="head8c" width="120">Menge</td>
+       <td class="head8c">ArtNo</td>
+       <td class="head8c">Bezeichnung</td>
+       <td align="right" class="head8c">einzel</td>
+       <td align="right" class="head8c">gesamt</td>
+       </tr>
+
+       (repeat "BasketContents.SessionId*'(var qs)':BasketContents.ArtID*Article.ID")
+
+       <form method="post" action="/1Ci/dmerce">
+       <input type="hidden" name="qTemplate" value="Basket,list">
+       <input type="hidden" name="qTrigger" value="Merchant.Basket.SetQty">
+       <input type="hidden" name="artId" value="(sql BasketContents.ArtID)">
+
+       <tr>
+
+       <td valign="middle" nowrap><a href="/1Ci/dmerce?qTemplate=Basket,list&qTrigger=Merchant.Basket.RemoveArticle&artId=(sql BasketContents.ArtID)"><img src="../../pic/basket_delete.gif" width="16" height="16" border="0" alt="(sql Article.Name) aus dem Warenkorb l&ouml;schen"></a>
+
+       (if '(sql Article.Picture)' != '')
+
+       <a href="javascript:NeuFenster('/1Ci/dmerce?qTemplate=Basket,zoom&ArticleID=(sql Article.ID)')"><img src="../../pic/picavailable.gif" width="16" height="16" border="0" alt="Artikelbild anzeigen"></a>
+
+       (else)
+
+       <img src="../pic/dummy.gif" border="0" width="16" height="16" border="0"></td>
+
+       (endif)
+
+
+       <a href="/1Ci/dmerce?qTemplate=Basket,list&qTrigger=Merchant.Basket.IncQty&qty=1&artId=(sql BasketContents.ArtID)"><img src="../../pic/basket_up.gif" width="16" height="16" border="0" alt="Artikelanzahl erh&ouml;hen"></a>
+       <input type="Text" name="qty" size="2" maxlength="4" value="(sqlf BasketContents.Qty)">
+       <a href="/1Ci/dmerce?qTemplate=Basket,list&qTrigger=Merchant.Basket.DecQty&qty=1&artId=(sql BasketContents.ArtID)"><img src="../../pic/basket_down.gif" width="16" height="16" border="0" alt="Artikelanzahl verringern"></a></td>
+
+       <td>(sql Article.ArtNo)</td>
+
+       <td><a href="/1Ci/dmerce?qTemplate=Article,view&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)">(sql Article.Name)</a></td>
+
+       <td align="right">(sqlf Article.PriceGross "Article.ID*(sql BasketContents.ArtID)")&nbsp;&#8364;</td>
+
+       <td align="right">(sqlf BasketContents.PriceGross)&nbsp;&#8364;</td>
+
+       </tr>
+
+       </form>
+
+       (endrepeat)
+
+       <tr>
+       <td colspan="5"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="3">&nbsp;</td>
+       <td align="right" class="head8c">Summe netto</td>
+       <td align="right">(exec Merchant.Basket.GetSumNet curr='EUR' cexe)&nbsp;&#8364;</td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td colspan="3">&nbsp;</td>
+       <td align="right" class="head8c">MwSt. 16%</td>
+       <td align="right">(exec Merchant.Basket.GetSumVAT curr='DM' cexe)&nbsp;&#8364;</td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td colspan="3">&nbsp;</td>
+       <td align="right" class="head8c"><b>Endpreis</b></td>
+       <td align="right">(exec Merchant.Basket.GetSumGross curr='EUR' cexe)&nbsp;&#8364;</td>
+       <td>&nbsp;</td>
+       </tr>
+
+
+       <tr>
+       <td colspan="5">
+
+       <table width="100%">
+
+       <tr>
+
+       <form method="post" action="/1Ci/dmerce">
+       <input type="hidden" name="qTemplate" value="Basket,list">
+       <input type="hidden" name="qTrigger" value="Merchant.Basket.Remove">
+
+       <td><input type="submit" name="Button" value="Warenkorb l&ouml;schen"></td>
+
+       </form>
+       <td><input type="Button" name="Button" value="AGB einsehen" onclick="parent.content.location.href='/1Ci/dmerce?qTemplate=Textarticle,agb&back=1'"></td>
+       <td align="right"><input type="Submit" name="Button" value="Bestellen" onclick="parent.content.location.href='/1Ci/dmerce?qTemplate=Basket,order'"></td>
+       </tr>
+
+       </table>
+
+       </td>
+       </tr>
+
+       </table>
+       </td>
+       </tr>
+
+</table>
+
+(endif)
+
+
+
+</body>
+</html>

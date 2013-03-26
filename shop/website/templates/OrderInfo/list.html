@@ -1,0 +1,109 @@
+<html>
+
+<head>
+
+<LINK rel="stylesheet" type="text/css" href="../../style_admin.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>(var SERVER_NAME) - Liste aller Bestellungen</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>&Uuml;bersicht &uuml;ber Ihre Bestellungen</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;(sql count OrderInfo "ID]0") Bestellungen bis heute.</td>
+      </tr>
+
+      <tr>
+      <td class="head8">&nbsp;f&uuml;r weitere Details Bestellung ausw&auml;hlen.</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td align="center" class="menutop">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td class="head8c" align="center">Best.Nr</td>
+      <td class="head8c">Datum:</td>
+      <td class="head8c" align="center">Kunde:</td>
+      <td class="head8c" align="center">Bestellsumme:</td>
+      <td class="head8c" align="center">Aktion:</td>
+      </tr>
+
+      (repeat "OrderInfo.(var qSuperSearch){CreatedDateTime desc@10")
+
+      (if (sql index1) == 1)
+      (set-myvar firstrow (sql OrderInfo.CreatedDateTime))
+      (endif)
+
+      <tr>
+      <td class="head8" align="center">(sql OrderInfo.ID)</td>
+      <td class="head8">(exec Time.Conversion.UnixToLocal secs=(sql OrderInfo.CreatedDateTime),format='%d.%m.%Y' cexe)</td>
+      <td class="head8"><a href="mailto:(sql OrderInfo.Email)">(sql OrderInfo.FirstName) (sql OrderInfo.LastName)</a></td>
+      <td class="head8" align="right">(sqlf OrderInfo.BasketSum 2) &#8364;</td>
+      <td class="head8" align="center"><a href="/1Ci/dmerce?qTemplate=OrderInfo,detail&OrderInfoID=(sql OrderInfo.ID)">[Details]</a>
+      </td>
+      </tr>
+
+      (set-myvar lastrow (sql OrderInfo.CreatedDateTime))
+      (endrepeat)
+
+      <tr>
+      <td colspan="5" align="center">
+
+      (if (sql count OrderInfo "CreatedDateTime](get-myvar firstrow)") > 0)
+      <a href="javascript:history.back(-1)">[zeige letzte 10]</a>
+      (endif)
+
+      (if (sql count OrderInfo "CreatedDateTime[(get-myvar lastrow)") > 0)
+      <a href="/1Ci/dmerce?qTemplate=(var qTemplate)&qSuperSearch=CreatedDateTime[(get-myvar lastrow)">[zeige n&auml;chste 10]</a>
+      (endif)
+
+
+      </td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+</body>
+
+</html>

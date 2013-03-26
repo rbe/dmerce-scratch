@@ -1,0 +1,122 @@
+<html>
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<title>(var SERVER_NAME) - Suchergebnisse Texte</title>
+</head>
+
+<body topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0" bgcolor="#FFFFFF">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+
+<table width="80%" border="0" align="center" cellspacing="0" cellpadding="0">
+
+       <tr>
+       <td><img src="../pic/dummy.gif" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td class="head12b"><b>&nbsp;Suchbegriff "<font color="#A00000">(form Searchword)</font>":</b></td>
+       </tr>
+
+       <tr>
+       <td class="head8"><img src="../pic/dummy.gif" width="1" height="10" border="0"></td>
+       </tr>
+
+
+       <tr>
+       <td>&nbsp;Das System hat die Datenbank nach Ihrem Suchbegriff durchsucht und folgenden Ergebnissen erzielt:</td>
+       </tr>
+
+
+
+       <tr>
+       <td><img src="../pic/dummy.gif" width="1" height="30" border="0"></td>
+       </tr>
+
+
+       <tr>
+       <td class="head11"><b>
+       (if (sql count Textarticle "(GruppenID*(get-myvar GruppenID)|GruppenID*0):active*1:(NavigationID!*0|SubnavID!*0):(Head~'(form Suchbegriff)'|Subhead~'(form Suchbegriff)'|Text~'(form Suchbegriff)')") != 1)
+       &nbsp;<font color="#B80000">(sql count Textarticle "(GruppenID*(get-myvar GruppenID)|GruppenID*0):active*1:(NavigationID!*0|SubnavID!*0):(Head~'(form Suchbegriff)'|Subhead~'(form Suchbegriff)'|Text~'(form Suchbegriff)')")</font> Texteintr&auml;ge zu Ihrem Suchbegriff gefunden.
+       (endif)
+       (if (sql count Textarticle "(GruppenID*(get-myvar GruppenID)|GruppenID*0):active*1:(NavigationID!*0|SubnavID!*0):(Head~'(form Suchbegriff)'|Subhead~'(form Suchbegriff)'|Text~'(form Suchbegriff)')") == 1)
+       &nbsp;<font color="#C00000">1</font> Texteintrag zu Ihrem Suchbegriff gefunden.
+       (endif)
+       </b></td>
+       </tr>
+
+       <tr>
+       <td><img src="../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+
+       (repeat "(Textarticle.GruppenID*(get-myvar GruppenID)|Textarticle.GruppenID*0):Textarticle.active*1:(Textarticle.NavigationID!*0|Textarticle.SubnavID!*0):(Textarticle.Head~'(form Suchbegriff)'|Textarticle.Subhead~'(form Suchbegriff)'|Textarticle.Text~'(form Suchbegriff)')")
+
+       <tr>
+       <td class="naventry">&nbsp;-
+       (if (sql Textarticle.SubnavID) != 0)
+       <a class="naventry" href="/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID)&qSuperSearch=Textarticle.SubnavID*(sql Textarticle.SubnavID)&NavID=(sql Subnavigation.NavigationID "ID*(sql Textarticle.SubnavID)")&SubnavID=(sql Textarticle.SubnavID)"  target="content">
+       (endif)
+       (if (sql Textarticle.NavigationID) != 0)
+       <a class="naventry" href="/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID)&qSuperSearch=Textarticle.NavigationID*(sql Textarticle.NavigationID)&NavID=(sql Textarticle.NavigationID)" target="content">
+       (endif)
+
+       (sql Textarticle.Head)</a></td>
+       </tr>
+
+       <tr>
+       <td><img src="../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+       (endrepeat)
+
+       <tr>
+       <td><img src="../pic/dummy.gif" width="1" height="30" border="0"></td>
+       </tr>
+
+
+       <tr>
+       <td class="head11"><b>
+       (if (sql count Object "(GruppenID*(get-myvar GruppenID)|GruppenID*0):active*1:(HeadNavID!*0|SubNavID!*0):(Head~'(form Suchbegriff)'|Subhead~'(form Suchbegriff)'|Text~'(form Suchbegriff)')") != 1)
+       &nbsp;<font color="#B80000">(sql count Object "(GruppenID*(get-myvar GruppenID)|GruppenID*0):active*1:(HeadNavID!*0|SubNavID!*0):(Head~'(form Suchbegriff)'|Subhead~'(form Suchbegriff)'|Text~'(form Suchbegriff)')")</font> Angebot zu Ihrem Suchbegriff gefunden.
+       (endif)
+       (if (sql count Object "(GruppenID*(get-myvar GruppenID)|GruppenID*0):active*1:(HeadNavID!*0|SubNavID!*0):(Head~'(form Suchbegriff)'|Subhead~'(form Suchbegriff)'|Text~'(form Suchbegriff)')") == 1)
+       &nbsp;<font color="#C00000">1</font> Angebot zu Ihrem Suchbegriff gefunden.
+       (endif)
+       </b></td>
+       </tr>
+
+       <tr>
+       <td><img src="../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+
+       (repeat "(Object.GruppenID*(get-myvar GruppenID)|Object.GruppenID*0):Object.active*1:(HeadNavID!*0|SubNavID!*0):(Object.Head~'(form Suchbegriff)'|Object.Subhead~'(form Suchbegriff)'|Object.Text~'(form Suchbegriff)')")
+
+       <tr>
+       <td class="naventry">&nbsp;-
+       <a class="naventry" href="/1Ci/dmerce?qTemplate=Object,view&ObjectID=(sql Object.ID)&qSuperSearch=Object.SubnavID*(sql Object.SubnavID)&GroupID=(sql SubNav.HeadNavID "ID*(sql Object.SubNavID)")&SubgroupID=(sql Object.SubNavID)"  target="content">
+       (sql Object.Head)</a></td>
+       </tr>
+
+       <tr>
+       <td><img src="../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+       (endrepeat)
+
+
+
+</table>
+
+
+</body>
+
+</html>

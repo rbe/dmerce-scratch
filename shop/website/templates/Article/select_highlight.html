@@ -1,0 +1,75 @@
+<html>
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+
+<title>Artikel w&auml;hlen</title>
+
+</head>
+
+<body topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0" bgcolor="#FFFFFF">
+
+
+
+
+<table width="88%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center" class="nav10blue" colspan="2"><b>Artikel f&uuml;r Highlightliste w&auml;hlen:</b></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="center" class="menutop" colspan="2">
+      <table width="100%" border="0">
+
+      <tr>
+      <td class="head8c">Bezeichnung:</td>
+      <td class="head8c">Status:</td>
+      <td class="head8c">Aktion:</td>
+      </tr>
+
+      (repeat "Article.HeadNavID!*0|Article.SubNavID!*0:Article.Highlight*0{Article.Name")
+
+      <tr>
+      <td>(sql Article.Name)</td>
+      <td>
+      (if (sql Article.active) == 0)
+      <font color="#E00000">inaktiv</font>
+      (else)
+      aktiv
+      (endif)
+      </td>
+      <td><a href="/1Ci/dmerce?qTemplate=(form Template)&ArticleID=(sql Article.ID)">[Okay]</a></td>
+      </tr>
+
+      (endrepeat)
+      </table>
+      </td>
+      </tr>
+
+      <tr>
+      <td colspan="2">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td class="head8c" width="50%">&nbsp;<a href="javascript:history.back(-1);" class="head8">[zur&uuml;ck]</a></td>
+      <td class="head8c" align="right" width="50%"><a href="javascript:self.close();" class="head8">[Fenster schlie&szlig;en]</a>&nbsp;</td>
+      </tr>
+
+</table>
+
+
+
+</body>
+</html>

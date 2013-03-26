@@ -1,0 +1,166 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>[IMMO] - Textartikel ansehen</title>
+
+</head>
+
+
+<body
+
+(if '(form Infenster)' == '1')
+onLoad="window.resizeTo(850,500);"
+(endif)
+
+bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+(repeat "Object.ID*(form ObjectID)")
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;(sql Wordlist.NameDE "ID*2")
+      (if '(form GroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Object,intro&GroupID=(form GroupID)">(sql HeadNav.NameDE "ID*(form GroupID)")</a>
+      (endif)
+      (if '(form SubgroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Object,list&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)&qSuperSearch=Object.SubNavID*(form SubgroupID)">(sql SubNav.NameDE "ID*(form SubgroupID)")</a>
+      (endif)
+
+(if '(form ObjectID)' != '')
+      > (sql Object.Head "ID*(form ObjectID)")
+(endif)
+</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+
+      (if '(sql Object.Picture)' != '')
+
+      <td width="20%" valign="top"><img src="../pic/upload/(sql Object.Picture)" border="0"><br>
+      <br>
+      <table align="center">
+      <tr>
+      <td class="head8">
+
+      (if (sql Object.Form) == 0)
+
+      <a class="head8" href="/1Ci/dmerce?qTemplate=Contact,contact&OfferID=(sql Object.ID)"><img src="../../pic/contact.gif" width="16" height="10" border="0" alt="[Kontaktaufnahme]"></a></td>
+      <td class="head8"><a class="head8" href="/1Ci/dmerce?qTemplate=Contact,contact&OfferID=(sql Object.ID)">[- Kontaktaufnahme]</a>
+
+      (else)
+
+      &nbsp;
+
+      (endif)
+
+      </td>
+      </tr>
+      </table>
+      </td>
+
+      (else)
+
+      <td width="20%" valign="top">&nbsp;
+      <table align="center">
+      <tr>
+      <td class="head8">
+
+      (if (sql Object.Form) == 0)
+
+      <a class="head8" href="/1Ci/dmerce?qTemplate=Contact,contact&OfferID=(sql Object.ID)"><img src="../../pic/contact.gif" width="16" height="10" border="0" alt="[Kontaktaufnahme]"></a></td>
+      <td class="head8"><a class="head8" href="/1Ci/dmerce?qTemplate=Contact,contact&OfferID=(sql Object.ID)">[- Kontaktaufnahme]</a>
+
+      (else)
+
+      &nbsp;
+
+      (endif)
+
+      </td>
+      </tr>
+      </table>
+      </td>
+
+      (endif)
+
+      <td width="80%" valign="top">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td class="head12b">(sql Object.Head)</td>
+      <td class="head8" rowspan"2" align="right" valign="top"><a href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+
+
+      (if (get-myvar login) == 1 and (sql Object.Form) == 0)
+      <td width="16"><a href="/1Ci/dmerce?qTemplate=Object,maintain&NavID=(form NavID)&SubnavID=(form SubnavID)&ObjectID=(form ObjectID)&qSuperSearch=(var qSuperSearch)"><img src="../../pic/edit.gif" width="16" height="17" border="0" alt="[Diese Seite editieren]"></a></td>
+      (endif)
+      </tr>
+
+
+      (if '(sql Object.Subhead)' != '')
+
+      <tr>
+      <td width="90%" class="head11">(sql Object.Subhead)</td>
+      <td width="10%">&nbsp;</td>
+      </tr>
+
+      (endif)
+
+      <tr>
+      <td width="90%">(sql Object.Text)</td>
+      <td width="10%">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td colspan="2">&nbsp;</td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+
+(endrepeat)
+
+</body>
+
+</html>

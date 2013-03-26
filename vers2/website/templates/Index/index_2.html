@@ -1,0 +1,104 @@
+<html>
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>(sql Operator.Company "ID*1")</title>
+</head>
+
+(if (get-myvar login) == 1 and (sql Operator.UnderConstruction "ID*1") == 1)
+
+<frameset rows="88,*,17" frameborder="0" border="0">
+
+      <frame name="topframe" src="/1Ci/dmerce?qTemplate=Navigation,topframe" scrolling="no" noresize>
+
+           <frameset cols="155,*" frameborder="0" border="0">
+
+           <frame name="menue" src="/1Ci/dmerce?qTemplate=Navigation,list&qSuperSearch=ID]0" scrolling="auto" noresize>
+           <frame name="content" src="/1Ci/dmerce?qTemplate=Index,ex_content&TextarticleID=1" scrolling="auto" noresize>
+
+           </frameset>
+
+     <frame name="footer" src="/1Ci/dmerce?qTemplate=Footer,footer" scrolling="no" noresize>
+
+</frameset>
+
+(endif)
+
+(if (get-myvar login) == 1 and (sql Operator.UnderConstruction "ID*1") == 0)
+
+<frameset rows="88,*,17" frameborder="0" border="0">
+
+      <frame name="topframe" src="/1Ci/dmerce?qTemplate=Navigation,topframe" scrolling="no" noresize>
+
+           <frameset cols="155,*" frameborder="0" border="0">
+
+           <frame name="menue" src="/1Ci/dmerce?qTemplate=Navigation,list&qSuperSearch=ID]0" scrolling="auto" noresize>
+           <frame name="content" src="/1Ci/dmerce?qTemplate=Index,ex_content&TextarticleID=1" scrolling="auto" noresize>
+
+           </frameset>
+
+     <frame name="footer" src="/1Ci/dmerce?qTemplate=Footer,footer" scrolling="no" noresize>
+
+</frameset>
+
+(endif)
+
+(if (get-myvar login) == 0 and (sql Operator.UnderConstruction "ID*1") == 0)
+
+<frameset rows="88,*,17" frameborder="0" border="0">
+
+      <frame name="topframe" src="/1Ci/dmerce?qTemplate=Navigation,topframe" scrolling="no" noresize>
+
+           <frameset cols="155,*" frameborder="0" border="0">
+
+           <frame name="menue" src="/1Ci/dmerce?qTemplate=Navigation,list&qSuperSearch=ID]0" scrolling="auto" noresize>
+           <frame name="content" src="/1Ci/dmerce?qTemplate=Index,ex_content&TextarticleID=1" scrolling="auto" noresize>
+
+           </frameset>
+
+     <frame name="footer" src="/1Ci/dmerce?qTemplate=Footer,footer" scrolling="no" noresize>
+
+</frameset>
+
+(endif)
+
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" >
+(if (get-myvar login) == 0 and (sql Operator.UnderConstruction "ID*1") == 1)
+
+<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" valign="center">
+(if '(sql Operator.UndConstPic "ID*1")' != '')
+<img src="/pic/upload/(var SERVER_NAME)/(sql Operator.UndConstPic "ID*1")" border="0" alt="">
+(else)
+<div class="head12"><b>(sql Operator.Company "ID*1")</b></div>
+(endif)
+
+<br><br>
+(sql Operator.UndConstText "ID*1")<br>
+<br>
+(if '(sql Operator.Email "ID*1")' != '')
+F&uuml;r n&auml;here Informationen wenden Sie sich bitte an: <a href="mailto:(sql Operator.Email "ID*1")" class="head8">(sql Operator.Email "ID*1")</a>
+(endif)
+</td>
+</tr>
+</table>
+
+(endif)
+</body>
+
+</html>
+</html>

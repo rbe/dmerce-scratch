@@ -1,0 +1,151 @@
+<html>
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<title>(var SERVER_NAME) - Suchergebniss</title>
+</head>
+
+<body topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0" bgcolor="#FFFFFF">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;(sql Wordlist.NameDE "ID*3")</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="90%" border="0" align="center" cellspacing="0" cellpadding="0">
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2" class="head12b"><b>&nbsp;Suchergebniss - Suchbegriff "<font color="#B80000">(form Searchword)</font>":</b></td>
+       </tr>
+
+       <tr>
+       <td colspan="2" class="head8"><img src="../pic/dummy.gif" width="1" height="10" border="0"></td>
+       </tr>
+
+
+       <tr>
+       <td colspan="2" class="counter1">&nbsp;Das System hat alle vorhandenen Angebote und Texte nach Ihrem Suchbegriff durchsucht und ist zu folgenden Ergebnissen gekommen:</td>
+       </tr>
+
+
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="30" border="0"></td>
+       </tr>
+
+
+       <tr>
+       <td class="head11" colspan="2"><b>
+       (if (sql count Textarticle "active*1:(NavigationID!*0|SubnavID!*0):(Head~'(form Suchbegriff)'|Subhead~'(form Suchbegriff)'|Text~'(form Suchbegriff)')") != 1)
+       &nbsp;<font color="#B80000">(sql count Textarticle "active*1:(NavigationID!*0|SubnavID!*0):(Head~'(form Suchbegriff)'|Subhead~'(form Suchbegriff)'|Text~'(form Suchbegriff)')")</font> Texteintr&auml;ge zu Ihrem Suchbegriff gefunden.
+       (endif)
+       (if (sql count Textarticle "active*1:(NavigationID!*0|SubnavID!*0):(Head~'(form Suchbegriff)'|Subhead~'(form Suchbegriff)'|Text~'(form Suchbegriff)')") == 1)
+       &nbsp;<font color="#B80000">1</font> Texteintrag zu Ihrem Suchbegriff gefunden.
+       (endif)
+       </b></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+
+       (repeat "Textarticle.active*1:(Textarticle.NavigationID!*0|Textarticle.SubnavID!*0):(Textarticle.Head~'(form Suchbegriff)'|Textarticle.Subhead~'(form Suchbegriff)'|Textarticle.Text~'(form Suchbegriff)')")
+
+       <tr>
+       <td width="10%" class="head11">&nbsp;</td>
+       <td width="90%">&nbsp;
+       (if (sql Textarticle.SubnavID) != 0)
+       <a href="/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID)&qSuperSearch=Textarticle.SubnavID*(sql Textarticle.SubnavID)&NavID=(sql Subnavigation.NavigationID "ID*(sql Textarticle.SubnavID)")&SubnavID=(sql Textarticle.SubnavID)">
+       (endif)
+       (if (sql Textarticle.NavigationID) != 0)
+       <a href="/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID)&qSuperSearch=Textarticle.NavigationID*(sql Textarticle.NavigationID)&NavID=(sql Textarticle.NavigationID)">
+       (endif)
+
+       (sql Textarticle.Head)</a></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+       (endrepeat)
+
+       <tr>
+       <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="30" border="0"></td>
+       </tr>
+
+       <tr>
+       <td class="head11" colspan="2"><b>
+       &nbsp;<font color="#B80000">(sql count Article "active*1:SubNavID!*0:Name~'(form Suchbegriff)'|Producer~'(form Suchbegriff)'|ShortDescription~'(form Suchbegriff)'|DetailDescription~'(form Suchbegriff)'")</font> Artikel zu Ihrem Suchbegriff gefunden.
+       </b></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+
+       <!-- Hier noch mal das SQL Statement checken IST FALSCH !-->
+
+       (repeat "Article.active*1:Article.SubNavID!*0:Article.Name~'(form Suchbegriff)'|Article.Producer~'(form Suchbegriff)'|Article.ShortDescription~'(form Suchbegriff)'|Article.DetailDescription~'(form Suchbegriff)'")
+
+       <tr>
+       <td width="10%" class="head11">&nbsp;</td>
+       <td width="90%">&nbsp; <a href="/1Ci/dmerce?qTemplate=Article,view&ArticleID=(sql Article.ID)">(sql Article.Name)</a></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+       (endrepeat)
+
+       <tr>
+       <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+</table>
+
+</body>
+
+</html>

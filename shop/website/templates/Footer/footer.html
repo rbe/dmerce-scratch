@@ -1,0 +1,86 @@
+<html>
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<meta http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<META HTTP-EQUIV="PRAGMA" CONTENT="no-cache">
+<META NAME="REPLY-TO" CONTENT="webmaster@1Ci.de">
+
+
+<title>(var SERVER_NAME) - Fussleiste</title>
+
+<script language="JavaScript" src="../javascript/dmerce_openwindow.js"></script>
+
+</head>
+
+
+<body background="(skin-img bg_bottom)" bgcolor="#FFFFFF" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
+
+
+
+
+(repeat "Operator.ID*1")
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td class="blueline" colspan="2"><img src="../../pic/dummy.gif" width="1" height="1" border="0"></td>
+      </tr>
+      <tr>
+      (if (get-myvar login) == 1)
+      <td class="footer" valign="top">&nbsp;<a class="footer" href="javascript:NeuFenster('/1Ci/dmerce?qTemplate=Footer,maintain',600,400)">&auml;ndern</a></td>
+      (endif)
+      <td class="footer" align="center">
+      (if (sql Operator.ShowCompany) == 1)
+      &nbsp;(sql Operator.Company)&nbsp;
+      (endif)
+      (if (sql Operator.ShowFirstName) == 1)
+      &nbsp;(sql Operator.FirstName)&nbsp;
+      (endif)
+      (if (sql Operator.ShowLastName) == 1)
+      &nbsp;(sql Operator.LastName)&nbsp;
+      (endif)
+      (if (sql Operator.ShowStreet) == 1)
+      &nbsp;(sql Operator.Street)&nbsp;
+      (endif)
+      (if (sql Operator.ShowZipCode) == 1)
+      &nbsp;(sql Operator.ZipCode)
+      (endif)
+      (if (sql Operator.ShowCity) == 1)
+      &nbsp;(sql Operator.City)&nbsp;
+      (endif)
+      (if (sql Operator.ShowCountry) == 1)
+      &nbsp;(sql Operator.Country)&nbsp;
+      (endif)
+      (if (sql Operator.ShowPhone) == 1)
+      &nbsp;Tel: (sql Operator.Phone)&nbsp;
+      (endif)
+      (if (sql Operator.ShowFax) == 1)
+      &nbsp;Fax: (sql Operator.Fax)&nbsp;
+      (endif)
+      (if (sql Operator.ShowEmail) == 1)
+      &nbsp;<a class="footer" href="mailto:(sql Operator.Email)">(sql Operator.Email)</a>&nbsp;
+      (endif)
+      (if (sql Operator.ShowUrl) == 1)
+      &nbsp;<a class="footer" href="http://(sql Operator.Url)" target="new">(sql Operator.Url)</a>&nbsp;
+      (endif)
+      </td>
+      </tr>
+
+</table>
+
+(endrepeat)
+
+
+
+</body>
+</html>

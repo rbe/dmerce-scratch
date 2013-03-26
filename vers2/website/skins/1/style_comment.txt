@@ -1,0 +1,59 @@
+Generell:
+
+Schriftarten: 		font-family:[xxxx],[xxx];
+			font-family:Verdana,Arial,Helvetica,Helv,sans-serif;
+Format:			Wie angegeben
+
+Schriftgrößen: 		font-size:[x]pt;
+Format:			Wie angegeben
+
+Schriftfarbe:	        color:[xxxx];
+Format:			wie angegeben
+
+Schriftformate:		font-weight:[xxxx];
+Format:			font-weight:normal;
+			font-weight:bold;
+
+Hintergrundfarben:	background-color: [#xxxxx];
+Format:			background-color: #EFEFEF;
+
+Linkformate:		text-decoration:[xxxx];
+Format:			text-decoration:underline;
+			text-decoration:none;
+
+Formulare:
+
+Eingabefelder:		.textarea {
+			.input {
+			input.[xxxx] {
+Format:		        font-family:"Courier New", Courier, monospace;
+
+Knöpfe			input.submit {
+
+
+
+
+SKIN 1
+
+Menü: 
+
+Bilddatei:		menu.gif
+Farbwert		#E2E2E2
+Navigationspunkt	naventry
+Subnavigationspunkt	subentry
+Überschriften		navhead
+Administration		navedit
+Logout			logout
+
+
+Überschriften		head12b
+Untertitel		head11
+Links			head8
+Listeneinträge (Fett)	head9c
+Texte			Standardschriftgröße (body)
+
+
+
+
+Body, Tabellen (table, tr, td, th), span, div, Listen (ol, Ul)
+			Links (a, active, hover), sonstige [Immo]-Styles

@@ -1,0 +1,370 @@
+<html>
+
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<META HTTP-EQUIV="PRAGMA" CONTENT="no-cache">
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>(var SERVER_NAME) - Menue</title>
+
+<script language="JavaScript">
+<!--
+var X=100
+var Y=160
+
+function NeuFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=300
+        myheight=100
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+newWin = window.open(myurl,'Fenster',par);
+newWin.focus();
+}
+
+function do_prozentname() {
+
+   if(document.myForm.Suchbegriff.value == "" || document.myForm.Suchbegriff.value == '%%' || document.myForm.Suchbegriff.value == '%')
+      document.myForm.Searchword.value = 'Alles'
+   else {
+      document.myForm.Searchword.value = document.myForm.Suchbegriff.value
+   }
+
+   if(document.myForm.Suchbegriff.value == "" || document.myForm.Suchbegriff.value == '%%' || document.myForm.Suchbegriff.value == '%')
+      document.myForm.Suchbegriff.value = '%'
+   else {
+      document.myForm.Suchbegriff.value = '%' + document.myForm.Suchbegriff.value + '%'
+   }
+   return true;
+   }
+//-->
+</script>
+
+</head>
+
+
+
+
+<body background="(skin-img menu)" bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+
+<!-- Textnavigation Anfang -->
+
+<table width="88%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+      (if (sql Wordlist.GruppenID "ID*3:active*1") == (get-myvar GruppenID) or (sql Wordlist.GruppenID "ID*3:active*1") == 0)
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td class="navhead" colspan="2">&nbsp;&nbsp;<b>(sql Wordlist.NameDE "ID*3:active*1")</b></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <form method="post" action="/1Ci/dmerce" name="myForm" onsubmit="javascript:return do_prozentname();" target="content">
+      <input type="hidden" name="qTemplate" value="suchen,liste">
+      <input type="hidden" name="Searchword" value="">
+
+      <tr>
+      <td colspan="3" nowrap>&nbsp;&nbsp;<input type="Text" class="input" name="Suchbegriff" size="10">&nbsp;&nbsp;&nbsp;<input type="Submit" class="submit" name="suchen" value="OK"></td>
+      </tr>
+
+      </form>
+      (endif)
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+      (if (sql Wordlist.GruppenID "ID*1:active*1") == (get-myvar GruppenID) or (sql Wordlist.GruppenID "ID*1:active*1") == 0)
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td class="navhead" colspan="2">&nbsp;&nbsp;<b>(sql Wordlist.NameDE "ID*1:active*1")</b></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+(repeat "Navigation.active*1:(Navigation.GruppenID*(get-myvar GruppenID)|Navigation.GruppenID*0):Navigation.ID]0{CreatedDateTime")
+
+(set-myvar Subnavcount (sql count Subnavigation "active*1:NavigationID*(sql Navigation.ID):(GruppenID*(get-myvar GruppenID)|GruppenID*0)"))
+
+(set-myvar Textcount (sql count Textarticle "active*1:NavigationID*(sql Navigation.ID):(GruppenID*(get-myvar GruppenID)|GruppenID*0)"))
+
+(if (get-myvar Subnavcount) > 0 or (get-myvar Textcount) > 0)
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td class="naventry" colspan="2">&nbsp;
+      (if (get-myvar Subnavcount) == 0 and (get-myvar Textcount) == 1)
+      <a class="naventry" href="/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID "NavigationID*(sql Navigation.ID)")&qSuperSearch=Textarticle.ID*(sql Textarticle.ID "NavigationID*(sql Navigation.ID)")&NavID=(sql Navigation.ID)" target="content" onMouseOver="window.status='(sql Navigation.NameDE)';return true"  onMouseOut="window.status='';return true">(sql Navigation.NameDE)</a>
+      (endif)
+      (if (get-myvar Subnavcount) == 0 and (get-myvar Textcount) > 1)
+      <a class="naventry" href="/1Ci/dmerce?qTemplate=Textarticle,all_list&qSuperSearch=Textarticle.NavigationID*(sql Navigation.ID)&NavID=(sql Navigation.ID)" target="content" onMouseOver="window.status='(sql Navigation.NameDE)';return true"  onMouseOut="window.status='';return true">(sql Navigation.NameDE)</a>
+      (endif)
+      (if (get-myvar Subnavcount) > 0 and (get-myvar Textcount) == 0)
+      <a class="naventry" href="/1Ci/dmerce?qTemplate=Navigation,list&NavID=(sql Navigation.ID)" target="menue" onclick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Textarticle,intro&NavID=(sql Navigation.ID)'" onMouseOver="window.status='(sql Navigation.NameDE)';return true"  onMouseOut="window.status='';return true">(sql Navigation.NameDE)</a>
+      (endif)
+      (if (get-myvar Subnavcount) > 0 and (get-myvar Textcount) == 1)
+      <a class="naventry" href="/1Ci/dmerce?qTemplate=Navigation,list&NavID=(sql Navigation.ID)" target="menue" onclick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID "NavigationID*(sql Navigation.ID)")&qSuperSearch=Textarticle.ID*(sql Textarticle.ID "NavigationID*(sql Navigation.ID)")&NavID=(sql Navigation.ID)'" onMouseOver="window.status='(sql Navigation.NameDE)';return true" onMouseOut="window.status='';return true">(sql Navigation.NameDE)</a>
+      (endif)
+      (if (get-myvar Subnavcount) > 0 and (get-myvar Textcount) > 1)
+      <a class="naventry" href="/1Ci/dmerce?qTemplate=Navigation,list&NavID=(sql Navigation.ID)" target="menue" onclick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Textarticle,all_list&qSuperSearch=Textarticle.NavigationID*(sql Navigation.ID)&NavID=(sql Navigation.ID)'" onMouseOver="window.status='(sql Navigation.NameDE)';return true"  onMouseOut="window.status='';return true">(sql Navigation.NameDE)</a>
+      (endif)
+      </td>
+      </tr>
+
+(if (sql Navigation.ID) == (form NavID))
+(repeat "Subnavigation.active*1:(Subnavigation.GruppenID*(get-myvar GruppenID)|Subnavigation.GruppenID*0):Subnavigation.NavigationID*(form NavID)")
+
+(set-myvar SubTextcount (sql count Textarticle "active*1:SubnavID*(sql Subnavigation.ID):(GruppenID*(get-myvar GruppenID)|GruppenID*0)"))
+
+
+(if (get-myvar SubTextcount) > 1)
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="2" border="0"></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td><img src="../../pic/dummy.gif" width="10" height="1" border="0"></td>
+      <td class="subentry" width="90%">&nbsp;<a class="subentry"href="/1Ci/dmerce?qTemplate=Textarticle,list&SubnavID=(sql Subnavigation.ID)&NavID=(form NavID)" target="content" onMouseOver="window.status='(sql Subnavigation.NameDE)';return true"  onMouseOut="window.status='';return true">(sql Subnavigation.NameDE)</a></td>
+      </tr>
+(endif)
+(if (get-myvar SubTextcount) == 1)
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="2" border="0"></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td><img src="../../pic/dummy.gif" width="10" height="1" border="0"></td>
+      <td class="subentry" width="90%">&nbsp;<a class="subentry" href="/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID "SubnavID*(sql Subnavigation.ID)")&NavID=(form NavID)&SubnavID=(sql Subnavigation.ID)&qSuperSearch=Textarticle.ID*(sql Textarticle.ID "SubnavID*(sql Subnavigation.ID)")" target="content" onMouseOver="window.status='(sql Subnavigation.NameDE)';return true"  onMouseOut="window.status='';return true">(sql Subnavigation.NameDE)</a></td>
+      </tr>
+(endif)
+(endrepeat)
+(endif)
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="7" border="0"></td>
+      </tr>
+
+(endif)
+(endrepeat)
+</table>
+(endif)
+<!-- Textnavigation Ende -->
+
+<!-- Immobiliennavigation Anfang -->
+(if (sql Wordlist.GruppenID "ID*2:active*1") == (get-myvar GruppenID) or (sql Wordlist.GruppenID "ID*2:active*1") == 0)
+<table width="88%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="20" border="0"></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td class="navhead" colspan="2">&nbsp;<b>(sql Wordlist.NameDE "ID*2:active*1")</b></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+(repeat "HeadNav.active*1:(HeadNav.GruppenID*(get-myvar GruppenID)|HeadNav.GruppenID*0):HeadNav.ID]0")
+(if (sql count SubNav "active*1:HeadNavID*(sql HeadNav.ID)") > 0)
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td class="naventry" colspan="2">&nbsp;&nbsp;<a class="naventry" href="/1Ci/dmerce?qTemplate=Navigation,list&GroupID=(sql HeadNav.ID)" target="menue" onclick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Object,intro&GroupID=(sql HeadNav.ID)'" onMouseOver="window.status='(sql HeadNav.NameDE)';return true"  onMouseOut="window.status='';return true">(sql HeadNav.NameDE)</a></td>
+      </tr>
+
+
+(if (sql HeadNav.ID) == (form GroupID))
+(repeat "SubNav.active*1:(SubNav.GruppenID*(get-myvar GruppenID)|SubNav.GruppenID*0):SubNav.HeadNavID*(form GroupID)")
+
+(if (sql count Object "active*1:SubNavID*(sql SubNav.ID)") > 0)
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="2" border="0"></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td><img src="../../pic/dummy.gif" width="10" height="1" border="0"></td>
+      <td class="subentry" width="90%">&nbsp;<a class="subentry" href="/1Ci/dmerce?qTemplate=Object,list&SubgroupID=(sql SubNav.ID)&GroupID=(form GroupID)&qSuperSearch=Object.SubNavID*(sql SubNav.ID)" target="content" onMouseOver="window.status='(sql SubNav.NameDE)';return true"  onMouseOut="window.status='';return true">(sql SubNav.NameDE)</a></td>
+
+      </tr>
+
+(endif)
+(endrepeat)
+(endif)
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="7" border="0"></td>
+      </tr>
+(endif)
+(endrepeat)
+
+</table>
+(endif)
+
+
+<!-- Immobiliennavigation Ende -->
+
+
+
+
+
+
+<table width="88%" border="0" cellspacing="0" cellpadding="0">
+
+      (if (sql Wordlist.GruppenID "ID*9:active*1") == (get-myvar GruppenID) or (sql Wordlist.GruppenID "ID*9:active*1") == 0)
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="20" border="0"></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td class="navhead" colspan="2">&nbsp;<b>(sql Wordlist.NameDE "ID*9:active*1")</b></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      (if (sql Wordlist.active "ID*3") == 1)
+      (if (sql Wordlist.GruppenID "ID*3") == (get-myvar GruppenID) or (sql Wordlist.GruppenID "ID*3") == 0)
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td class="naventry" colspan="2">&nbsp;&nbsp;<a class="naventry" href="/1Ci/dmerce?qTemplate=suchen,suchmaske" target="content" onclick="parent.menue.location.href = '/1Ci/dmerce?qTemplate=Navigation,list&NavID=9999'" onMouseOver="window.status='(sql Wordlist.NameDE "ID*3:active*1")';return true"  onMouseOut="window.status='';return true">(sql Wordlist.NameDE "ID*3")</a></td>
+      </tr>
+      (endif)
+      (endif)
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="7" border="0"></td>
+      </tr>
+
+      (if (sql Wordlist.active "ID*4") == 1)
+      (if (sql Wordlist.GruppenID "ID*4") == (get-myvar GruppenID) or (sql Wordlist.GruppenID "ID*4") == 0)
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td class="naventry" colspan="2">&nbsp;&nbsp;<a class="naventry" href="/1Ci/dmerce?qTemplate=Contact,contact" target="content" onclick="parent.menue.location.href = '/1Ci/dmerce?qTemplate=Navigation,list&NavID=9999'" onMouseOver="window.status='(sql Wordlist.NameDE "ID*4:active*1")';return true"  onMouseOut="window.status='';return true">(sql Wordlist.NameDE "ID*4")</a></td>
+      </tr>
+      (endif)
+      (endif)
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="7" border="0"></td>
+      </tr>
+
+      (if (sql Wordlist.active "ID*8") == 1)
+      (if (sql Wordlist.GruppenID "ID*8") == (get-myvar GruppenID) or (sql Wordlist.GruppenID "ID*8") == 0)
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td class="naventry" colspan="2">&nbsp;&nbsp;<a class="naventry" href="/1Ci/dmerce?qTemplate=Impressum,view" target="content" onclick="parent.menue.location.href = '/1Ci/dmerce?qTemplate=Navigation,list&NavID=9999'" onMouseOver="window.status='(sql Wordlist.NameDE "ID*8:active*1")';return true"  onMouseOut="window.status='';return true">(sql Wordlist.NameDE "ID*8")</a></td>
+      </tr>
+      (endif)
+      (endif)
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="20" border="0"></td>
+      </tr>
+
+      (if (sql Wordlist.active "ID*5") == 1)
+      (if (sql Wordlist.GruppenID "ID*5") == (get-myvar GruppenID) or (sql Wordlist.GruppenID "ID*5") == 0)
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td class="naventry" colspan="2">&nbsp;&nbsp;<a class="naventry" href="../index.html" target="_top">(sql Wordlist.NameDE "ID*5")</a></td>
+      </tr>
+      (endif)
+      (endif)
+
+
+      (endif)
+
+      (if (get-myvar login) == 1)
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="20" border="0"></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td class="navedit" colspan="2">&nbsp;<a class="navedit" href="/1Ci/dmerce?qTemplate=Navigation,maintain" target="content"><b>Administration</b></a></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="7" border="0"></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td class="naventry" colspan="2">&nbsp;&nbsp;<a class="naventry" href="/help/" target="content" onclick="parent.menue.location.href = '/1Ci/dmerce?qTemplate=Navigation,list&NavID=9999'" onMouseOver="window.status='Online-Hilfe';return true"  onMouseOut="window.status='';return true">Online-Hilfe</a></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="20" border="0"></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td class="logout" colspan="2">&nbsp;<a class="logout" href="/1Ci/dmerce?qTemplate=Navigation,logout" target="content"><b>Logout</b></a></td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="5" height="1" border="0"></td>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+
+      (endif)
+
+</table>
+
+</body>
+
+</html>

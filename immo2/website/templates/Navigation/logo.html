@@ -1,0 +1,72 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>Logo &auml;ndern</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<img src="../../pic/dummy.gif" width="1" height="10" border="0">
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>AKTION</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="haed8">&nbsp;&Auml;ndern des <b>aktuellen</b> Logos</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <form method="post" action="/1Ci/dmerce" name="myForm" enctype="multipart/form-data">
+      <input type="hidden" name="qTemplate" value="Navigation,close_layout">
+      <input type="hidden" name="qUpdate" value="Operator">
+      <input type="hidden" name="Operator_ID" value="1">
+      <input type="hidden" name="qTrigger" value="OS.File.Upload">
+      <input type="hidden" name="qUploadKeepRealname" value="Operator_Logo">
+
+
+      <tr>
+      <td class="head8c">&nbsp;Logo:</td>
+      <td class="head8">&nbsp;<input type="file" name="Operator_Logo"></td>
+      </tr>
+
+      <tr>
+      <td align="right" colspan="2"><input type="submit" class="submit" name="qButton" value="&uuml;bernehmen"></td>
+      </tr>
+
+</form>
+
+</table>
+
+      </td>
+      </tr>
+</table>
+
+<img src="../../pic/dummy.gif" width="1" height="10" border="0">
+
+
+</body>
+
+</html>

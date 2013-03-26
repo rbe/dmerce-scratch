@@ -1,0 +1,167 @@
+<html>
+
+<head>
+
+<LINK rel="stylesheet" type="text/css" href="../../style_admin.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>BEARBEITEN der Navigation bearbeiten - [Immo] by 1Ci GmbH(R)</title>
+
+<script language="JavaScript">
+<!--
+var X=200
+var Y=250
+
+function NavFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=500
+        myheight=500
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+newWin = window.open(myurl,'Fenster2',par);
+newWin.focus();
+}
+
+//-->
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+(repeat "Navigation.ID*(form NavID)")
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>AKTION</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head8">&nbsp;Nehmen Sie bitte hier Ihre &Auml;nderungen an der <br>&nbsp;Navigation <b>"(sql Navigation.NameDE)"</b> vor.</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+
+      <form method="post" action="/1Ci/dmerce" name="myForm">
+      <input type="hidden" name="qTemplate" value="Navigation,closenav">
+      <input type="hidden" name="qUpdate" value="Navigation">
+      <input type="hidden" name="Navigation_ID" value="(sql Navigation.ID)">
+
+      <tr>
+      <td class="head8c">&nbsp;Usergruppe:</td>
+      <td class="head8">&nbsp;<select name="Navigation_GruppenID" size="1">
+      <option value="0">Alle</option>
+      (set-myvar NavGruppe (sql Navigation.GruppenID))
+
+      (repeat "Usergruppe.ID]0")
+
+      (if (sql Usergruppe.ID) == (get-myvar NavGruppe))
+      <option value="(sql Usergruppe.ID)" selected>(sql Usergruppe.Description)</option>
+      (else)
+      <option value="(sql Usergruppe.ID)">(sql Usergruppe.Description)</option>
+      (endif)
+
+      (endrepeat)
+
+      </select></td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;Name:</td>
+      <td class="head8">&nbsp;<input type="Text" name="Navigation_NameDE" size="35" value="(sql Navigation.NameDE)"></td>
+      </tr>
+
+
+      <tr>
+      <td class="head8c">Status:</td>
+      <td class="head8">&nbsp;<select name="Navigation_active" size="1">
+      (if (sql Navigation.active) == 1)
+      <option value="1" selected>aktiv
+      <option value="0">inaktiv
+      (endif)
+
+      (if (sql Navigation.active) == 0)
+      <option value="1">aktiv
+      <option value="0" selected>inaktiv
+      (endif)
+
+      </select></td>
+      </tr>
+
+
+      <tr>
+      <td class="head8c">&nbsp;</td>
+      <td class="head8">Aktiv = Navigation wird angezeigt<br>Inaktiv = Vorbereitet, wird nicht angezeigt</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="2" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="right" colspan="2"><input type="submit" class="submit" name="qButton" value="&auml;ndern"></td>
+      </tr>
+
+</form>
+
+</table>
+
+      </td>
+      </tr>
+
+(endrepeat)
+
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td class="head8c">Ansicht:</td>
+      <td class="head8">&nbsp;<a href="javascript:NavFenster('/1Ci/dmerce?qTemplate=Navigation,tree&Bereich=1')"><b>[&Uuml;bersicht]</b></a> der bestehenden Men&uuml;struktur</td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+</body>
+
+</html>

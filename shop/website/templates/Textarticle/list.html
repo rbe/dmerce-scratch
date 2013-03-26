@@ -1,0 +1,227 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>Textartikel - Liste</title>
+
+</head>
+
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<a name="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;(sql Wordlist.NameDE "ID*1")
+
+(if '(form NavID)' != '')
+
+(set-myvar Subnavcount (sql count Subnavigation "active*1:NavigationID*(form NavID)"))
+
+(set-myvar Textcount (sql count Textarticle "active*1:NavigationID*(form NavID)"))
+
+(if (get-myvar Subnavcount) > 0 or (get-myvar Textcount) > 0)
+
+      (if (get-myvar Textcount) == 1 and (get-myvar Subnavcount) == 0)
+      <a class="menutop" href="/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID "NavigationID*(form NavID)")" target="content" onMouseOver="window.status='(sql Navigation.NameDE "ID*(form NavID)")';return true"  onMouseOut="window.status='';return true"> > (sql Navigation.NameDE "ID*(form NavID)")</a>
+      (endif)
+      (if (get-myvar Textcount) > 1 and (get-myvar Subnavcount) == 0)
+      <a class="menutop" href="/1Ci/dmerce?qTemplate=Textarticle,all_list&qSuperSearch=Textarticle.NavigationID*(form NavID)" target="content" onMouseOver="window.status='(sql Navigation.NameDE "ID*(form NavID)")';return true"  onMouseOut="window.status='';return true"> > (sql Navigation.NameDE "ID*(form NavID)")</a>
+      (endif)
+      (if (get-myvar Subnavcount) > 0 and (get-myvar Textcount) == 0)
+      <a class="menutop" href="/1Ci/dmerce?qTemplate=Navigation,list&NavID=(form NavID)" target="menue" onclick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Textarticle,intro&NavID=(form NavID)'" onMouseOver="window.status='(sql Navigation.NameDE "ID*(form NavID)")';return true"  onMouseOut="window.status='';return true"> > (sql Navigation.NameDE "ID*(form NavID)")</a>
+      (endif)
+      (if (get-myvar Subnavcount) > 0 and (get-myvar Textcount) == 1)
+      <a class="menutop" href="/1Ci/dmerce?qTemplate=Navigation,list&NavID=(form NavID)" target="menue" onclick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID "NavigationID*(form NavID)")&NavID=(form NavID)'" onMouseOver="window.status='(sql Navigation.NameDE "ID*(form NavID)")';return true"  onMouseOut="window.status='';return true"> > (sql Navigation.NameDE "ID*(form NavID)")</a>
+      (endif)
+      (if (get-myvar Subnavcount) > 0 and (get-myvar Textcount) > 1)
+      <a class="menutop" href="/1Ci/dmerce?qTemplate=Navigation,list&NavID=(form NavID)" target="menue" onclick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Textarticle,all_list&qSuperSearch=Textarticle.NavigationID*(form NavID)&NavID=(form NavID)'" onMouseOver="window.status='(sql Navigation.NameDE "ID*(form NavID)")';return true"  onMouseOut="window.status='';return true"> > (sql Navigation.NameDE "ID*(form NavID)")</a>
+      (endif)
+
+(endif)
+
+(endif)
+
+
+(if '(form SubnavID)' != '')
+
+(set-myvar SubTextcount (sql count Textarticle "active*1:SubnavID*(form SubnavID)"))
+(if (get-myvar SubTextcount) > 1)
+      <a class="menusub" href="/1Ci/dmerce?qTemplate=Textarticle,list&SubnavID=(form SubnavID)&NavID=(form NavID)" target="content" onMouseOver="window.status='(sql Subnavigation.NameDE "ID*(form SubnavID)")';return true"  onMouseOut="window.status='';return true"> > (sql Subnavigation.NameDE "ID*(form SubnavID)")</a>
+(endif)
+(if (get-myvar SubTextcount) == 1)
+      <a class="menusub" href="/1Ci/dmerce?qTemplate=Textarticle,view&TextarticleID=(sql Textarticle.ID "ID*SubnavID")" target="content" onMouseOver="window.status='(sql Subnavigation.NameDE "ID*(form SubnavID)")';return true"  onMouseOut="window.status='';return true"> > (sql Subnavigation.NameDE "ID*(form SubnavID)")</a>
+(endif)
+
+(endif)
+
+
+(if '(form TextarticleID)' != '')
+      > (sql Textarticle.Head "ID*(form TextarticleID)")
+(endif)
+
+      </td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+
+(if (sql Subnavigation.TextarticleID "ID*(form SubnavID)") == 0)
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td width="20%" valign="top"><img src="../pic/dummy.gif" border="0" width="1" height="1" border="0"></td>
+      <td width="80%" valign="top">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td class="head12b">&nbsp;</td>
+      <td class="head8" align="right" valign="top" nowrap><a href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+      (if (get-myvar login) == 1)
+      &nbsp;<a href="/1Ci/dmerce?qTemplate=Textarticle,insert_list&SubnavID=(form SubnavID)&NavID=(form NavID)"><img src="../../pic/edit.gif" width="16" height="16" border="0" alt="&nbsp;[Diese Seite bearbeiten]"></a>
+      (endif)
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head8c" valign="top">Bitte w&auml;hlen Sie aus den folgenden Rubriken</td>
+      </tr>
+
+
+      (repeat "Textarticle.active*1:Textarticle.SubnavID*(form SubnavID)")
+      <tr>
+      <td class="head8" valign="top"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;<a href="/1Ci/dmerce?qTemplate=Textarticle,view&NavID=(form NavID)&SubnavID=(form SubnavID)&TextarticleID=(sql Textarticle.ID)&qSuperSearch=Textarticle.SubnavID*(form SubnavID)">(sql Textarticle.Head)</a></td>
+      </tr>
+      (endrepeat)
+</table>
+(endif)
+
+(repeat "Textarticle.ID*(sql Subnavigation.TextarticleID "ID*(form SubnavID)")")
+(if (sql Subnavigation.TextarticleID "ID*(form SubnavID)") > 0)
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td width="20%" valign="top">
+      (if '(sql Textarticle.Picture)' != '')
+      <img src="../pic/upload/(sql Textarticle.Picture)" border="0" alt=""><p><a href="#moreText"><p>
+      (endif)
+      <img src="../../pic/further_text_slow.gif" width="9" height="11" border="0" alt="">&nbsp;&nbsp;... weitere Texte</a>
+      </td>
+
+      <td width="80%" valign="top">
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td class="head12b">(sql Textarticle.Head)</td>
+      <td class="head8" align="right" valign="top"><a href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+
+      (if (get-myvar login) == 1)
+      &nbsp;<a href="/1Ci/dmerce?qTemplate=Textarticle,main_list&NavID=(form NavID)&SubnavID=(form SubnavID)&TextarticleID=(sql Textarticle.ID)"><img src="../../pic/edit.gif" width="16" height="16" border="0" alt="&nbsp;[Diese Seite bearbeiten]"></a></td>
+      (endif)
+      </tr>
+
+      (if '(sql Textarticle.Subhead)' != '')
+      <tr>
+      <td width="90%" class="head11">(sql Textarticle.Subhead)</td>
+      <td width="10%">&nbsp;</td>
+      </tr>
+      (endif)
+
+      <tr>
+      <td>(sql Textarticle.Text)</td>
+      <td>&nbsp;</td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="20" border="0"></td>
+      </tr>
+
+</table>
+
+
+<a name="moreText">
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+       <tr>
+       <td colspan="2"><b>Weiterf&uuml;hrende Texte:</b></td>
+       <td class="head8" align="right"><a href="#top">... top</a>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td colspan="3"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+      (repeat "Textarticle.active*1:Textarticle.SubnavID*(form SubnavID)")
+
+       <tr>
+       <td width="10%" class="head11">&nbsp;</td>
+       <td width="90%" colspan="2">&nbsp;<a href="/1Ci/dmerce?qTemplate=Textarticle,view&NavID=(form NavID)&SubnavID=(form SubnavID)&TextarticleID=(sql Textarticle.ID)&qSuperSearch=Textarticle.SubnavID*(form SubnavID)">(sql Textarticle.Head)</a></td>
+       </tr>
+
+       (endrepeat)
+
+       <tr>
+       <td colspan="3"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td class="head8" colspan="3" align="right"><a href="#top">... top</a>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+       </tr>
+
+</table>
+
+(endif)
+(endrepeat)
+
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<html>
+<head>
+<script language="JavaScript">
+<!--
+function do_check() {
+                par = '/1Ci/dmerce?qTemplate=Navigation,maintain&qUpdate=Textarticle&Textarticle_ID=(form TextarticleID)&Textarticle_NavigationID=(form NavID)&Textarticle_SubnavID=(form SubnavID)&qButton=1'
+
+                (if '(form NavID)' != '')
+                par2 = '/1Ci/dmerce?qTemplate=Navigation,list&NavID=(form NavID)'
+                (endif)
+
+                (if '(form SubnavID)' != '')
+                par2 = '/1Ci/dmerce?qTemplate=Navigation,list&NavID=(sql Subnavigation.NavigationID "ID*(form SubnavID)")'
+                (endif)
+
+                window.opener.parent.content.location.href= par
+                window.opener.parent.menue.location.href= par2
+                self.close();
+}
+//-->
+</script>
+</head>
+<body onload="javascript:do_check()">
+</body>
+</html>

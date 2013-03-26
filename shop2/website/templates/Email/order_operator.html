@@ -1,0 +1,43 @@
+(repeat "OrderInfo.ID*(form OrderInfoID)")
+
+
+Hallo (sql Operator.FirstName "ID*1") (sql Operator.LastName "ID*1"),
+
+es wurden soeben folgende Artikel in Ihrem Online-Shop von (sql Operator.Company "ID*1") bestellt:
+
+(repeat "BasketContents.SessionId*'(sql OrderInfo.SessionId)':BasketContents.ArtID*Article.ID")
+
+(sqlf BasketContents.Qty)x (sql Article.Name)
+Artikel Nummer (sql Article.ArtNo)
+===============================================
+Einzelpreis: (sqlf Article.PriceGross "Article.ID*(sql BasketContents.ArtID)") EUR
+Gesamtpreis: (sqlf BasketContents.PriceGross) EUR
+
+(endrepeat)
+
+Summe netto: (exec Merchant.Basket.GetSumNet sessionId='(sql OrderInfo.SessionId)',curr='EUR' cexe) EUR
+MwSt 16%: (exec Merchant.Basket.GetSumVAT sessionId='(sql OrderInfo.SessionId)',curr='EUR' cexe) EUR
+Summe brutto: (exec Merchant.Basket.GetSumGross sessionId='(sql OrderInfo.SessionId)',curr='EUR' cexe) EUR
+
+
+Der Kunde hat folgende Informationen &uuml;ber sich abgegeben:
+
+(sql OrderInfo.FirstName) (sql OrderInfo.LastName)
+
+(sql OrderInfo.Street)
+(sql OrderInfo.ZipCode) (sql OrderInfo.City)
+
+Telefon: (sql OrderInfo.Phone)
+Fax: (sql OrderInfo.Telefax)
+Mobile: (sql OrderInfo.Mobile)
+EMail: (sql OrderInfo.EMail)
+URL: (sql OrderInfo.URL)
+
+(if '(sql OrderInfo.Comment)' != '')
+Bemerkungen:
+(sql OrderInfo.Comment)
+(endif)
+
+
+Sie k&ouml;nnen die Bestelldaten unter Administration einsehen.
+(endrepeat)

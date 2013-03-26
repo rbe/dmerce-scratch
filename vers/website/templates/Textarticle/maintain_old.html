@@ -1,0 +1,230 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>Textarticle - Maintain</title>
+
+<script language="JavaScript" src="../../javascript/dmerce_textedit.js" type="text/javascript"></script>
+
+<script language="JavaScript">
+
+      <!--
+      var myFormName = "myForm";
+      //-->
+
+</script>
+
+</head>
+
+<body
+(if '(form Infenster)' == '1')
+onLoad="window.resizeTo(850,500)"
+(endif)
+bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+(repeat "Textarticle.ID*(form TextarticleID)")
+
+      <form method="post" action="/1Ci/dmerce" enctype="multipart/form-data" name="myForm">
+      <input type="hidden" name="qTemplate" value="Textarticle,maintain">
+      <input type="hidden" name="qUpdate" value="Textarticle">
+      <input type="hidden" name="Textarticle_ID" value="(sql Textarticle.ID)">
+      <input type="hidden" name="TextarticleID" value="(form TextarticleID)">
+      <input type="hidden" name="SubnavID" value="(form SubnavID)">
+      <input type="hidden" name="qTrigger" value="OS.File.Upload">
+      <input type="hidden" name="whereIam" value="(form whereIam)">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;(sql Wordlist.NameDE "ID*1")
+      (if '(form NavID)' != '')
+      > (sql Navigation.NameDE "ID*(form NavID)")
+      (endif)
+      (if '(form SubnavID)' != '')
+      > (sql Subnavigation.NameDE "ID*(form SubnavID)")
+      (endif)
+      (if '(form TextarticleID)' != '')
+      > (sql Textarticle.Head "ID*(form TextarticleID)")
+      (endif)
+      </td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+       <td valign="top">
+
+       (if '(sql Textarticle.Picture)' != '')
+       <img src="../pic/upload/(sql Textarticle.Picture)" width="100" border="0" alt=""><br>&nbsp;&nbsp;&nbsp;aktuelles Bild
+       (endif)
+
+       (if '(sql Textarticle.Picture)' == '')
+       <img src="/pic/x_nopic.gif" width="124" height="102" border="0" alt="">
+       (endif)
+
+       </td>
+       <td valign="top">
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+
+       <tr>
+       <td class="head12b" colspan="2"><input type="Text" name="Textarticle_Head" value="(sql Textarticle.Head)" size="80" class="input"></td>
+       </tr>
+
+       <tr>
+       <td class="head12b" colspan="2"><input type="Text" name="Textarticle_Subhead"  value="(sql Textarticle.Subhead)" size="80"  class="input"></td>
+       </tr>
+
+       <tr>
+       <td>
+
+<table width="70%" border="0" cellspacing="0" cellpadding="0" bgcolor="#C0C0C0" height="30">
+
+       <tr>
+       <td width="28" align="right"><a href="javascript:preview('Textarticle_Text',this.form);" onmouseover="window.defaultStatus='';window.status='Dokument in externem Fenster darstellen';return true"><img src="/pic/edit/view.gif" width="24" height="24" alt="Dokument in externem Fenster darstellen" border="0"></a></td>
+
+       <td><img src="/pic/edit/dummy.gif" widht="2"></td>
+
+       <td width="24"><a href="javascript:my_cut('Textarticle_Text')" onmouseover="window.defaultStatus='';window.status='Markierten Bereich ausschneiden';return true"><img src="/pic/edit/cut.gif" width="24" height="24" alt="Markierten Bereich ausschneiden" border="0"></a></td>
+
+       <td width="24"><a href="javascript:my_copy('Textarticle_Text')" onmouseover="window.defaultStatus='';window.status='Markierten Bereich kopieren';return true"><img src="/pic/edit/copy.gif" width="24" height="24" alt="Markierten Bereich kopieren" border="0"></a></td>
+
+<td width="24"><a href="javascript:my_paste('Textarticle_Text')" onmouseover="window.defaultStatus='';window.status='Hinter markiertem Bereich einf&uuml;gen';return true"><img src="/pic/edit/paste.gif" width="24" height="24" alt="Hinter markiertem Bereich einf&uuml;gen" border="0"></a></td>
+
+       <td><img src="/pic/edit/dummy.gif" widht="2"></td>
+
+       <td width="24"><a href="javascript:my_undo('Textarticle_Text')" onmouseover="window.defaultStatus='';window.status='Undo';return true"><img src="/pic/edit/undo.gif" width="24" height="24" alt="Undo" border="0"></a></td>
+
+       <td width="24"><a href="javascript:my_redo('Textarticle_Text')" onmouseover="window.defaultStatus='';window.status='Redo';return true"><img src="/pic/edit/redo.gif" width="24" height="24" alt="Redo" border="0"></a></td>
+
+       <td><img src="/pic/edit/dummy.gif" widht="2"></td>
+
+       <td width="24"><a href="javascript:auswahl('Textarticle_Text','b');" onmouseover="window.defaultStatus='';window.status='ausgew&auml;hlten Text im Fettdruck darstellen';return true"><img src="/pic/edit/bold.gif" width="24" height="24" alt="ausgew&auml;hlten Text im Fettdruck darstellen" border="0"></a></td>
+
+       <td width="24"><a href="javascript:auswahl('Textarticle_Text','i');" onmouseover="window.defaultStatus='';window.status='ausgew&auml;hlten Text kursiv darstellen';return true"><img src="/pic/edit/italic.gif" width="24" height="24" alt="ausgew&auml;hlten Text kursiv darstellen" border="0"></a></td>
+
+       <td width="24"><a href="javascript:auswahl('Textarticle_Text','u');" onmouseover="window.defaultStatus='';window.status='ausgew&auml;hlten Text unterstrichen darstellen';return true"><img src="/pic/edit/underline.gif" width="24" height="24" alt="ausgew&auml;hlten Text unterstrichen darstellen" border="0"></a></td>
+
+       <td><img src="/pic/edit/dummy.gif" widht="2"></td>
+
+<td width="24"><a href="javascript:auswahl('Textarticle_Text','left','div');" onmouseover="window.defaultStatus='';window.status='ausgew&auml;hlten Text linksb&uuml;ndig darstellen';return true"><img src="/pic/edit/left.gif" width="24" height="24" alt="ausgew&auml;hlten Text linksb&uuml;ndig darstellen" border="0"></a></td>
+
+       <td width="24"><a href="javascript:auswahl('Textarticle_Text','center','div');" onmouseover="window.defaultStatus='';window.status='ausgew&auml;hlten Text zentriert darstellen';return true"><img src="/pic/edit/center.gif" width="24" height="24" alt="ausgew&auml;hlten Text zentriert darstellen" border="0"></a></td>
+
+       <td width="24"><a href="javascript:auswahl('Textarticle_Text','right','div');" onmouseover="window.defaultStatus='';window.status='ausgew&auml;hlten Text rechtsb&uuml;ndig darstellen';return true"><img src="/pic/edit/right.gif" width="24" height="24" alt="ausgew&auml;hlten Text rechtsb&uuml;ndig darstellen" border="0"></a></td>
+
+       <td><img src="/pic/edit/dummy.gif" widht="2"></td>
+
+<td width="24"><a href="javascript:auswahl('Textarticle_Text','ul','list');" onmouseover="window.defaultStatus='';window.status='Unsortierte Liste erstellen';return true"><img src="/pic/edit/bullets.gif" width="24" height="24" alt="Unsortierte Liste erstellen" border="0"></a></td>
+
+       <td width="24"><a href="javascript:auswahl('Textarticle_Text','ol','list');" onmouseover="window.defaultStatus='';window.status='Sortierte Liste erstellen';return true"><img src="/pic/edit/numbered.gif" width="24" height="24" alt="Sortierte Liste erstellen" border="0"></a></td>
+
+       <td><img src="/pic/edit/dummy.gif" widht="2"></td>
+
+       <td width="24"><a href="javascript:auswahl('Textarticle_Text','h1','ret');" onmouseover="window.defaultStatus='';window.status='Markierten Text als Haupt&uuml;berschrift';return true"><img src="/pic/edit/h1.gif" width="24" height="24" alt="Markierten Text als Haupt&uuml;berschrift" border="0"></a></td>
+
+       <td width="24"><a href="javascript:auswahl('Textarticle_Text','h2','ret');" onmouseover="window.defaultStatus='';window.status='Markierten Text als Unter&uuml;berschrift';return true"><img src="/pic/edit/h2.gif" width="24" height="24" alt="Markierten Text als Unter&uuml;berschrift" border="0"></a></td>
+
+       <td width="24"><a href="javascript:auswahl('Textarticle_Text','h3','ret');" onmouseover="window.defaultStatus='';window.status='Markierten Text als Unterunter&uuml;berschrift';return true"><img src="/pic/edit/h3.gif" width="24" height="24" alt="Markierten Text als Unterunter&uuml;berschrift" border="0"></a></td>
+
+       <td><img src="/pic/edit/dummy.gif" widht="2"></td>
+
+       <td width="24"><a href="javascript:auswahl('Textarticle_Text','br','pre');" onmouseover="window.defaultStatus='';window.status='Am Ende des ausgew&auml;hlten Textes einen Zeilenumbruch einf&uuml;gen';return true"><img src="/pic/edit/tag_br.gif" width="24" height="24" alt="Am Ende des ausgew&auml;hlten Textes einen Zeilenumbruch einf&uuml;gen" border="0"></a></td>
+
+       <td width="24"><a href="javascript:auswahl('Textarticle_Text','p','pre');" onmouseover="window.defaultStatus='';window.status='Am Ende des ausgew&auml;hlten Textes einen Absatz einf&uuml;gen';return true"><img src="/pic/edit/tag_p.gif" width="24" height="24" alt="Am Ende des ausgew&auml;hlten Textes einen Absatz einf&uuml;gen" border="0"></a></td>
+
+       <td><img src="/pic/edit/dummy.gif" widht="2"></td>
+
+       <td width="28" align="left"><a href="javascript:auswahl('Textarticle_Text','a','lnk');" onmouseover="window.defaultStatus='';window.status='Markierten Text zu Hyperlink machen';return true"><img src="/pic/edit/url.gif" width="24" height="24" alt="Markierten Text zu Hyperlink machen" border="0"></a></td>
+
+
+       </tr>
+
+       <tr>
+       <td class="textarea" colspan="28"><textarea
+       onblur="window.status='';return true"
+       onKeyPress="storeCaret(this);checkMods(event,this.name);"
+       ONSELECT="storeCaret(this);"
+       ONCLICK="storeCaret(this);"
+       ONKEYUP="storeCaret(this);"
+       name="Textarticle_Text" rows="12" cols="71" wrap=virtual>(sql Textarticle.Text)</textarea></td>
+       </tr>
+
+</table>
+
+       </td>
+       </tr>
+
+       <tr>
+       <td><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td class="text9">M&ouml;chten Sie das aktuelle Bild &auml;ndern, dann laden Sie hier eine neue Bildatei (.jpg oder .gif) auf den Server. Achten Sie auf die Bildgr&ouml;&szlig;e.</td>
+       </tr>
+
+       <tr>
+       <td class="text9">Neues Bild hochladen:&nbsp;&nbsp;<input type="file" name="Textarticle_Picture" class="input"></td>
+       </tr>
+
+
+       <tr>
+       <td><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td class="text9">Klicken Sie auf [&uuml;bernehmen] um Ihre &Auml;nderungen zu speichern&nbsp;&nbsp;<input type="Submit" name="qButton" value="&uuml;bernehmen" class="submit">&nbsp;&nbsp;&nbsp;<input type="Button" name="Button" value="zur&uuml;ck" onClick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Textarticle,view&NavID=(form NavID)&TextarticleID=(sql Textarticle.ID)&qSuperSearch=Textarticle.ID*(sql Textarticle.ID)'" class="submit"></td>
+       </tr>
+
+       <tr>
+       <td><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+</form>
+
+(endrepeat)
+
+</body>
+
+</html>

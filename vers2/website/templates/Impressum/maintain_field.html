@@ -1,0 +1,81 @@
+<html>
+
+<head>
+
+<LINK rel="stylesheet" type="text/css" href="../../style_admin.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>Eigene Impressumdaten &auml;ndern</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>AKTION</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head8">&nbsp;&Auml;ndern der <b>eigenen</b> Impressumdaten.</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <form method="post" action="/1Ci/dmerce" name="myForm">
+      <input type="hidden" name="qTemplate" value="Impressum,close">
+      <input type="hidden" name="qUpdate" value="Imprintfields">
+      <input type="hidden" name="Imprintfields_ID" value="(form ID)">
+
+      <tr>
+      <td class="head8c">&nbsp;Name:</td>
+      <td class="head8">&nbsp;<input type="Text" name="Imprintfields_Name" class="input" size="35" value="(sql Imprintfields.Name "ID*(form ID)")"></td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;Inhalt:</td>
+      <td class="head8">&nbsp;<input type="Text" name="Imprintfields_Value" class="input" size="35" value="(sql Imprintfields.Value "ID*(form ID)")"></td>
+      </tr>
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="2" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="right" colspan="2"><input type="submit" class="submit" name="qButton" value="eintragen"></td>
+      </tr>
+
+</form>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+
+</body>
+
+</html>

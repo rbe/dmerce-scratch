@@ -1,0 +1,921 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<script language="JavaScript">
+        <!--
+        var X=100
+        var Y=160
+
+function NeuFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=450
+        myheight=450
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+   newWin = window.open(myurl,'Fenster',par);
+   newWin.focus();
+}
+
+//-->
+</script>
+
+<script language="JavaScript">
+<!--
+
+function do_kp(myfield) {
+        myelem=eval('document.myForm.'+myfield);
+
+        myelem.value = myelem.value.replace(/,/,'.');
+
+        if(isNaN(myelem.value) == true) {
+                alert(myelem.value + " ist keine Zahl!");
+                myelem.focus();
+                myelem.value = '';
+                return false;
+                }
+}
+
+//-->
+</script>
+
+<title>Objekt bearbeiten</title>
+
+</head>
+
+<body
+(if '(form Infenster)' == '1')
+onLoad="window.resizeTo(850,500)"
+(endif)
+bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+
+
+
+(repeat "Object.ID*(form ObjectID)")
+
+<form method="post" action="/1Ci/dmerce" name="myForm" enctype="multipart/form-data">
+<input type="hidden" name="qTemplate" value="(var qTemplate)">
+<input type="hidden" name="ObjectID" value="(form ObjectID)">
+<input type="hidden" name="SubgroupID" value="(form SubgroupID)">
+<input type="hidden" name="GroupID" value="(form GroupID)">
+<input type="hidden" name="qUpdate" value="Object">
+<input type="hidden" name="Object_ID" value="(sql Object.ID)">
+<input type="hidden" name="Object_SubNavID" value="(sql Object.SubNavID)">
+<input type="hidden" name="qTrigger" value="HTML.PlainToHTML.FormatFields,OS.File.Upload">
+<input type="hidden" name="qFieldsConvertPlainToHTML" value="Object_Location, Object_DetailDescription, Object_ShortDescription, Object_Misc">
+<input type="hidden" name="qUploadKeepRealname" value="Object_Picture">
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">
+      (sql Wordlist.NameDE "ID*2")
+      (if '(form GroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Object,intro&GroupID=(form GroupID)">(sql HeadNav.NameDE "ID*(form GroupID)")</a>
+      (endif)
+      (if '(form SubgroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Object,list&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)">(sql SubNav.NameDE "ID*(form SubgroupID)")</a>
+      (endif)
+      (if '(form ObjectID)' != '')
+      > (sql Object.Name "ID*(form ObjectID)")</a>
+      (endif)
+      </td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+       <td width="20%" valign="top">
+
+<table width="100%" border="0" cellspacing="3" cellpadding="0">
+
+       <tr>
+       <td colspan="2">
+
+       (if '(sql Object.Picture)' != '')
+       <img src="../pic/upload/(sql Object.Picture)" border="0"><br><img src="../pic/dummy.gif" border="0" width="1" height="20" border="0"><br>&nbsp;aktuelles Bild
+       (else)
+       <img src="/pic/x_nopic.gif" width="124" height="102" border="0" alt=""><br><img src="../pic/dummy.gif" border="0" width="1" height="30" border="0">
+       (endif)
+
+       </td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" border="0" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td class="head8" colspan="2">Zum &auml;ndern eines Bildes, laden Sie bitte eine neue Bildatei (.jpg oder .gif) auf den Server. Achten Sie auf die Bildgr&ouml;&szlig;e.<br><img src="../pic/dummy.gif" border="0" width="1" height="10" border="0"><br><input type="file" name="Object_Picture" class="input"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" border="0" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td class="head8"><a class="head9" href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a></td>
+       <td><a class="head8" href="javascript:window.print()">[- Angebot drucken]</a></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" border="0" width="1" height="10" border="0"></td>
+       </tr>
+
+       <tr>
+       <td width="22" class="head8"><a href="/1Ci/dmerce?qTemplate=Object,pic_list&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&ObjectID=(form ObjectID)"><img src="../../pic/view.gif" width="16" height="16" border="0" alt="[weitere Ansichten]"></a></td>
+       <td class="head8"><a href="/1Ci/dmerce?qTemplate=Object,pic_list&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&ObjectID=(form ObjectID)">[Weitere Bilder hinzuf&uuml;gen/&auml;ndern]</td>
+       </tr>
+
+
+       (if (sql count ObjectPicture "(form ObjectID)*ObjectPicture.ObjectID") != 0)
+
+       (repeat "ObjectPicture.ObjectID*(form ObjectID)")
+
+       <tr>
+       <td class="head8"><a href="javascript:NeuFenster('/1Ci/dmerce?qTemplate=Object,zoom&ObjectPictureID=(sql ObjectPicture.ID)')"><img src="../../pic/picavailable.gif" width="14" height="16" border="0" alt="{Ansicht: (sql ObjectPicture.Name)]"></a></td>
+       <td class="head8"><a href="javascript:NeuFenster('/1Ci/dmerce?qTemplate=Object,zoom&ObjectPictureID=(sql ObjectPicture.ID)')">(sql ObjectPicture.Name)</a></td>
+       </tr>
+
+       (endrepeat)
+
+       (endif)
+
+</table>
+
+
+       <td width="80%" valign="top">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+
+      <tr>
+      <td class="head11" colspan="2"><b>&nbsp;(sql Object.Name) bearbeiten</b></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td valign="top">
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Anmerkung</td>
+      <td colspan="2">Felder ohne Eingabe werden nicht angezeigt!<br><br>Um ein Feld zu löschen müssen Sie eine Leertaste in das leere Feld eintragen.</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+
+      <tr>
+      <td class="head11" colspan="3"><b>Angaben zum Angebot</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" width="25%" valign="top">Angebotsart</td>
+      <td class="head9">
+
+      (if '(sql Object.ForRent)' == '1')
+      <input type="radio" Name="Object_ForRent" value="1" checked> Vermietung
+      <input type="radio" Name="Object_ForRent" value="0"> Verkauf<br>
+      <input type="radio" Name="Object_ForRent" value="2"> Verpachtung
+      <input type="radio" Name="Object_ForRent" value="3"> keine Angabe
+      (endif)
+
+      (if '(sql Object.ForRent)' == '0')
+      <input type="radio" Name="Object_ForRent" value="1"> Vermietung
+      <input type="radio" Name="Object_ForRent" value="0" checked> Verkauf<br>
+      <input type="radio" Name="Object_ForRent" value="2"> Verpachtung
+      <input type="radio" Name="Object_ForRent" value="3"> keine Angabe
+      (endif)
+
+      (if '(sql Object.ForRent)' == '2')
+      <input type="radio" Name="Object_ForRent" value="1"> Vermietung
+      <input type="radio" Name="Object_ForRent" value="0"> Verkauf<br>
+      <input type="radio" Name="Object_ForRent" value="2" checked> Verpachtung
+      <input type="radio" Name="Object_ForRent" value="3"> keine Angabe
+      (endif)
+
+      (if '(sql Object.ForRent)' == '3')
+      <input type="radio" Name="Object_ForRent" value="1"> Vermietung
+      <input type="radio" Name="Object_ForRent" value="0"> Verkauf<br>
+      <input type="radio" Name="Object_ForRent" value="2"> Verpachtung
+      <input type="radio" Name="Object_ForRent" value="3" checked> keine Angabe
+      (endif)
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" width="25%">Nutzungsart</td>
+      <td class="head9">
+
+      (if '(sql Object.ForPrivate)' == '1')
+      <input type="radio" Name="Object_ForPrivate" value="1" checked> privat
+      <input type="radio" Name="Object_ForPrivate" value="0"> gewerblich
+      <input type="radio" Name="Object_ForPrivate" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.ForPrivate)' == '0')
+      <input type="radio" Name="Object_ForPrivate" value="1"> privat
+      <input type="radio" Name="Object_ForPrivate" value="0" checked> gewerblich
+      <input type="radio" Name="Object_ForPrivate" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.ForPrivate)' == '2')
+      <input type="radio" Name="Object_ForPrivate" value="1"> privat
+      <input type="radio" Name="Object_ForPrivate" value="0"> gewerblich
+      <input type="radio" Name="Object_ForPrivate" value="2" checked> keine Angabe
+      (endif)
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%"><b>Angebot Nummer</b></td>
+      <td class="head9"><input type="Text" name="Object_OfferNo" size="35" value="(sql Object.OfferNo)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%"><b>Angebot Bezeichung</b></td>
+      <td><input type="Text" name="Object_Name" size="35" value="(sql Object.Name)" class="input"></td>
+      </tr>
+
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2" align="right"><a href="#save" class="text8">zum speichern</a></td>
+      </tr>
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+
+      <tr>
+      <td class="head11" colspan="3"><b>Standort</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Land</td>
+      <td><input type="Text" name="Object_Country" size="35" value="(sql Object.Country)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">PLZ - Ort</td>
+      <td><input type="Text" name="Object_ZipCode" size="5" value="(sql Object.ZipCode)" class="input">&nbsp;-&nbsp;<input type="Text" name="Object_City" size="25" value="(sql Object.City)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Strasse</td>
+      <td><input type="Text" name="Object_Street" size="35" value="(sql Object.Street)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Lage</td>
+      <td><textarea name="Object_Location" cols="33" rows="5" class="textarea">(exec HTML.HTMLToPlain.Format '(sql Object.Location)' cexe)</textarea></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Kurzbeschreibung</td>
+      <td><textarea name="Object_ShortDescription" cols="33" rows="5" class="textarea">(exec HTML.HTMLToPlain.Format '(sql Object.ShortDescription)' cexe)</textarea></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Detailbeschreibung</td>
+      <td><textarea name="Object_DetailDescription" cols="33" rows="10" class="textarea">(exec HTML.HTMLToPlain.Format '(sql Object.DetailDescription)' cexe)</textarea></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+
+      <tr>
+      <td class="head11" colspan="3"><b>Angaben zum Objekt</b></td>
+      <td>&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Wohnfl&auml;che</td>
+      <td><input type="Text" name="Object_LivingSpace" size="10" value="(sql Object.LivingSpace)" class="input" onChange="do_kp(this.name)">&nbsp;m&sup2;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Nutzfl&auml;che</td>
+      <td><input type="Text" name="Object_FloorSpace" size="10" value="(sql Object.FloorSpace)"  class="input" onChange="do_kp(this.name)">&nbsp;m&sup2;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Gewerbefl&auml;che</td>
+      <td><input type="Text" name="Object_CommercialSpace" size="10" value="(sql Object.CommercialSpace)" class="input" onChange="do_kp(this.name)">&nbsp;m&sup2;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Grundst&uuml;cksfl&auml;che</td>
+      <td><input type="Text" name="Object_RealtySpace" size="10" value="(sql Object.RealtySpace)" class="input" onChange="do_kp(this.name)">&nbsp;m&sup2;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Gesamtfl&auml;che</td>
+      <td><input type="Text" name="Object_TotalSpace" size="10" value="(sql Object.TotalSpace)" class="input" onChange="do_kp(this.name)">&nbsp;m&sup2;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Zimmer</td>
+      <td><input type="Text" name="Object_Rooms" size="5" value="(sql Object.Rooms)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Courtage</td>
+      <td><input type="Text" name="Object_Brokerage" size="35" value="(sql Object.Brokerage)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Kaltmiete f&uuml;r Mietobjekt</td>
+      <td><input type="Text" name="Object_Rent1" size="35" value="(sql Object.Rent1)" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Nebenkosten ca.</td>
+      <td><input type="Text" name="Object_ExtraCharges" size="35" value="(sql Object.ExtraCharges)" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Hausgeld ca.</td>
+      <td><input type="Text" name="Object_ReserveFunds" size="35" value="(sql Object.ReserveFunds)" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Warmmiete ca.</td>
+      <td><input type="Text" name="Object_Rent2" size="35" value="(sql Object.Rent2)" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Mietkaution</td>
+      <td><input type="Text" name="Object_Caution" size="35" value="(sql Object.Caution)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Kaufpreis</td>
+      <td><input type="Text" name="Object_Price" size="35" value="(sql Object.Price)" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Renditeerwartung</td>
+      <td><input type="Text" name="Object_Yield" size="35" value="(sql Object.Yield)" class="input"></td>
+      </tr>
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+      <tr>
+      <td class="head11" colspan="3"><b>Weitere Daten</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Haustyp</td>
+      <td><input type="Text" name="Object_BuildingType" size="35" value="(sql Object.BuildingType)" class="input"></td>
+      </tr>
+
+
+      <tr>
+      <td class="head9c" width="35%">Etagenlage (1./2. Etage)</td>
+      <td><input type="Text" name="Object_Level" size="35" value="(sql Object.Level)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Etagenanzahl gesamt</td>
+      <td><input type="Text" name="Object_LevelAlltogether" size="5" value="(sql Object.LevelAlltogether)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Vermietbare Fl&auml;che</td>
+      <td><input type="Text" name="Object_RentSpace" size="10" value="(sql Object.RentSpace)" class="input" onChange="do_kp(this.name)">&nbsp;m&sup2;</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Mieteinnahmen ca</td>
+      <td><input type="Text" name="Object_RentReturns" size="35" value="(sql Object.RentReturns)" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Aufzug</td>
+      <td>
+
+      (if '(sql Object.Elevator)' == '1')
+      <input type="radio" Name="Object_Elevator" value="1" checked> Ja
+      <input type="radio" Name="Object_Elevator" value="0"> Nein
+      <input type="radio" Name="Object_Elevator" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.Elevator)' == '0')
+      <input type="radio" Name="Object_Elevator" value="1"> Ja
+      <input type="radio" Name="Object_Elevator" value="0" checked> Nein
+      <input type="radio" Name="Object_Elevator" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.Elevator)' == '2')
+      <input type="radio" Name="Object_Elevator" value="1"> Ja
+      <input type="radio" Name="Object_Elevator" value="0"> Nein
+      <input type="radio" Name="Object_Elevator" value="2" checked> keine Angabe
+      (endif)
+
+      </td>
+      </tr>
+
+
+      <tr>
+      <td class="head9c" width="35%">Unterkellert</td>
+      <td>
+
+      (if '(sql Object.Basement)' == '1')
+      <input type="radio" Name="Object_Basement" value="1" checked> Ja
+      <input type="radio" Name="Object_Basement" value="0"> Nein
+      <input type="radio" Name="Object_Basement" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.Basement)' == '0')
+      <input type="radio" Name="Object_Basement" value="1"> Ja
+      <input type="radio" Name="Object_Basement" value="0" checked> Nein
+      <input type="radio" Name="Object_Basement" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.Basement)' == '2')
+      <input type="radio" Name="Object_Basement" value="1"> Ja
+      <input type="radio" Name="Object_Basement" value="0"> Nein
+      <input type="radio" Name="Object_Basement" value="2" checked> keine Angabe
+      (endif)
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Keller</td>
+      <td><input type="Text" name="Object_BasementDescription" size="35" value="(sql Object.BasementDescription)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Ausstattung</td>
+      <td><input type="Text" name="Object_Configuration" size="35" value="(sql Object.Configuration)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Einbauk&uuml;che</td>
+      <td>
+
+      (if '(sql Object.FittedKitchen)' == '0')
+      <input type="radio" Name="Object_FittedKitchen" value="1"> Ja
+      <input type="radio" Name="Object_FittedKitchen" value="0" checked> Nein
+      <input type="radio" Name="Object_FittedKitchen" value="3"> keine Angabe<br>
+      <input type="radio" Name="Object_FittedKitchen" value="2"> &Uuml;bernahmem&ouml;glichkeit
+      (endif)
+
+      (if '(sql Object.FittedKitchen)' == '1')
+      <input type="radio" Name="Object_FittedKitchen" value="1" checked> Ja
+      <input type="radio" Name="Object_FittedKitchen" value="0"> Nein
+      <input type="radio" Name="Object_FittedKitchen" value="3"> keine Angabe<br>
+      <input type="radio" Name="Object_FittedKitchen" value="2"> &Uuml;bernahmem&ouml;glichkeit
+      (endif)
+
+      (if '(sql Object.FittedKitchen)' == '2')
+      <input type="radio" Name="Object_FittedKitchen" value="1"> Ja
+      <input type="radio" Name="Object_FittedKitchen" value="0"> Nein
+      <input type="radio" Name="Object_FittedKitchen" value="3"> keine Angabe<br>
+      <input type="radio" Name="Object_FittedKitchen" value="2" checked> &Uuml;bernahmem&ouml;glichkeit
+      (endif)
+
+      (if '(sql Object.FittedKitchen)' == '3')
+      <input type="radio" Name="Object_FittedKitchen" value="1"> Ja
+      <input type="radio" Name="Object_FittedKitchen" value="0"> Nein
+      <input type="radio" Name="Object_FittedKitchen" value="3" checked> keine Angabe<br>
+      <input type="radio" Name="Object_FittedKitchen" value="2"> &Uuml;bernahmem&ouml;glichkeit
+      (endif)
+
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Fussboden</td>
+      <td><input type="Text" name="Object_Floor" size="35" value="(sql Object.Floor)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Hausmeister</td>
+      <td>
+
+      (if '(sql Object.Caretaker)' == '0')
+      <input type="radio" Name="Object_Caretaker" value="1"> Ja
+      <input type="radio" Name="Object_Caretaker" value="0" checked> Nein
+      <input type="radio" Name="Object_Caretaker" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.Caretaker)' == '1')
+      <input type="radio" Name="Object_Caretaker" value="1" checked> Ja
+      <input type="radio" Name="Object_Caretaker" value="0"> Nein
+      <input type="radio" Name="Object_Caretaker" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.Caretaker)' == '2')
+      <input type="radio" Name="Object_Caretaker" value="1"> Ja
+      <input type="radio" Name="Object_Caretaker" value="0"> Nein
+      <input type="radio" Name="Object_Caretaker" value="2" checked> keine Angabe
+      (endif)
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Hausverwaltung</td>
+      <td><input type="Text" name="Object_PropertyManagement" size="35" value="(sql Object.PropertyManagement)" class="input"></td>
+      </tr>
+
+
+      <tr>
+      <td class="head9c" width="35%">Garten</td>
+      <td>
+
+      (if '(sql Object.Garden)' == '1')
+      <input type="radio" Name="Object_Garden" value="1" checked> Ja
+      <input type="radio" Name="Object_Garden" value="0"> Nein
+      <input type="radio" Name="Object_Garden" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.Garden)' == '0')
+      <input type="radio" Name="Object_Garden" value="1"> Ja
+      <input type="radio" Name="Object_Garden" value="0" checked> Nein
+      <input type="radio" Name="Object_Garden" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.Garden)' == '2')
+      <input type="radio" Name="Object_Garden" value="1"> Ja
+      <input type="radio" Name="Object_Garden" value="0"> Nein
+      <input type="radio" Name="Object_Garden" value="2" checked> keine Angabe
+      (endif)
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Gartenmitbenutzung</td>
+      <td>
+
+      (if '(sql Object.GardenUse)' == '1')
+      <input type="radio" Name="Object_GardenUse" value="1" checked> Ja
+      <input type="radio" Name="Object_GardenUse" value="0"> Nein
+      <input type="radio" Name="Object_GardenUse" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.GardenUse)' == '0')
+      <input type="radio" Name="Object_GardenUse" value="1"> Ja
+      <input type="radio" Name="Object_GardenUse" value="0" checked> Nein
+      <input type="radio" Name="Object_GardenUse" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.GardenUse)' == '2')
+      <input type="radio" Name="Object_GardenUse" value="1"> Ja
+      <input type="radio" Name="Object_GardenUse" value="0"> Nein
+      <input type="radio" Name="Object_GardenUse" value="2" checked> keine Angabe
+      (endif)
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Balkon/Terrasse</td>
+      <td>
+
+      (if '(sql Object.BalconyTerrace)' == '1')
+      <input type="radio" Name="Object_BalconyTerrace" value="1" checked> Ja
+      <input type="radio" Name="Object_BalconyTerrace" value="0"> Nein
+      <input type="radio" Name="Object_BalconyTerrace" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.BalconyTerrace)' == '0')
+      <input type="radio" Name="Object_BalconyTerrace" value="1"> Ja
+      <input type="radio" Name="Object_BalconyTerrace" value="0" checked> Nein
+      <input type="radio" Name="Object_BalconyTerrace" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.BalconyTerrace)' == '2')
+      <input type="radio" Name="Object_BalconyTerrace" value="1"> Ja
+      <input type="radio" Name="Object_BalconyTerrace" value="0"> Nein
+      <input type="radio" Name="Object_BalconyTerrace" value="2" checked> keine Angabe
+      (endif)
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Garage/Stellplatz</td>
+      <td>
+
+      (if '(sql Object.GarageParking)' == '1')
+      <input type="radio" Name="Object_GarageParking" value="1" checked> Ja
+      <input type="radio" Name="Object_GarageParking" value="0"> Nein
+      <input type="radio" Name="Object_GarageParking" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.GarageParking)' == '0')
+      <input type="radio" Name="Object_GarageParking" value="1"> Ja
+      <input type="radio" Name="Object_GarageParking" value="0" checked> Nein
+      <input type="radio" Name="Object_GarageParking" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.GarageParking)' == '2')
+      <input type="radio" Name="Object_GarageParking" value="1"> Ja
+      <input type="radio" Name="Object_GarageParking" value="0"> Nein
+      <input type="radio" Name="Object_GarageParking" value="2" checked> keine Angabe
+      (endif)
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Garage/Stellplatz-Miete</td>
+      <td><input type="Text" name="Object_ParkingRent" size="35" value="(sql Object.ParkingRent)" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Garage/Stellplatz-Kaufpreis</td>
+      <td><input type="Text" name="Object_ParkingPrice" size="35" value="(sql Object.ParkingPrice)" class="input" onChange="do_kp(this.name)">&nbsp;EUR</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Anzahl der Parkfl&auml;chen</td>
+      <td><input type="Text" name="Object_ParkingLots" size="10" value="(sql Object.ParkingLots)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Heizungsart</td>
+      <td><input type="Text" name="Object_Heating" size="35" value="(sql Object.Heating)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Baujahr</td>
+      <td><input type="Text" name="Object_ConstructionYear" size="5" value="(sql Object.ConstructionYear)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Objektzustand</td>
+      <td><input type="Text" name="Object_ObjectStatus" size="35" value="(sql Object.ObjectStatus)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">WBS erforderlich</td>
+      <td>
+
+      (if '(sql Object.WBSNeeded)' == '1')
+      <input type="radio" Name="Object_WBSNeeded" value="1" checked> Ja
+      <input type="radio" Name="Object_WBSNeeded" value="0"> Nein
+      <input type="radio" Name="Object_WBSNeeded" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.WBSNeeded)' == '0')
+      <input type="radio" Name="Object_WBSNeeded" value="1"> Ja
+      <input type="radio" Name="Object_WBSNeeded" value="0" checked> Nein
+      <input type="radio" Name="Object_WBSNeeded" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.WBSNeeded)' == '2')
+      <input type="radio" Name="Object_WBSNeeded" value="1"> Ja
+      <input type="radio" Name="Object_WBSNeeded" value="0"> Nein
+      <input type="radio" Name="Object_WBSNeeded" value="2" checked> keine Angabe
+      (endif)
+
+      </td>
+      </tr>
+
+
+      <tr>
+      <td class="head9c" width="35%">Haustiere</td>
+      <td>
+
+      (if '(sql Object.Pets)' == '1')
+      <input type="radio" Name="Object_Pets" value="1" checked> Ja
+      <input type="radio" Name="Object_Pets" value="0"> Nein
+      <input type="radio" Name="Object_Pets" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.Pets)' == '0')
+      <input type="radio" Name="Object_Pets" value="1"> Ja
+      <input type="radio" Name="Object_Pets" value="0" checked> Nein
+      <input type="radio" Name="Object_Pets" value="2"> keine Angabe
+      (endif)
+
+      (if '(sql Object.Pets)' == '2')
+      <input type="radio" Name="Object_Pets" value="1"> Ja
+      <input type="radio" Name="Object_Pets" value="0"> Nein
+      <input type="radio" Name="Object_Pets" value="2" checked> keine Angabe
+      (endif)
+
+      </td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Bezugsfrei ab</td>
+      <td><input type="Text" name="Object_RentFrom" size="10" value="(sql Object.RentFrom)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Fussweg zu &Ouml;ffentl. Verkehrsmitteln</td>
+      <td><input type="Text" name="Object_WalkBusMin" size="5" value="(sql Object.WalkBusMin)" class="input">&nbsp;Min</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Fahrzeit zum n&auml;chsten Bahnhof</td>
+      <td><input type="Text" name="Object_TrainMin" size="5" value="(sql Object.TrainMin)" class="input">&nbsp;Min</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Fahrzeit zur n&auml;chsten BAB</td>
+      <td><input type="Text" name="Object_AutobahnMin" size="5" value="(sql Object.AutobahnMin)" class="input">&nbsp;Min</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Sonstiges</td>
+      <td><textarea name="Object_Misc" cols="33" rows="10" class="textarea">(exec HTML.HTMLToPlain.Format '(sql Object.Misc)' cexe)</textarea></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+
+      <tr>
+      <td class="head11" colspan="3"><b>Kontaktdaten</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Referenznummer</td>
+      <td><input type="Text" name="Object_RefNo" size="35" value="(sql Object.RefNo)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%"><b>Besichtigungstermin</b></td>
+      <td><input type="Text" name="Object_Visit" size="35" value="(sql Object.Visit)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Kontaktperson</td>
+      <td><input type="Text" name="Object_ContactPerson" size="35" value="(sql Object.ContactPerson)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Telefon</td>
+      <td><input type="Text" name="Object_Phone" size="35" value="(sql Object.Phone)" class="input"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+      </tr>
+
+      <tr>
+      <td class="head11" colspan="3"><b>Highlightartikel</b></td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%" valign="top">Anmerkung</td>
+      <td>Geben Sie hier die Postionsnummer f&uuml;r die Reihenfolge der Anzeige des Objekts ein.<br><br>
+       <b>Tip:</b> Die Positionen f&uuml;r die aktiven Highlightartikel k&ouml;nnen Sie auch &uuml;ber die &Uuml;bersicht in Administration Highlightliste komfortabel bearbeiten.</td>
+      </tr>
+
+      <tr>
+      <td class="head9c" width="35%">Highlight Position</td>
+      <td><input type="Text" name="Object_Highlight" size="3" value="(sql Object.Highlight)" class="input"></td>
+      </tr>
+
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+      </tr>
+
+</table>
+
+       </td>
+       </tr>
+
+</table>
+
+       </td>
+       </tr>
+
+
+       <tr>
+       <a name="save"></a>
+       <td colspan="2" align="right">Klicken Sie auf [&uuml;bernehmen] um Ihre &Auml;nderungen zu speichern&nbsp;&nbsp;<input type="Submit" name="qButton" value="&uuml;bernehmen" class="submit">&nbsp;&nbsp;&nbsp;
+       (if '(form QSS)' == '')
+       <input type="Button" name="Button" value="zur&uuml;ck" onClick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Object,view&ObjectID=(sql Object.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)'" class="submit">
+       (endif)
+       (if '(form QSS)' != '')
+<input type="Button" name="Button" value="zur&uuml;ck" onClick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Object,list&ObjectID=(sql Object.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&qSuperSearch=(form QSS)'" class="submit">
+       (endif)
+       </td></td>
+       </tr>
+
+</table>
+
+
+</form>
+
+(endrepeat)
+
+
+
+</body>
+</html>

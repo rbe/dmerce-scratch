@@ -1,0 +1,230 @@
+<html>
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<meta http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<META HTTP-EQUIV="PRAGMA" CONTENT="no-cache">
+<META NAME="REPLY-TO" CONTENT="webmaster@1Ci.de">
+
+<title>Kontaktformular</title>
+
+<script language="JavaScript">
+  <!--
+   function chkFormular()
+  {
+
+   if(document.myForm.Name.value == "")
+    {
+     alert("Bitte Ihren Namen eingeben!");
+     document.myForm.Name.focus();
+     return false;
+    }
+
+   if(document.myForm.Email.value.indexOf('@') == -1)
+    {
+     alert("Sie haben keine gültige Email-Adresse eingegeben!");
+     document.myForm.Email.focus();
+     return false;
+    }
+
+  }
+  //-->
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;Kontakt</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      (repeat "Contact.ID*1")
+
+      <tr>
+      (if '(sql Contact.Picture)' != '')
+      <td width="25%" valign="top"><img src="../pic/upload/(sql Contact.Picture)" hspace="6" border="0"></td>
+      (else)
+      <td width="25%" valign="top">&nbsp;</td>
+      (endif)
+
+      <td width="75%" valign="top">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td width="90%" class="head12b"><b>(sql Wordlist.NameDE "ID*6")</b></td>
+      <td align="right" nowrap><a class="head8" href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+
+      (if (get-myvar login) == 1)
+      &nbsp;<a class="head8" href="/1Ci/dmerce?qTemplate=Contact,maintain"><img src="../../pic/edit.gif" width="16" height="17" border="0" alt="[Bearbeiten]"></a>
+      (else)
+      &nbsp;
+      (endif)
+
+      </td>
+      </tr>
+
+      <tr>
+      <td colspan="3">&nbsp;</td>
+      </tr>
+
+</table>
+
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+      <form action="/1Ci/dmerce" method="post" name="myForm" onsubmit="return chkFormular()">
+      <input type="hidden" name="qTemplate" value="Contact,contact_okay">
+      <input type="hidden" name="ToAdress" value="(sql Contact.Email)">
+      <input type="hidden" name="qTrigger" value="HTML.PlainToHTML.FormatFields">
+      <input type="hidden" name="qFieldsConvertPlainToHTML" value="Sonstiges">
+
+      <tr>
+      <td class="head8c">Name:</td>
+      <td width="80%" colspan="2"><input class="input" type="Text" name="Name" size="42" class="input"></td>
+      </tr>
+
+      (if (sql Contact.FirstName) == 1)
+      <tr>
+      <td class="head8c">Vorname:</td>
+      <td width="80%" colspan="2"><input class="input" type="Text" name="Vorname" size="42" class="input"></td>
+      </tr>
+      (endif)
+
+      (if (sql Contact.Street) == 1)
+      <tr>
+      <td class="head8c">Strasse:</td>
+      <td width="80%" colspan="2"><input class="input" type="Text" name="Strasse" size="42" class="input"></td>
+      </tr>
+      (endif)
+
+      (if (sql Contact.ZipCode) == 1)
+      <tr>
+      <td class="head8c">PLZ - Ort:</td>
+      <td width="80%" colspan="2"><input class="input" type="Text" name="PLZ" size="5" class="input">&nbsp;&nbsp;<input class="input" type="Text" name="Ort" size="35"></td>
+      </tr>
+      (endif)
+
+      (if (sql Contact.Phone) == 1)
+      <tr>
+      <td class="head8c">Tel.:</td>
+      <td width="80%" colspan="2"><input class="input" type="Text" name="Telefon" size="42" class="input"></td>
+      </tr>
+      (endif)
+
+      (if (sql Contact.Fax) == 1)
+      <tr>
+      <td class="head8c">Fax:</td>
+      <td width="80%" colspan="2"><input class="input" type="Text" name="Fax" size="42" class="input"></td>
+      </tr>
+      (endif)
+
+      <tr>
+      <td class="head8c">Email:</td>
+      <td width="80%" colspan="2"><input class="input" type="Text" name="Email" size="42" class="input"></td>
+      </tr>
+
+      (if (sql Contact.Wish) == 1)
+      <tr>
+      <td class="head8c" valign="top">Ihr Wunsch:</td>
+      <td width="80%" colspan="2">
+      (repeat "ID]0{ID")
+      <input class="input" type="Radio" name="Wunsch" value="(sql Contactwish.Name)"> (sql Contactwish.Name)<br>
+      (endrepeat)
+      </td>
+      </tr>
+      (endif)
+
+      (if (sql Contact.Offer) == 1)
+      (if '(form OfferID)' == '')
+      <tr>
+      <td class="head8c">zu Angebot:</td>
+      <td width="80%" colspan="2">
+      <select name="ArticleInfo" size="1">
+      <option value="">bitte w&auml;hlen</option>
+      (repeat "SubNavID!*0|HeadNavID!*0{OfferNo")
+      <option value="(sql Object.OfferNo) - (sql Object.Name)">Nr.:(sql Object.OfferNo) - (sql Object.Name)</option>
+      (endrepeat)
+      </select>
+      </td>
+      </tr>
+      (endif)
+      (if '(form OfferID)' != '')
+      <tr>
+      <td class="head8c">zu Angebot:</td>
+      <td width="80%" colspan="2">
+      <select name="ArticleInfo" size="1">
+      <option value="">bitte w&auml;hlen</option>
+      (repeat "SubNavID!*0|HeadNavID!*0{OfferNo")
+
+      (if (sql Object.ID) == (form OfferID))
+      <option value="(sql Object.OfferNo) - (sql Object.Name)" selected>Nr.:(sql Object.OfferNo) - (sql Object.Name)</option>
+      (endif)
+
+      (if (sql Object.ID) != (form OfferID))
+      <option value="(sql Object.OfferNo) - (sql Object.Name)">Nr.:(sql Object.OfferNo) - (sql Object.Name)</option>
+      (endif)
+
+      (endrepeat)
+      </select>
+      </td>
+      </tr>
+      (endif)
+      (endif)
+
+      (if (sql Contact.Other) == 1)
+      <tr>
+      <td class="head8c" valign="top">Sonstiges:</td>
+      <td width="80%" colspan="2"><textarea name="Sonstiges" cols="42" rows="10" class="textarea"></textarea></td>
+      </tr>
+      (endif)
+
+      <tr>
+      <td colspan="3" align="center"><input class="submit" type="Submit" name="ignore_me_send" value="(sql Wordlist.NameDE "ID*7")"></td>
+      </tr>
+
+</form>
+
+</table>
+
+      </td>
+      </tr>
+
+      (endrepeat)
+</table>
+
+
+
+</body>
+</html>

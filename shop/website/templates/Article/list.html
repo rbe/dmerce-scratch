@@ -1,0 +1,376 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>(var SERVER_NAME) - Liste</title>
+
+</head>
+
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<!-- Where I am -->
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;&nbsp;(sql Wordlist.NameDE "ID*2")
+      (if '(form GroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Article,intro&GroupID=(form GroupID)">(sql HeadNav.NameDE "ID*(form GroupID)")</a>
+      (endif)
+      (if '(form SubgroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Article,list&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)&qSuperSearch=Article.SubNavID*(form SubgroupID)">(sql SubNav.NameDE "ID*(form SubgroupID)")</a>
+      (endif)
+      </td>
+      <td width="30%" class="head8" align="right">
+
+      [(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<!-- Table Master / Picture -->
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+(repeat "SubNav.ID*(form SubgroupID)")
+
+      <tr>
+      (if '(sql Textarticle.Picture "ID*(sql SubNav.TextID)")' != '')
+      <td width="20%" valign="top"><img src="../pic/upload/(sql Textarticle.Picture "ID*(sql SubNav.TextID)")" border="0">
+
+<!-- Table Master / Picture / Basket Content 0 -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" border="0" width="1" height="50" border="0"></td>
+       </tr>
+
+       <tr>
+       <td class="head8"><img src="../../pic/haken.gif" width="13" height="13" border="0" alt="[Warenkorb]"></td>
+       <td class="head8"><a class="head8" href="/1Ci/dmerce?qTemplate=Basket,basket_show">[Aktueller Warenkorb]</a></td>
+       </tr>
+
+       <tr>
+       <td class="head8">&nbsp;</td>
+       <td class="head8"><a class="head8" href="/1Ci/dmerce?qTemplate=Basket,basket_show">
+
+       (if (sql count BasketContents "SessionId*'(var qs)'") == 0)
+       INHALT: <font size="+1">0</font>&nbsp;Artikel
+       (else)
+       INHALT: <b><font size="+1">(exec Merchant.Basket.SumQty cexe)</font></b>&nbsp;Artikel</a>
+       (endif)
+
+       </td>
+       </tr>
+</table>
+
+      </td>
+
+      (else)
+
+      <td width="20%" valign="top"><img src="../pic/dummy.gif" border="0" width="100" height="50" border="0">&nbsp;
+
+
+<!-- Table Master / Picture / Basket Content >0 -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" border="0" width="1" height="50" border="0"></td>
+       </tr>
+
+       <tr>
+       <td class="head8"><img src="../../pic/haken.gif" width="13" height="13" border="0" alt="[Warenkorb]"></td>
+       <td class="head8"><a class="head8" href="/1Ci/dmerce?qTemplate=Basket,basket_show">[Aktueller Warenkorb]</a></td>
+       </tr>
+
+       <tr>
+       <td class="head8">&nbsp;</td>
+       <td class="head8"><a class="head8" href="/1Ci/dmerce?qTemplate=Basket,basket_show">
+
+       (if (sql count BasketContents "SessionId*'(var qs)'") == 0)
+       INHALT: <font size="+1">0</font>&nbsp;Artikel
+       (else)
+       INHALT: <b><font size="+1">(exec Merchant.Basket.SumQty cexe)</font></b>&nbsp;Artikel</a>
+       (endif)
+
+       </td>
+       </tr>
+</table>
+
+
+      </td>
+      (endif)
+
+
+
+      <td width="80%" valign="top">
+
+
+<!-- Table Head & Content -->
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td class="head12b">(sql Textarticle.Head "ID*(sql SubNav.TextID)")</td>
+      <td class="head8" align="right" valign="top"><a href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+
+      (if (get-myvar login) == 1)
+      &nbsp;<a href="/1Ci/dmerce?qTemplate=Article,list_maintain&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)&qSuperSearch=(var qSuperSearch)"><img src="../../pic/edit.gif" width="16" height="16" border="0" alt="[Diese Seite bearbeiten]"></a>
+      (endif)
+      </td>
+      </tr>
+
+      <tr>
+      <td width="90%">(sql Textarticle.Text "ID*(sql SubNav.TextID)")</td>
+      <td width="10%">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+      </tr>
+(endrepeat)
+
+      <tr>
+      <td valign="top">
+
+
+
+
+
+(if (sql count Article "(var qSuperSearch)") == 0)
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+
+    <tr>
+    <td class="head11" valign="top"><b>Ihre Suche f&uuml;hrte zu keinem Ergebnis.</b></td>
+    </tr>
+
+    <tr>
+    <td><img src="../../pic/001_1pixelgrau.gif" width="100%" height="1" border="0"></td>
+    </tr>
+
+    <tr>
+    <td class="text10">F&uuml;r Ihre Suchkriterien sind momentan keine Angebote vorhanden.<br>Bitte gehen sie <a href="javascript:history.back(-1)"><b>zur&uuml;ck</b></a> und ver&auml;ndern Sie Ihre Suchkriterien.</td>
+    </tr>
+
+    <tr>
+    <td><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+    </tr>
+
+</table>
+(endif)
+
+
+(if (sql count Article "(var qSuperSearch)") > 0)
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+    <tr>
+    <td class="head11" valign="top"><b><font color="#B80000">(sql count Article "(var qSuperSearch)")</font> Artikel gefunden.</b></td>
+    </tr>
+
+    <tr>
+    <td><img src="../../pic/001_1pixelgrau.gif" width="100%" height="1" border="0"></td>
+    </tr>
+
+
+    <tr>
+    <td><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+    </tr>
+
+</table>
+
+
+(repeat "(var qSuperSearch):(form showing){ID desc@10")
+
+      (if (sql index1) == 1)
+      (set-myvar firstrow (sql Article.ID))
+      (endif)
+
+<a name="#(sql Article.ID)">
+
+      (if (sql Article.new) == 1)
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="/pic/upload/(sql Wordlist.NameDE "ID*53")" alt="" border="0"></td>
+      <td>&nbsp;</td>
+      </tr>
+
+</table>
+
+      (endif)
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td class="head11" valign="top">&nbsp;<a class="head11" href="/1Ci/dmerce?qTemplate=Article,view&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)"><b>(sql Article.Name)</b></a></td>
+
+      <td align="right" class="head11">
+      (if (get-myvar login) == 1)
+      &nbsp;<a href="/1Ci/dmerce?qTemplate=Article,maintain&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&QSS=(var qSuperSearch)"><img src="../../pic/edit.gif" width="16" height="17" border="0" alt="[(sql Article.Name) editieren]">&nbsp;</a>
+      (else)
+      &nbsp;
+      (endif)
+
+      </td>
+      </tr>
+
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td width="160" rowspan="6" valign="top" align="center">
+
+      (if '(sql Article.Picture)' != '')
+      <a href="/1Ci/dmerce?qTemplate=Article,view&ArticleID=(sql Article.ID)&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)"><img src="../pic/upload/(sql Article.Picture)" width="100" hspace="5" vspace="5" border="0" alt="Details und Bild anzeigen"></a>
+
+      (else)
+
+      <img src="../../pic/dummy.gif" width="100" height="2" border="0" hspace="5" vspace="5">
+
+      (endif)
+
+      </td>
+
+
+      (if '(sql Article.ShortDescription 1)' != '')
+      <td colspan="2" valign="top">(sql Article.ShortDescription)</td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td class="head8c" width="65%" align="right">Verkaufspreis inkl. (sqlf Article.TaxRate 2)% MwSt.</td>
+      <td class="head9c" width="15%" align="right"><b>(sqlf Article.PriceGross 2)&nbsp;&#8364;&nbsp;</b></td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td align="right" ><a href="/1Ci/dmerce?qTemplate=(var qTemplate)&qTrigger=Merchant.Basket.PutArticle&artId=(sql Article.ID)&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&QSS=(var qSuperSearch)&qSuperSearch=(var qSuperSearch)#(sql Article.ID)">Artikel in den<br>Warenkorb legen</a>
+      <td align="right" width="40"><a href="/1Ci/dmerce?qTemplate=(var qTemplate)&qTrigger=Merchant.Basket.PutArticle&artId=(sql Article.ID)&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&QSS=(var qSuperSearch)&qSuperSearch=(var qSuperSearch)#(sql Article.ID)"><img src="/pic/upload/(sql Wordlist.NameDE "ID*52")" alt="" border="0" alt="(sql Article.Name) in den Warenkorb legen"></a></td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/001_1pixelgrau.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      (else)
+
+      <td colspan="2" valign="top">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td class="head8c" width="65%" align="right">Verkaufspreis inkl. MwSt.</td>
+      <td class="head9c" width="15%" align="right">(sqlf Article.PriceGross 2)&nbsp;&#8364;</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="2">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td align="right" ><a href="/1Ci/dmerce?qTemplate=(var qTemplate)&qTrigger=Merchant.Basket.PutArticle&artId=(sql Article.ID)&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&QSS=(var qSuperSearch)&qSuperSearch=(var qSuperSearch)#(sql Article.ID)">Artikel in den<br>Warenkorb legen</a>
+      <td align="right" width="40"><a href="/1Ci/dmerce?qTemplate=(var qTemplate)&qTrigger=Merchant.Basket.PutArticle&artId=(sql Article.ID)&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&QSS=(var qSuperSearch)&qSuperSearch=(var qSuperSearch)#(sql Article.ID)"><img src="/pic/upload/(sql Wordlist.NameDE "ID*52")" alt="" border="0" alt="(sql Article.Name) in den Warenkorb legen"></a></td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+      </tr>
+
+      <tr>
+      <td colspan="3"><img src="../../pic/001_1pixelgrau.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      (endif)
+
+      <tr>
+      <td colspan="3"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+      </tr>
+
+
+</table>
+
+
+(set-myvar lastrow (sql Article.ID))
+
+(endrepeat)
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+       <tr>
+       (if (sql count Article "(var qSuperSearch):Article.ID](get-myvar firstrow)") > 0)
+       <td class="head11" align="center" width="50%">&nbsp;<a class="head11" href="javascript:history.back(-1)">[zeige vorherige 10]</a>
+       </td>
+       (endif)
+
+       (if (sql count Article "(var qSuperSearch):Article.ID[(get-myvar lastrow)") > 0)
+       <td class="head11" align="center" width="50%">&nbsp;<a class="head11" href="/1Ci/dmerce?qTemplate=(var qTemplate)&qSuperSearch=(var qSuperSearch)&showing=ID[(get-myvar lastrow)&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)">[zeige n&auml;chste 10]</a>
+       </td>
+       (endif)
+       </tr>
+
+</table>
+
+
+(endif)
+
+</body>
+
+</html>

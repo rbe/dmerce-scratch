@@ -1,0 +1,283 @@
+<html>
+
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<META HTTP-EQUIV="PRAGMA" CONTENT="no-cache">
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<script language="JavaScript">
+        <!--
+        var X=100
+        var Y=160
+
+function NeuFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=450
+        myheight=450
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+   newWin = window.open(myurl,'Fenster',par);
+   newWin.focus();
+}
+
+//-->
+</script>
+
+<script language="JavaScript">
+<!--
+
+function chkFormular() {
+
+    if(document.myForm.AGBgelesen.checked == false)
+    {
+     alert("Bitte bestätigen Sie das Sie die AGB akzeptieren !!");
+     document.myForm.AGBgelesen.focus();
+     return false;
+     }
+    else
+     return true;
+}
+
+//-->
+</script>
+
+<title>MEN&Uuml; - [Immo] by 1Ci GmbH(R)</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;Warenkorb > Bestellen</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+       <tr>
+
+       <td width="20%" valign="top">&nbsp;</td>
+
+       <td width="80%" valign="top">
+
+       <table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+       <tr>
+       <td colspan="5" class="head12b">Warenkorb best&auml;tigen</td>
+       </tr>
+
+       <tr>
+       <td colspan="5" class="head11">(exec Merchant.Basket.SumQty cexe) Artikel im Warenkorb</td>
+       </tr>
+
+       <tr>
+       <td colspan="5">
+
+       <table width="100%" border="0" cellpadding="2" cellspacing="1">
+
+       <tr>
+       <td width="14%" class="basketback" align="center">Menge</td>
+       <td width="20%" class="basketback">&nbsp;Art.-Nr.</td>
+       <td width="30%" class="basketback">&nbsp;Bezeichnung</td>
+       <td width="18%" class="basketback" align="right">Einzelpreis&nbsp;</td>
+       <td width="18%" class="basketback" align="right">Gesamtpreis&nbsp;</td>
+       </tr>
+
+       (repeat "BasketContents.SessionId*'(var qs)':BasketContents.ArtID*Article.ID")
+
+       <tr
+       (if (sql index) %2 == 1)
+       bgcolor="#EFEFEF"
+       (endif)
+       (if (sql index) %2 != 1)
+       bgcolor="#DEDFDE"
+       (endif)
+       >
+       <td class="basket" valign="top" align="center" name="(sql Article.ID)">(sqlf BasketContents.Qty 0-3)</td>
+       <td valign="top">&nbsp;(sql Article.ArtNo)</td>
+       <td valign="top">&nbsp;(sql Article.Name)</td>
+
+       <td valign="top" class="content" align="right">netto&nbsp;(sqlf Article.PriceNet "ID*(sql BasketContents.ArtID)" 2)&nbsp;&#8364;&nbsp;<br>brutto&nbsp;(sqlf Article.PriceGross "ID*(sql BasketContents.ArtID)" 2)&nbsp;&#8364;&nbsp;</td>
+
+       <td valign="top" class="content" align="right">netto&nbsp;(sqlf BasketContents.PriceNet 2)&nbsp;&#8364;&nbsp;<br>brutto&nbsp;(sqlf BasketContents.PriceGross 2)&nbsp;&#8364;&nbsp;</td>
+       </tr>
+
+       (endrepeat)
+
+       </table>
+
+       </td>
+       </tr>
+
+       <tr>
+       <td width="60%" colspan="3">&nbsp;</td>
+       <td width="20%" class="basketback" align="right" valign="top">Summe netto:&nbsp;</td>
+       <td width="20%" class="basketmoney" align="right" valign="top"><b>(exec Merchant.Basket.GetSumNet curr='EUR' cexe)&nbsp;&#8364;&nbsp;</b></td>
+       </tr>
+
+       <tr>
+       <td colspan="3">&nbsp;</td>
+       <td class="basketback" align="right" valign="top">MwSt. 16%:&nbsp;</td>
+       <td class="basketmoney" align="right" valign="top"><b>(exec Merchant.Basket.GetSumVAT curr='EUR' cexe)&nbsp;&#8364;&nbsp;</b></td>
+       </tr>
+
+       <tr>
+       <td colspan="3">&nbsp;</td>
+       <td class="basketback" align="right" valign="top">Summe brutto:&nbsp;</td>
+       <td class="basketmoney" align="right" valign="top"><b>(exec Merchant.Basket.GetSumGross curr='EUR' cexe)&nbsp;&#8364;&nbsp;</b></td>
+       </tr>
+
+       <tr>
+       <td colspan="5"><img src="../../pic/dummy.gif" width="13" height="13" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="5" class="head11">Ihre Daten:</td>
+       </tr>
+
+       <tr>
+       <td colspan="5">
+
+       <table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+       <tr>
+       <td class="head8c" width="30%">Vorname:</td>
+       <td width="70%">&nbsp;(form FirstName)</td>
+       </tr>
+
+
+       <tr>
+       <td class="head8c">Name:</td>
+       <td>&nbsp;(form LastName)</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">Strasse:</td>
+       <td>&nbsp;(form Street)</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">PLZ/Ort:</td>
+       <td>&nbsp;(form ZipCode)&nbsp;(form City)</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">Telefon:</td>
+       <td>&nbsp;(form Phone)</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">Telefax:</td>
+       <td>&nbsp;(form Telefax)</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">Mobil:</td>
+       <td>&nbsp;(form Mobile)</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">Email:</td>
+       <td>&nbsp;(form Email)</td>
+       </tr>
+
+       <tr>
+       <td class="head8c">URL:</td>
+       <td>&nbsp;(form URL)</td>
+       </tr>
+
+       <tr>
+       <td class="head8c" valign="top">Bemerkung:</td>
+       <td>&nbsp;(form Comment)</td>
+       </tr>
+
+       </table>
+
+       </td>
+       </tr>
+
+       <tr>
+       <td colspan="5">
+
+       <form action="/1Ci/dmerce" method="post" name="myForm" onsubmit="return chkFormular();">
+       <input type="hidden" name="qTemplate" value="Basket,order_okay">
+       <input type="hidden" name="qInsert" value="OrderInfo">
+       <input type="hidden" name="OrderInfo_ID" value="(sql dboid OrderInfo)">
+       <input type="hidden" name="OrderInfoID" value="(sql dboid OrderInfo)">
+       <input type="hidden" name="OrderInfo_LastName" value="(form LastName)">
+       <input type="hidden" name="OrderInfo_FirstName" value="(form FirstName)">
+       <input type="hidden" name="OrderInfo_Email" value="(form Email)">
+       <input type="hidden" name="OrderInfo_Street" value="(form Street)">
+       <input type="hidden" name="OrderInfo_ZipCode" value="(form ZipCode)">
+       <input type="hidden" name="OrderInfo_City" value="(form City)">
+       <input type="hidden" name="OrderInfo_Phone" value="(form Phone)">
+       <input type="hidden" name="OrderInfo_Telefax" value="(form Telefax)">
+       <input type="hidden" name="OrderInfo_URL" value="(form URL)">
+       <input type="hidden" name="OrderInfo_Comment" value="(form Comment)">
+       <input type="hidden" name="OrderInfo_BasketSum" value="(exec Merchant.Basket.GetSumGross curr='EUR' cexe)">
+       <input type="hidden" name="OrderInfo_SessionId" value="(var qs)">
+
+       <table width="600" border="0" cellpadding="2" cellspacing="1">
+
+       <tr>
+       <td class="head8">&nbsp;Ich habe die <a class="basket" href="/1Ci/dmerce?qTemplate=Textarticle,agb&back=1"><b>AGB</b></a> gelesen habe und akzeptiere diese. <input type="Checkbox" name="AGBgelesen" value="1"> </td>
+       </tr>
+
+       <tr>
+       <td><img src="../../pic/dummy.gif" width="13" height="13" border="0"></td>
+       </tr>
+
+       <tr>
+       <td align="right" valign="top">&nbsp;<input type="Button" value="Nein, &auml;ndern" onclick="javascript:history.back(-1)">&nbsp;&nbsp;&nbsp;<input type="Submit" name="Button" value="Ja, die Bestellung ist korrekt!"></td>
+       </tr>
+
+       </table>
+
+       </form>
+
+       </td>
+       </tr>
+
+       </table>
+
+       </td>
+       </tr>
+
+</table>
+
+
+
+</body>
+</html>

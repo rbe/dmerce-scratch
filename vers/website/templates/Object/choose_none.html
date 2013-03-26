@@ -1,0 +1,131 @@
+<html>
+
+<head>
+
+<LINK rel="stylesheet" type="text/css" href="../../style_admin.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>Zuordnen des Angebotes - [Immo] by 1Ci GmbH(R)</title>
+
+<script language="JavaScript">
+<!--
+var X=200
+var Y=250
+
+function NavFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=500
+        myheight=500
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+newWin = window.open(myurl,'Fenster2',par);
+newWin.focus();
+}
+
+//-->
+</script>
+
+</head>
+
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+      <form method="post" action="/1Ci/dmerce">
+      <input type="hidden" name="qTemplate" value="Object,closenone">
+      <input type="hidden" name="ObjectID" value="(form ObjectID)">
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>AKTION</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head8">&nbsp;Bitte w&auml;hlen Sie eine Subnavigation.</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td align="center" class="menutop">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td class="head8c" colspan="2"><b>Angebot "(sql Object.Head "ID*(form ObjectID)")" zuordnen</b></td>
+      </tr>
+
+      <tr>
+      <td class="head8" colspan="2">Bitte w&auml;hlen Sie Subnavigation der Sie das nicht zugeordnete Angebot "(sql Object.Head "ID*(form ObjectID)")" zuordnen wollen.</td>
+      </tr>
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+      <tr>
+      <td valign="top">Unterpunkt</td>
+      <td class="head8" valign="top" align="center">
+      <select name="SubgroupID" size="1">
+      <option value="">bitte w&auml;hlen</option>
+      (repeat "SubNav.ID]0{HeadNavID")
+      <option value="(sql SubNav.ID)">(sql HeadNav.NameDE "ID*(sql SubNav.HeadNavID)") --> (sql SubNav.NameDE)</option>
+      (endif)
+      (endrepeat)
+      </select>
+      </td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+      <tr>
+      <td valign="top">&nbsp;</td>
+      <td class="head8" valign="top" align="right"><input type="Submit" class="button" name="qButton" value="zuordnen">
+      </td>
+      </tr>
+
+(endrepeat)
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+
+</body>
+
+</html>

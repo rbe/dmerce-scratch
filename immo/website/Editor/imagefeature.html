@@ -1,0 +1,248 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+<BODY bgColor=silver onload="strgstarten()">
+<BASEFONT FACE="Arial,Helvetica" SIZE=1>
+<FORM name="ImageFeature">
+		<TABLE border=0 cellPadding=1 cellSpacing=1 width=450 height=78 style="HEIGHT: 78px; WIDTH: 450px">		
+        <TR>
+            <TD width=60>
+            <FONT face="" size=1>Ausrichtung:</FONT></TD>
+            <TD width=120> <SELECT 
+            id="ImageAlign" style="HEIGHT: 22px; WIDTH: 75px">
+                    <OPTION selected>
+                    <OPTION value=top>oben
+                    <OPTION value=middle>mitte
+                    <OPTION value=bottom>unten
+                    <OPTION value=left>links
+                    <OPTION value=right>rechts
+                    </SELECT>
+                 </TD>
+            <TD width=60><FONT face="" size=1>H&ouml;he:</FONT></TD>
+            <TD> 
+            <INPUT id="ImageHeight" size=5 >&nbsp; <FONT 
+            size=1>Pixel</FONT></TD>
+				</TR>
+        <TR>
+            <TD>
+            <P><FONT face="" size=1>Rahmen:</FONT></P></TD>
+            <TD>
+            <INPUT id="ImageBorder" size=5 ></TD>
+            <TD><FONT size=1>Breite:</FONT></TD>
+            <TD> 
+            <INPUT id="ImageWidth" size=5 >&nbsp; <FONT 
+            size=1>Pixel</FONT>
+            <FONT size=2><STRONG></STRONG></FONT></TD></TR>
+    <TR></TR>
+        <TR>
+            <TD>
+            <P><FONT face="" size=1>Rand (vertikal):</FONT></P></TD>
+            <TD>
+            <INPUT id="ImageVSpace" size=5 ></TD>
+            <TD><FONT size=1>Gr&ouml;&szlig;e &auml;ndern:</FONT></TD>
+            <TD> 
+            <INPUT id="ImageSize" size=5>&nbsp; <FONT 
+            size=1>Prozent</FONT> 
+            <FONT size=2><STRONG></STRONG></FONT></TD></TR>
+    <TR></TR>
+    <TR></TR>
+        <TR>
+            <TD>
+            <P><FONT face="" size=1>Rand (horizontal):</FONT></P></TD>
+            <TD>
+            <INPUT id="ImageHSpace" size=5>&nbsp;&nbsp;</TD>
+    <TR></TR>
+        <TR>
+            <TD>
+            <P><FONT face="" size=1>Alt:</FONT></P></TD>
+            <TD colspan=4>
+            <INPUT id="ImageAlt" size=5 style="HEIGHT: 22px; WIDTH: 234px"></TD>
+            <TD></TD>
+            <TD>&nbsp;&nbsp; 
+            <FONT size=2><STRONG></STRONG></FONT></TD></TR>
+    <TR></TR>
+        <TR>
+            <TD valign=top>
+            <P><FONT face="" size=1>Dateiname:</FONT></P></TD>
+            <TD colspan=4>
+            <INPUT id="ImageSRC" size=5 style="HEIGHT: 22px; WIDTH: 234px"></td>
+         <TR>
+            <TD valign=top colspan=5>
+            <FONT face="" size=2><b>Bei Kombination von Internet/Intranet-Anwendungen:</b><br>
+            L&ouml;schen Sie den Servernamen, so dass Sie 
+            folgenden Eintrag erhalten: 
+            <center><STRONG>/images/bild.gif</STRONG></center></FONT></TD>
+            <TD></TD>
+            <TD>&nbsp;&nbsp; 
+            <FONT size=2><STRONG></STRONG></FONT></TD></TR>
+    <TR></TR>
+		</TABLE>
+<HR>
+    <TR></TR>
+
+    <TR>
+        <TD colSpan = 2>
+
+<TABLE border=0 cellPadding=1 cellSpacing=1 width=336 align=left height=28 style="HEIGHT: 28px; WIDTH: 336px">
+    <TBODY>
+    
+    <TR>
+        <TD width=90% align=right><INPUT id="btSave" type=button value=OK onClick='FormatImage(1)' style="WIDTH: 80px"> 
+</BASEFONT> 
+            </TD>      
+        <TD><INPUT id="btPreview" type=button value="&Uuml;bernehmen" onClick='FormatImage(0)' style="WIDTH: 100px"></TD>        
+        <TD>
+            <P><INPUT id="btCancel" type=button value="Abbrechen" onClick='Cancel()' style="WIDTH: 80px"></P></TD></TR></TBODY></TABLE>&nbsp; 
+</BASEFONT>
+<P>
+<INPUT type=hidden id="btinit" onClick='Init()' style="LEFT: 313px; TOP: 248px"> </FORM>
+
+<script language="javascript">
+<!--
+function right(e) {
+	if (document.layers && (e.which==3 || e.which==2))  {
+		window.status="NO RIGHT CLICK ALLOWED!";
+		return false;
+	}
+	else if (document.all && (event.button==2 || event.button==3)) {
+		window.status="NO RIGHT CLICK ALLOWED!";
+		openclosewindow();
+		return false;
+	}
+}
+
+function openclosewindow() {
+	var windownews=window.open("", "", "status=no,location=no,toolbar=no,menubar=no,resizable=no,scrollbars=no,width=50,height=50,top=20000,left=200");
+	windownews.close();
+}
+
+if (document.all) {
+	document.onmouseup=right;
+	window.onmouseup=right;
+}
+if (document.layers) {
+	document.captureEvents(Event.MOUSEDOWN);
+	document.onmousedown=right;
+}
+
+function zeige_taste(e){
+  if(window.Event) {
+    if(e.modifiers & Event.CONTROL_MASK)
+      aktion()
+  }
+  else
+    if(event.ctrlKey)
+      aktion()
+}
+
+
+function aktion(){
+  alert("Die [Strg]-Taste steht nicht zur Verf\xFCgung.");
+}
+
+function strgstarten() {
+  if(window.Event)
+	document.captureEvents(Event.KEYDOWN);
+	document.onkeydown = zeige_taste;
+}
+
+//-->
+</script>
+<SCRIPT language="JAVASCRIPT">
+<!--
+	
+	var objRange=null;
+	var objDialogWindow=null;
+	var sImageWidth="";
+	var sImageHeight="";
+	var sImageAlign="";
+	var sImageVSpace="";
+	var sImageHSpace="";
+	var sImageBorder="";		
+	var sImageAlt="";		
+	var sImageSRC="";		
+	
+	function Init()
+		{						
+			objRange=window.opener.objImage;
+												
+			sImageAlign=objRange.getAttribute("align");
+			sImageVSpace=objRange.getAttribute("vspace");
+			sImageHSpace=objRange.getAttribute("hspace");
+			sImageWidth=objRange.getAttribute("width");
+			sImageHeight=objRange.getAttribute("height");
+			sImageBorder=objRange.getAttribute("border");
+			sImageAlt=objRange.getAttribute("alt");						  
+			sImageSRC=objRange.getAttribute("src");						  
+
+			ImageFeature.ImageAlign.value=sImageAlign;
+		  ImageFeature.ImageVSpace.value=sImageVSpace;
+		  ImageFeature.ImageHSpace.value=sImageHSpace;
+		  ImageFeature.ImageWidth.value=sImageWidth;
+		  ImageFeature.ImageHeight.value=sImageHeight;	 
+		  ImageFeature.ImageAlt.value=sImageAlt;		 
+		  ImageFeature.ImageSRC.value=sImageSRC;		 
+		  ImageFeature.ImageBorder.value=sImageBorder;
+		}
+		 
+	function Cancel()
+		{
+		 	objRange.setAttribute("align",sImageAlign);
+		 	objRange.setAttribute("vspace",sImageVSpace);
+		 	objRange.setAttribute("hspace",sImageHSpace);
+		 	objRange.setAttribute("height",sImageHeight);
+		 	objRange.setAttribute("width",sImageWidth);
+		 	objRange.setAttribute("alt",sImageAlt);
+		 	objRange.setAttribute("src",sImageSRC);
+		 	objRange.setAttribute("border",sImageBorder);
+		 	
+			window.close();
+		}
+		
+	function FormatImage(iClose)
+		{var sImageAlign=ImageFeature.ImageAlign.value;
+		 var sImageVSpace=ImageFeature.ImageVSpace.value;
+		 var sImageHSpace=ImageFeature.ImageHSpace.value;
+		 var sImageWidth=ImageFeature.ImageWidth.value;
+		 var sImageHeight=ImageFeature.ImageHeight.value;	 
+		 var sImageAlt=ImageFeature.ImageAlt.value;		 
+		 var sImageSRC=ImageFeature.ImageSRC.value;		 
+		 var sImageBorder=ImageFeature.ImageBorder.value;
+		 var sImageSize=ImageFeature.ImageSize.value;
+		 var iImageSize=0;	
+		 var iImageWidth=0;
+		 var iImageHeight=0;
+
+		 	if (isNaN(sImageSize) == false)		 			 			 	
+		 		{
+		 			iImageSize=Number(sImageSize);
+		 			if (iImageSize > 0)
+		 				{
+		 					iImageWidth=Number(sImageWidth);
+		 					iImageHeight=Number(sImageHeight);
+		 					iImageWidth=iImageWidth*iImageSize/100;
+		 					iImageHeight=iImageHeight*iImageSize/100;
+		 					sImageWidth=String(iImageWidth);
+		 					sImageHeight=String(iImageHeight);
+		 				}
+		 		}
+		 	
+		 	objRange.setAttribute("border",sImageBorder);		 			
+			objRange.setAttribute("alt",sImageAlt);
+			objRange.setAttribute("src",sImageSRC);
+			objRange.setAttribute("height",sImageHeight);
+			objRange.setAttribute("width",sImageWidth);					
+			objRange.setAttribute("vspace",sImageVSpace);	 		 			
+		 	objRange.setAttribute("hspace",sImageHSpace);		
+		 	objRange.setAttribute("align",sImageAlign);		 			
+
+			if (iClose == 1) window.close(); 						
+		}
+	
+	
+//-->
+</SCRIPT></P>
+ 
+</BODY>
+</HTML>

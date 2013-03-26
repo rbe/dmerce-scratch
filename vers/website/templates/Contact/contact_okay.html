@@ -1,0 +1,106 @@
+<html>
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<meta http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<META HTTP-EQUIV="PRAGMA" CONTENT="no-cache">
+<META NAME="REPLY-TO" CONTENT="webmaster@1Ci.de">
+
+<title>Kontaktformular - Erfolgreich abgeschickt</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<!--
+(exec Messaging.Email.Send template='Email,contact',toAddr='(form ToAdress)',fromAddr='contact@(var SERVER_NAME)',subject='Kontaktaufnahme',Name='(form Name)',Vorname='(form Vorname)',Strasse='(form Strasse)',PLZ='(form PLZ)',Ort='(form Ort)',Telefon='(form Telefon)',Fax='(form Fax)',Email='(form Email)',Wunsch='(form Wunsch)',ArticleInfo='(form ArticleInfo)',Sonstiges='(form Sonstiges)' cexe)
+-->
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;Kontakt</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      (repeat "Contact.ID*1")
+
+      <tr>
+      (if '(sql Contact.Picture)' != '')
+      <td width="25%" valign="top"><img src="../pic/upload/(sql Contact.Picture)" hspace="6" border="0"></td>
+      (else)
+      <td width="25%" valign="top">&nbsp;</td>
+      (endif)
+
+      (endrepeat)
+
+      <td width="75%" valign="top">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td width="90%" class="head12b"><b>Erfolgreich abgeschickt</b></td>
+      <td align="right" nowrap><a class="head8" href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+
+      &nbsp;
+
+      </td>
+      </tr>
+
+</table>
+
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td class="head11" colspan="3">Vielen Dank</td>
+      </tr>
+
+      <tr>
+      <td colspan="3">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td colspan="3">Wir haben Ihre Anfrage erhalten und werden uns so schnell wie m&ouml;glich mit Ihnen in Verbindung setzen.</td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+
+
+</body>
+</html>

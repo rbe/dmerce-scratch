@@ -1,0 +1,81 @@
+<html>
+
+<head>
+
+<LINK rel="stylesheet" type="text/css" href="../../style_admin.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>BEARBEITEN einer Warengruppe - [Immo] by 1Ci GmbH(R)</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+
+      <tr>
+      <td class="nav10blue">&nbsp;<b>&Uuml;bersicht</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="head8">&nbsp;bestehende Warengruppen:</td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td align="center" class="menutop">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <tr>
+      <td class="head8c">Bezeichnung:</td>
+      <td class="head8c" align="center">Aktion:</td>
+      </tr>
+
+      (repeat "ClassOfGoods.ID]0{ClassOfGoods.Name")
+
+      <tr>
+      <td class="head8">(sql ClassOfGoods.Name)</td>
+      <td class="head8" align="center">
+      <a class="head8" href="/1Ci/dmerce?qTemplate=Article,maintain_classofgoods&Template=Navigation,closenav&ClassOfGoodsID=(sql ClassOfGoods.ID)&Infenster=1">[bearbeiten]</a>
+      </td>
+      </tr>
+
+      (endrepeat)
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+
+</body>
+
+</html>

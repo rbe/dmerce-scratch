@@ -1,0 +1,19 @@
+<html>
+<head>
+
+(set-myvar Jetzt (exec Time.Conversion.Calc timestamp=1 cexe))
+(set-myvar n (sql dboid job_(who ID)))
+
+<script language="JavaScript">
+<!--
+function do_check() {
+
+                par = '/1Ci/dmerce?qTemplate=Index,start&qInsert=Job&Job_Titel=Arbeitsbeginn&Job_Status=100&Job_Customer=1Ci GmbH&Job_Start=(exec Time.Conversion.UnixToLocal secs=(get-myvar Jetzt),format='%H:%M' cexe)&Job_Orderflag=1&Job_Gflag=(get-myvar n)&qUpdate=temp&qUpdateWhere=User*(who ID)&temp_t=(get-myvar n)&Button=yes'
+                window.parent.location.href= par
+}
+//-->
+</script>
+</head>
+<body onload="javascript:do_check()">
+</body>
+</html>

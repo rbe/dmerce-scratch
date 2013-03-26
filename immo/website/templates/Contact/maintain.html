@@ -1,0 +1,331 @@
+<html>
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<meta http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<META HTTP-EQUIV="PRAGMA" CONTENT="no-cache">
+<META NAME="REPLY-TO" CONTENT="webmaster@1Ci.de">
+
+
+<title>Kontaktformular - Bearbeiten</title>
+
+<script language="JavaScript">
+<!--
+var X=100
+var Y=160
+
+function NeuFenster(myurl) {
+        // Fenster in einer bestimmten Breite und an einer durch mouseDown definierten Position öffnen
+        mywidth=400
+        myheight=280
+         {
+                 par = '"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,copyhistory=0,width=' + mywidth + ',height=' + myheight + '"'
+        }
+newWin = window.open(myurl,'Fenster',par);
+newWin.focus();
+}
+
+//-->
+</script>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      (repeat "Contact.ID*1")
+
+      <form method="post" action="/1Ci/dmerce" enctype="multipart/form-data">
+      <input type="hidden" name="qTemplate" value="Contact,maintain">
+      <input type="hidden" name="qUpdate" value="Contact">
+      <input type="hidden" name="Contact_ID" value="Contact.ID*1">
+      <input type="hidden" name="qTrigger" value="OS.File.Upload">
+      <input type="hidden" name="qUploadKeepRealname" value="Contact_Picture">
+
+      <tr>
+      (if '(sql Contact.Picture)' != '')
+      <td width="25%" valign="top"><img src="../pic/upload/(sql Contact.Picture)" hspace="6" border="0"><br>&nbsp;&nbsp;&nbsp;aktuelles Bild</td>
+      (else)
+      <td width="25%" valign="top"><img src="/pic/x_nopic.gif" width="124" height="102" border="0" alt=""></td>
+      (endif)
+
+      <td width="75%" valign="top">
+
+<table width="100%"  border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td colspan="3" class="head12b"><b>(sql Wordlist.NameDE "ID*6")</b>&nbsp;&nbsp;<a href="#" onClick="javascript:NeuFenster('/1Ci/dmerce?qTemplate=Navigation,maintain_wordlist&WordlistID=6&Template=(var qTemplate)')"><img src="../../pic/edit.gif" width="16" height="17" border="0" alt="Bearbeiten">&nbsp;</a></td>
+      </tr>
+
+      <tr>
+      <td colspan="3">&nbsp;</td>
+      </tr>
+
+
+      <tr>
+      <td>Pflichtfeld</td>
+      <td class="head8c">Name:</td>
+      <td class="input"><input type="Text" name="2_Name" size="42" class="input"></td>
+      </tr>
+
+
+      <tr>
+      <td>
+      (if (sql Contact.FirstName) == 1)
+      <input type="Radio" name="Contact_FirstName" value="1" checked> Ja
+      <input type="Radio" name="Contact_FirstName" value="0"> Nein
+      (endif)
+
+      (if (sql Contact.FirstName) == 0)
+      <input type="Radio" name="Contact_FirstName" value="1"> Ja
+      <input type="Radio" name="Contact_FirstName" value="0" checked> Nein
+      (endif)
+
+      </td>
+      <td class="head8c">Vorname:</td>
+      <td class="input"><input type="Text" name="1_FirstName" size="42" class="input"></td>
+      </tr>
+
+      <tr>
+      <td>
+      (if (sql Contact.Street) == 1)
+      <input type="Radio" name="Contact_Street" value="1" checked> Ja
+      <input type="Radio" name="Contact_Street" value="0"> Nein
+      (endif)
+
+      (if (sql Contact.Street) == 0)
+      <input type="Radio" name="Contact_Street" value="1"> Ja
+      <input type="Radio" name="Contact_Street" value="0" checked> Nein
+      (endif)
+
+      </td>
+      <td class="head8c">Strasse:</td>
+      <td class="input"><input type="Text" name="3_Street" size="42" class="input"></td>
+      </tr>
+
+      <tr>
+      <td>
+      (if (sql Contact.ZipCode) == 1)
+      <input type="Radio" name="Contact_ZipCode" value="1" checked> Ja
+      <input type="Radio" name="Contact_ZipCode" value="0"> Nein
+      (endif)
+
+      (if (sql Contact.ZipCode) == 0)
+      <input type="Radio" name="Contact_ZipCode" value="1"> Ja
+      <input type="Radio" name="Contact_ZipCode" value="0" checked> Nein
+      (endif)
+
+      </td>
+      <td class="head8c">PLZ - Ort:</td>
+      <td class="input"><input type="Text" name="4_ZipCode" size="5" class="input">&nbsp;&nbsp;<input type="Text" name="5_Ort" size="34" class="input"></td>
+      </tr>
+
+      <tr>
+      <td>
+      (if (sql Contact.Phone) == 1)
+      <input type="Radio" name="Contact_Phone" value="1" checked> Ja
+      <input type="Radio" name="Contact_Phone" value="0"> Nein
+      (endif)
+
+      (if (sql Contact.Phone) == 0)
+      <input type="Radio" name="Contact_Phone" value="1"> Ja
+      <input type="Radio" name="Contact_Phone" value="0" checked> Nein
+      (endif)
+
+      </td>
+      <td class="head8c">Tel:</td>
+      <td class="input"><input type="Text" name="6_Phone" size="42" class="input"></td>
+      </tr>
+
+      <tr>
+      <td>
+      (if (sql Contact.Fax) == 1)
+      <input type="Radio" name="Contact_Fax" value="1" checked> Ja
+      <input type="Radio" name="Contact_Fax" value="0"> Nein
+      (endif)
+
+      (if (sql Contact.Fax) == 0)
+      <input type="Radio" name="Contact_Fax" value="1"> Ja
+      <input type="Radio" name="Contact_Fax" value="0" checked> Nein
+      (endif)
+
+      </td>
+      <td class="head8c">Fax:</td>
+      <td class="input"><input type="Text" name="7_Fax" size="42" class="input"></td>
+      </tr>
+
+      <tr>
+      <td>Pflichtfeld</td>
+      <td class="head8c">Email:</td>
+      <td class="input"><input type="Text" name="8_Email" size="42" class="input"></td>
+      </tr>
+
+      <tr>
+      <td valign="top">
+      (if (sql Contact.Wish) == 1)
+      <input type="Radio" name="Contact_Wish" value="1" checked> Ja
+      <input type="Radio" name="Contact_Wish" value="0"> Nein
+      (endif)
+
+      (if (sql Contact.Wish) == 0)
+      <input type="Radio" name="Contact_Wish" value="1"> Ja
+      <input type="Radio" name="Contact_Wish" value="0" checked> Nein
+      (endif)
+
+      </td>
+      <td class="head8c" valign="top">Ihr Wunsch:</td>
+      <td>
+
+<table width="100%">
+
+      <tr>
+      <td colspan="2"><a href="javascript:NeuFenster('/1Ci/dmerce?qTemplate=Contactwish,insert')">neuen Wunsch hinzuf&uuml;gen</a></td>
+      </tr>
+
+      (repeat "ID]0{ID")
+
+      <tr>
+      <td class="input"><input class="input" type="Radio" name="9_Wunsch" value="(sql Contactwish.Name)"> (sql Contactwish.Name)
+      </td>
+
+      <td class="head8"><a class="head8" href="/1Ci/dmerce?qTemplate=(var qTemplate)&qDelete=Contactwish&Contactwish_ID=(sql Contactwish.ID)">Eintrag l&ouml;schen</a>
+      </td>
+      </tr>
+
+      (endrepeat)
+
+</table>
+
+      </td>
+      </tr>
+
+
+      <tr>
+      <td>
+      (if (sql Contact.Offer) == 1)
+      <input type="Radio" name="Contact_Offer" value="1" checked> Ja
+      <input type="Radio" name="Contact_Offer" value="0"> Nein
+      (endif)
+      (if (sql Contact.Offer) == 0)
+      <input type="Radio" name="Contact_Offer" value="1"> Ja
+      <input type="Radio" name="Contact_Offer" value="0" checked> Nein
+      (endif)
+      </td>
+      <td class="head8c">zu Angebot:</td>
+      <td>
+      <select name="10_Offer" size="1">
+      <option value="">bitte w&auml;hlen</option>
+      (repeat "SubNavID!*0|HeadNavID!*0{OfferNo")
+      <option value="(sql Object.OfferNo) - (sql Object.Name)">Nr.:(sql Object.OfferNo) - (sql Object.Name)</option>
+      (endrepeat)
+      </select>
+      </td>
+      </tr>
+
+      <tr>
+      <td valign="top">
+      (if (sql Contact.Other) == 1)
+      <input type="Radio" name="Contact_Other" value="1" checked> Ja
+      <input type="Radio" name="Contact_Other" value="0"> Nein
+      (endif)
+      (if (sql Contact.Other) == 0)
+      <input type="Radio" name="Contact_Other" value="1"> Ja
+      <input type="Radio" name="Contact_Other" value="0" checked> Nein
+      (endif)
+      </td>
+      <td class="head8c" valign="top">Sonstiges:</td>
+      <td><textarea name="11_Other" cols="38" rows="10" class="textarea"></textarea></td>
+      </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+      <tr>
+      <td>&nbsp;</td>
+      <td><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td>&nbsp;</td>
+      <td class="text9">Geben Sie hier bitte die Adresse an, auf der Sie die Daten dieses Formulars empfangen m&ouml;chten.</td>
+      </tr>
+
+      <tr>
+      <td>&nbsp;</td>
+      <td class="text9">Empfangs-eMail-Adresse:&nbsp;&nbsp;<input type="Text" name="Contact_Email" class="input" size="35" value="(sql Contact.Email)"></td>
+      </tr>
+
+
+      <tr>
+      <td>&nbsp;</td>
+      <td><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td>&nbsp;</td>
+      <td class="text9">M&ouml;chten Sie das aktuelle Bild &auml;ndern, dann laden Sie hier eine neue Bildatei (.jpg oder .gif) auf den Server. Achten Sie auf die Bildgr&ouml;&szlig;e.</td>
+      </tr>
+
+      <tr>
+      <td>&nbsp;</td>
+      <td class="text9">Neues Bild hochladen:&nbsp;&nbsp;<input type="file" name="Contact_Picture" class="input"></td>
+      </tr>
+
+
+      <tr>
+      <td>&nbsp;</td>
+      <td><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td>&nbsp;</td>
+      <td align="center">Button-Beschriftung&nbsp;&nbsp;<input type="Button" value="(sql Wordlist.NameDE "ID*7")" class="submit">&nbsp;&nbsp;<a href="#" onClick="javascript:NeuFenster('/1Ci/dmerce?qTemplate=Navigation,maintain_wordlist&WordlistID=7&Template=(var qTemplate)')"><img src="../../pic/edit.gif" width="16" height="17" border="0" alt="Bearbeiten"></a> </td>
+      </tr>
+
+      <tr>
+      <td>&nbsp;</td>
+      <td><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      <tr>
+      <td>&nbsp;</td>
+      <td align="center"><input type="Submit" name="qButton" value="&uuml;bernehmen" class="submit">&nbsp;&nbsp;&nbsp;<input type="Button" name="Button" value="zur&uuml;ck" class="submit" onClick="javascript:parent.content.location.href='/1Ci/dmerce?qTemplate=Contact,contact&ContactID*1'"></td>
+      </tr>
+
+      <tr>
+      <td>&nbsp;</td>
+      <td><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+      (endrepeat)
+
+</form>
+
+</table>
+
+
+
+</body>
+
+</html>

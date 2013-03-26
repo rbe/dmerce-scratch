@@ -1,0 +1,128 @@
+<html>
+
+<head>
+
+<LINK rel="stylesheet" type="text/css" href="/style.css">
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<title>JOB hinzuf&uuml;gen</title>
+
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table bordercolor="#DEDFDE" width="90%" border="1" cellspacing="0" cellpadding="2" align="center">
+
+      <tr>
+      <td class="nav11">&nbsp;<b>JOB hinzuf&uuml;gen</b>:</td>
+      </tr>
+
+      <tr>
+      <td class="haed8"></td>
+      </tr>
+
+      <tr>
+      <td>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+      <form method="post" action="/1Ci/dmerce" name="myForm">
+      <input type="hidden" name="qTemplate" value="Index,closeall">
+      <input type="hidden" name="qInsert" value="Job">
+      <input type="hidden" name="qTrigger" value="HTML.PlainToHTML.FormatFields">
+      <input type="hidden" name="qFieldsConvertPlainToHTML" value="Job_Description">
+      <input type="hidden" name="Job_Orderflag" value="2">
+      <input type="hidden" name="Job_Gflag" value="(sql temp.t "User*(who ID)")">
+
+      <tr>
+      <td class="head8c">&nbsp;Jobtitel:</td>
+      <td class="head8">&nbsp;<input type="Text" name="Job_Titel" class="input" size="40"></td>
+      </tr>
+
+      <tr>
+      <td class="head8c" valign="top">&nbsp;Jobbeschreibung:</td>
+      <td class="head8">&nbsp;<textarea name="Job_Description" cols="40" rows="5"></textarea></td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;Status:</td>
+      <td class="head8">&nbsp;<input type="Radio" name="Job_Status" value="100"> 100%&nbsp;&nbsp;&nbsp;<input type="Radio" name="Job_Status" value="75"> 75%&nbsp;&nbsp;&nbsp;<input type="Radio" name="Job_Status" value="50"> 50%&nbsp;&nbsp;&nbsp;<input type="Radio" name="Job_Status" value="25">25%</td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;Statuskommentar:</td>
+      <td class="head8">&nbsp;<input type="Text" name="Job_Statuscomment" class="input" size="40"></td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;f&uuml;r Kunde:</td>
+      <td class="head8">&nbsp;<input type="Text" name="Job_Customer" class="input" size="40"></td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;f&uuml;r Projekt</td>
+      <td class="head8">&nbsp;<select name="Job_ProjectID" size="1">
+      <option value="0">bitte w&auml;hlen</option>
+      (repeat "ID]0{Name")
+      <option value="(sql Project.ID)">(sql Project.Name)</option>
+      (endrepeat)
+      </select></td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;Beginn:</td>
+      <td class="head8">&nbsp;(exec Time.Conversion.Actual formatDate='europe' cexe)&nbsp;<input type="Text" name="Job_Start" class="input" size="5"> Uhr (Format: 10:00)</td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;Ende:</td>
+      <td class="head8">&nbsp;(exec Time.Conversion.Actual formatDate='europe' cexe)&nbsp;<input type="Text" name="Job_Until" class="input" size="5"> Uhr (Format: 10:00)</td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;Dauer:</td>
+      <td class="head8">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input maxlength="3" type="Text" name="Job_Length" class="input" size="3"> Min.</td>
+      </tr>
+
+      <tr>
+      <td class="head8c">&nbsp;</td>
+      <td class="head8"><b>Hinweistext:</b><br>
+      Die Eingabe hat gewissenhaft und vollst&auml;ndig. &Auml;nderungen sind im Nachhinein nicht m&ouml;glich. Korrekturen erfolgen &uuml;ber eine Stornoeingabe.</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="2" border="0"></td>
+      </tr>
+
+      <tr>
+      <td align="right" colspan="2"><input type="submit" class="submit" name="qButton" value="hinzuf&uuml;gen"></td>
+      </tr>
+
+</form>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+
+</body>
+
+</html>

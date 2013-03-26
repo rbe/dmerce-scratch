@@ -1,0 +1,164 @@
+<html>
+
+<head>
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<meta http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<META HTTP-EQUIV="PRAGMA" CONTENT="no-cache">
+<META NAME="REPLY-TO" CONTENT="webmaster@1Ci.de">
+
+
+<title>(var SERVER_NAME) - Suchformular</title>
+
+<script language="JavaScript">
+<!--
+function do_prozentname() {
+
+   if(document.myForm.Suchbegriff.value == "" || document.myForm.Suchbegriff.value == '%%' || document.myForm.Suchbegriff.value == '%')
+      document.myForm.Searchword.value = 'Alles'
+   else {
+      document.myForm.Searchword.value = document.myForm.Suchbegriff.value
+   }
+
+   if(document.myForm.Suchbegriff.value == "" || document.myForm.Suchbegriff.value == '%%' || document.myForm.Suchbegriff.value == '%')
+      document.myForm.Suchbegriff.value = '%'
+   else {
+      document.myForm.Suchbegriff.value = '%' + document.myForm.Suchbegriff.value + '%'
+   }
+   return true;
+   }
+
+//-->
+</script>
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;Suchen</td>
+      <td width="30%" class="head8" align="right">[(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="/pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+
+      <tr>
+
+      <td width="25%" valign="top">
+      (if '(sql Wordlist.NameDE "ID*50")' != '')
+      <img src="../pic/upload/(var SERVER_NAME)/(sql Wordlist.NameDE "ID*50")" hspace="6" border="0">
+      (endif)
+      </td>
+      <td width="75%" valign="top">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+
+       <tr>
+       <td class="head12b" colspan="2" valign="center"><b>Die (sql Operator.Company "ID*1") - Datenbank  durchsuchen:</b></td>
+       <td width="5%" align="right"><a class="head8" href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../pic/dummy.gif" width="1" height="15" border="0"></td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <tr>
+       <td class="head11" colspan="2">Bitte geben Sie Ihren Suchbegriff ein:</td>
+       <td>&nbsp;</td>
+       </tr>
+
+       <form method="post" action="/1Ci/dmerce" name="myForm" onsubmit="javascript:return do_prozentname()" target="result">
+       <input type="hidden" name="qTemplate" value="suchen,liste_text">
+       <input type="hidden" name="Searchword" value="">
+
+       <tr>
+       <td colspan="2">Suchbegriff: <input type="Text" name="Suchbegriff" size="30">&nbsp;&nbsp;<input type="Submit" name="qButton" value="Suchen" class="submit"></td>
+       <td>&nbsp;</td>
+       </tr>
+       </form>
+
+
+       <tr>
+
+       (if '(sql Wordlist.NameDE "ID*50")' != '')
+
+       (if (get-myvar login) == 1)
+
+       <form method="post" actin="/1Ci/dmerce" enctype="multipart/form-data">
+       <input type="hidden" name="qTemplate" value="(var qTemplate)">
+       <input type="hidden" name="qTrigger" value="OS.File.Upload">
+       <input type="hidden" name="qUploadKeepRealname" value="Wordlist_NameDE">
+       <input type="hidden" name="qUpdate" value="Wordlist">
+       <input type="hidden" name="Wordlist_ID" value="50">
+       <td colspan="2">
+       <b>Neues Bild hochladen</b>:<br>
+       <input type="file" name="Wordlist_NameDE" class="input">
+       <input type="Submit" name="qButton" value="&uuml;bernehmen" class="submit">
+       </td>
+       </form>
+
+       (endif)
+
+       (else)
+
+       (if (get-myvar login) == 1)
+
+       <form method="post" actin="/1Ci/dmerce" enctype="multipart/form-data">
+       <input type="hidden" name="qTemplate" value="(var qTemplate)">
+       <input type="hidden" name="qTrigger" value="OS.File.Upload">
+       <input type="hidden" name="qUploadKeepRealname" value="Wordlist_NameDE">
+       <input type="hidden" name="qUpdate" value="Wordlist">
+       <input type="hidden" name="Wordlist_ID" value="50">
+       <td colspan="2">
+       <b>Ein Bild hochladen</b>:<br>
+       <input type="file" name="Wordlist_NameDE" class="input">
+       <input type="Submit" name="qButton" value="&uuml;bernehmen" class="submit">
+       </td>
+       </form>
+
+       (endif)
+
+       (endif)
+
+       </tr>
+
+       </table>
+
+       </td>
+       </tr>
+
+</table>
+
+
+
+</body>
+</html>

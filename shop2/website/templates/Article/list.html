@@ -1,0 +1,254 @@
+<html>
+
+<head>
+
+(set-myvar Daskin (sql Operator.LayoutID "ID*1"))
+(set-skin (get-myvar Daskin))
+
+(skin-stylesheet)
+<META http-equiv="Content-Type" content="text/html; charset=charset=iso-8859-1">
+<META NAME="keywords" lang="de" CONTENT="">
+<META NAME="description" CONTENT="">
+<META NAME="AUTHOR" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="COPYRIGHT" CONTENT="1Ci GmbH M&uuml;nster (info@1Ci.de)">
+<META NAME="LANGUAGE" CONTENT="de">
+<META NAME="REVISIT-AFTER" CONTENT="1 month">
+<meta http-equiv="expires" content="0">
+
+<META NAME="REPLY-TO" CONTENT="info@1Ci.de">
+
+<title>[IMMO] - Liste</title>
+
+</head>
+
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  marginwidth="0" marginheight="0">
+<!--<br>
+qSuperSearch: (var qSuperSearch)<br>
+<br>
+Bitte so lange drin lassen bis RB und PE das Kombinationssuchen Problem gelößt haben !!!!<br>
+<br>-->
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td><img src="../../pic/dummy.gif" width="1" height="10" border="0"></td>
+      </tr>
+
+</table>
+
+<table width="97%" border="0" cellspacing="2" cellpadding="0" align="center">
+
+      <tr>
+      <td width="70%" class="head8"><img src="../../pic/pfeil.gif" width="5" height="9" border="0" alt="">&nbsp;&nbsp;(sql Wordlist.NameDE "ID*2")
+      (if '(form GroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Article,intro&GroupID=(form GroupID)">(sql HeadNav.NameDE "ID*(form GroupID)")</a>
+      (endif)
+      (if '(form SubgroupID)' != '')
+      > <a href="/1Ci/dmerce?qTemplate=Article,list&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)&qSuperSearch=Article.SubNavID*(form SubgroupID)">(sql SubNav.NameDE "ID*(form SubgroupID)")</a>
+      (endif)
+      </td>
+      <td width="30%" class="head8" align="right">
+
+      (if (sql count BasketContents "SessionId*'(var qs)'") == 0)
+      &nbsp;
+      (else)
+      <a href="/1Ci/dmerce?qTemplate=Basket,basket_show">Im Warenkorb: <b>(exec Merchant.Basket.SumQty cexe) Artikel</b></a>&nbsp;&nbsp;
+      (endif)
+
+      [(exec Time.Conversion.Actual formatDate='europe' cexe)]</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+      </tr>
+
+</table>
+
+
+<table width="97%" border="0" cellspacing="2" cellpadding="2" align="center">
+
+(repeat "SubNav.ID*(form SubgroupID)")
+
+      <tr>
+      (if '(sql Textarticle.Picture "ID*(sql SubNav.TextID)")' != '')
+      <td width="20%" valign="top">
+      <img src="../pic/upload/(sql Textarticle.Picture "ID*(sql SubNav.TextID)")" border="0" alt="">
+      (else)
+      <td width="20%" valign="top">&nbsp;</td>
+      (endif)
+
+      <td width="80%" valign="top">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+      <tr>
+      <td class="head12b">(sql Textarticle.Head "ID*(sql SubNav.TextID)")</td>
+      <td class="head8" align="right" valign="top"><a href="javascript:window.print()"><img src="../../pic/print.gif" width="16" height="16" border="0" alt="[Diesen Text drucken]"></a>
+
+      (if (get-myvar login) == 1)
+      &nbsp;<a href="/1Ci/dmerce?qTemplate=Article,list_maintain&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)&qSuperSearch=(var qSuperSearch)"><img src="../../pic/edit.gif" width="16" height="16" border="0" alt="[Diese Seite bearbeiten]"></a>
+      (endif)
+      </td>
+      </tr>
+
+      <tr>
+      <td width="90%">(sql Textarticle.Text "ID*(sql SubNav.TextID)")</td>
+      <td width="10%">&nbsp;</td>
+      </tr>
+
+      <tr>
+      <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+      </tr>
+(endrepeat)
+
+      <tr>
+      <td valign="top">
+
+(if (sql count Article "(var qSuperSearch)") == 0)
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+
+    <tr>
+    <td class="head11" valign="top"><b>Ihre Suche f&uuml;hrte zu keinem Ergebnis.</b></td>
+    </tr>
+
+    <tr>
+    <td>F&uuml;r Ihre Suchkriterien sind momentan keine Angebote vorhanden.<br>
+    Bitte gehen sie <a href="javascript:history.back(-1)"><b>zur&uuml;ck</b></a> und ver&auml;ndern Sie Ihre Suchkriterien.</td>
+    </tr>
+
+</table>
+(endif)
+
+
+(if (sql count Article "(GruppenID*(get-myvar GruppenID)|GruppenID*0):(var qSuperSearch)") > 0)
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+    <tr>
+    <td class="head11" valign="top"><b><font color="#B80000">(sql count Article "(GruppenID*(get-myvar GruppenID)|GruppenID*0):(var qSuperSearch)")</font> Artikel gefunden.</b></td>
+    </tr>
+    <tr>
+    <td>&nbsp;</td>
+    </tr>
+</table>
+
+
+(repeat "(Article.GruppenID*(get-myvar GruppenID)|Article.GruppenID*0):(var qSuperSearch):(form showing){ID@10")
+
+      (if (sql index1) == 1)
+      (set-myvar firstrow (sql Article.ID))
+      (endif)
+
+<a name="#(sql Article.ID)">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+      <tr>
+      <td width="70%" valign="top">
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+
+      <tr>
+      <td class="head11" valign="top">&nbsp;<a class="head11" href="/1Ci/dmerce?qTemplate=Article,view&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)">(sql Article.Name)</a>
+
+      (if (sql Article.new) == 1)
+      <img src="../../pic/new.gif" width="36" height="15" border="0" alt="neuer Artikel">
+      (endif)
+      </td>
+
+      <td align="right" class="head11">
+
+      (sqlf Article.PriceGross 2)&nbsp;&#8364;
+      &nbsp;<a href="/1Ci/dmerce?qTemplate=(var qTemplate)&qTrigger=Merchant.Basket.PutArticle&artId=(sql Article.ID)&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&QSS=(var qSuperSearch)&qSuperSearch=(var qSuperSearch)#(sql Article.ID)"><img src="../../pic/shoppingcart.gif" width="20" height="14" border="0" alt="(sql Article.Name) in den Warenkorb legen"></a>
+
+      (if (get-myvar login) == 1)
+      &nbsp;<a href="/1Ci/dmerce?qTemplate=Article,maintain&ArticleID=(sql Article.ID)&GroupID=(form GroupID)&SubgroupID=(form SubgroupID)&QSS=(var qSuperSearch)"><img src="../../pic/edit.gif" width="16" height="17" border="0" alt="[Diese Seite editieren]"></a>
+      (else)
+      &nbsp;
+      (endif)
+
+      </td>
+      </tr>
+
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+       <tr>
+       <td width="70%" valign="top">
+
+<table width="100%" border="0" cellspacing="2" cellpadding="2">
+
+      (if '(sql Article.ShortDescription)' != '')
+      <tr>
+      <td colspan="2">(sql Article.ShortDescription)</td>
+      </tr>
+      (endif)
+
+</table>
+
+       </td>
+
+       <td width="30%" valign="top" align="right">
+       (if '(sql Article.Picture)' != '')
+       <a href="/1Ci/dmerce?qTemplate=Article,view&ArticleID=(sql Article.ID)&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)"><img src="../pic/upload/(sql Article.Picture)" width="100" hspace="5" vspace="5" border="0" alt="Details und Bild anzeigen"></a>
+       (else)
+       <img src="../../pic/dummy.gif" width="100" height="2" border="0" hspace="5" vspace="5" alt="">
+       (endif)</td>
+       </tr>
+
+</table>
+
+       <tr>
+       <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="5" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../../pic/001_1pixel.gif" width="100%" height="1" border="0"></td>
+       </tr>
+
+       <tr>
+       <td colspan="2"><img src="../../pic/dummy.gif" width="1" height="15" border="0"></td>
+       </tr>
+
+</table>
+
+(set-myvar lastrow (sql Article.ID))
+
+(endrepeat)
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+      (if (sql count Article "(var qSuperSearch):Article.ID[(get-myvar firstrow)") > 0)
+      <td class="head11" align="center" width="50%">&nbsp;
+      <a href="javascript:history.back(-1)">[zeige vorherige 10]</a>
+      </td>
+      (endif)
+
+
+      (if (sql count Article "(var qSuperSearch):Article.ID](get-myvar lastrow)") > 0)
+      <td class="head11" align="center" width="50%">&nbsp;
+      <a href="/1Ci/dmerce?qTemplate=(var qTemplate)&qSuperSearch=(var qSuperSearch)&showing=ID](get-myvar lastrow)&SubgroupID=(form SubgroupID)&GroupID=(form GroupID)">[zeige n&auml;chste 10]</a>
+      </td>
+      (endif)
+
+</tr>
+</table>
+
+
+(endif)
+
+       <td>&nbsp;</td>
+       </tr>
+
+</table>
+
+      </td>
+      </tr>
+
+</table>
+
+
+
+</body>
+</html>

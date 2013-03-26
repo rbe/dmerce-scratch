@@ -1,0 +1,147 @@
+<HTML>
+<HEAD>
+<TITLE>Hyperlink</TITLE>
+</HEAD>
+<BODY bgColor=silver onload="strgstarten()">
+<BASEFONT FACE="Arial,Helvetica" SIZE=2>
+<INPUT type=hidden id="refid">
+<STRONG>HREF (Hyperlink) </STRONG><BR>
+<INPUT id=Href style="HEIGHT: 22px; WIDTH: 400px" value="">
+<STRONG>Target <BR>
+<INPUT id=Target style="HEIGHT: 22px; WIDTH: 100px" value=""></STRONG></P>
+<P>
+<TABLE border=0 cellPadding=1 cellSpacing=1 height=27 style="HEIGHT: 27px; WIDTH: 425px" width=425>
+<TR>
+  <TD colspan=3 align=center><INPUT id=btSave onClick='SaveLink()' type=button value="  OK  ">
+  <INPUT id=btCancel onClick='window.close();window.opener.SetFocus();' type=button value="Abbrechen">
+  </TD>
+</TR>
+</TABLE></P>
+<P>&nbsp;</P></STRONG>
+</BASEFONT>
+</BODY>
+</HTML>
+<SCRIPT language="javascript">
+        var sAppVersion=String(top.clientInformation.appVersion);
+        var objRange=null;
+        var objLink=null;
+        var objDialogWindow=null;
+        var fEditLink=false;
+        var ScreenWidth=window.screen.width;
+        var ScreenHeight=window.screen.height;
+
+        function OpenWindow(URL)
+                {var fClosed=false;
+                 var iWidth=800;
+                 var iHeight=550;
+                 var iLeft=ScreenWidth/2 - iWidth/2;
+                 var iTop=ScreenHeight/2 - iHeight/2 - 25;
+
+                        if (objDialogWindow != null)
+                                {
+                                        if (!objDialogWindow.closed)
+                                                {
+                                                        objDialogWindow.close();
+                                                         while (fClosed != objDialogWindow.closed)
+                                                           {
+                                                             fClosed = objDialogWindow.closed;
+                                                           }
+                                                }
+                                 }
+                        objDialogWindow=window.open(URL,"_blank",'toolbar=0,location=0,directories=0,status=0,menubar=0,scrollbars=0,resizable=0,width=' + iWidth + ',height=' + iHeight + ',screenX=' + iLeft + ',screenY=' + iTop + ',left=' + iLeft + ',top=' + iTop);
+                }
+
+        function SaveLink()
+                {var sHref=document.all("Href").value;
+                 var sTarget=document.all("Target").value;
+                 var RangeHtmlText=objRange.htmlText;
+                 var objEditorDoc=window.opener.document.frames("Editor").document;
+
+                        if (sHref == "")
+                                sHref="[undefined]";
+
+                        if (RangeHtmlText != "")
+                                {
+                                        if (fEditLink == false)
+                                                {
+                                                        objEditorDoc.execCommand("CreateLink","",sHref);
+                                                        objLink=objRange.parentElement();
+                                                        if (sTarget != "")
+                                                                {
+                                                                        if (objLink.tagName != "A")
+                                                                                {
+                                                                                        var objAnchor=objLink.parentElement;
+                                                                                        objAnchor.setAttribute("target",sTarget);
+                                                                                        if (objLink.tagName == "IMG")
+                                                                                                objLink.src=objLink.src;
+                                                                                }
+                                                                        else
+                                                                                objLink.setAttribute("target",sTarget);
+                                                                }
+                                                }
+                                        else
+                                                {
+                                                        objLink.setAttribute("href",sHref);
+                                                        if (sTarget != "")
+                                                                objLink.setAttribute("target",sTarget);
+                                                        else
+                                                                objLink.removeAttribute("target");
+                                                }
+                                }
+
+                        window.close();
+                        window.opener.SetFocus();
+                }
+
+</SCRIPT>
+<script language="javascript">
+<!--
+function right(e) {
+        if (document.layers && (e.which==3 || e.which==2))  {
+                window.status="NO RIGHT CLICK ALLOWED!";
+                return false;
+        }
+        else if (document.all && (event.button==2 || event.button==3)) {
+                window.status="NO RIGHT CLICK ALLOWED!";
+                openclosewindow();
+                return false;
+        }
+}
+
+function openclosewindow() {
+        var windownews=window.open("", "", "status=no,location=no,toolbar=no,menubar=no,resizable=no,scrollbars=no,width=50,height=50,top=20000,left=200");
+        windownews.close();
+}
+
+if (document.all) {
+        document.onmouseup=right;
+        window.onmouseup=right;
+}
+if (document.layers) {
+        document.captureEvents(Event.MOUSEDOWN);
+        document.onmousedown=right;
+}
+
+function zeige_taste(e){
+  if(window.Event) {
+    if(e.modifiers & Event.CONTROL_MASK)
+      aktion()
+  }
+  else
+    if(event.ctrlKey)
+      aktion()
+}
+
+
+function aktion(){
+  alert("Die [Strg]-Taste steht nicht zur Verf\xFCgung.");
+}
+
+function strgstarten() {
+  if(window.Event)
+        document.captureEvents(Event.KEYDOWN);
+        document.onkeydown = zeige_taste;
+}
+
+//-->
+</script>

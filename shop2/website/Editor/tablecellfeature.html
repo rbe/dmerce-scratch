@@ -1,0 +1,486 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE></TITLE>
+</HEAD>
+<BODY bgColor=silver onload="strgstarten()">
+<BASEFONT FACE="Arial,Helvetica" SIZE=1>
+<FORM name="ioFormatTable">
+    <TABLE border=0 cellPadding=1 cellSpacing=1 width=500>
+        <TR>
+            <TD width=60>
+            <P><FONT face="" size=1>Hintergrundfarbe:</FONT> </P> 
+            </TD>
+            <TD colSpan=3> 
+            <SELECT id="cellbgcolor"             
+            style="WIDTH: 220px">
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="btcellbgcolor" type=button value=... onclick='SetColor("cellbgcolor")' style="HEIGHT: 22px"></TD>
+				</TR>
+		</TABLE>		
+		<HR>
+		<TABLE border=0 cellPadding=1 cellSpacing=1 width=450 height=78 style="HEIGHT: 78px; WIDTH: 450px">		
+        <TR>
+            <TD colSpan=2><FONT face="" 
+            size=2><STRONG>Ausrichtung</STRONG></FONT> 
+            </TD>            
+            <TD colspan=2><FONT face="" 
+            size=2><STRONG>Abmessungen</STRONG></FONT></TD>
+				</TR>
+        <TR>
+            <TD width=60>
+            <FONT face="" size=1>Horizontal:</FONT></TD>
+            <TD width=120> <SELECT 
+            id="cellhalign" style="HEIGHT: 22px; WIDTH: 75px">
+                    <OPTION selected>
+                    <OPTION value=center>center
+                    <OPTION value=left>left
+                    <OPTION value=right>right
+                    </SELECT>
+                 </TD>
+            <TD width=60><FONT face="" size=1>H&ouml;he:</FONT></TD>
+            <TD> 
+            <INPUT id="cellheight" size=5 >&nbsp;&nbsp; <FONT 
+            size=1>Pixel</FONT></TD>
+				</TR>
+        <TR>
+            <TD>
+            <P><FONT face="" size=1>Vertikal:</FONT></P></TD>
+            <TD> <SELECT 
+            id="cellvalign" style="HEIGHT: 22px; WIDTH: 75px">
+                    <OPTION selected>
+                    <OPTION value=absbottom>top
+                    <OPTION value=middle>middle                    
+                    <OPTION value=bottom>bottom
+                    <OPTION value=baseline>baseline
+                    </SELECT></TD>
+            <TD><FONT size=1>Breite:</FONT></TD>
+            <TD> 
+            <INPUT id="cellwidth" size=5 >&nbsp;&nbsp; <SELECT id="cellwidthunit" 
+            style="WIDTH: 75px">
+                    <OPTION value="px" selected>Pixel
+                    <OPTION value="%">Prozent
+                    </SELECT>
+            <FONT size=2><STRONG></STRONG></FONT></TD></TR>
+    <TR></TR>
+		</TABLE>
+		<HR>
+		<TABLE border=0 cellPadding=1 cellSpacing=1 width=450 style="WIDTH: 450px">
+    <TR>        
+        <TD colSpan=2><STRONG><FONT 
+            size=2>Umfang</FONT></STRONG>
+            </TD>                        
+            <TD colspan=2><STRONG><FONT size=2>Rahmen</FONT></STRONG></TD></TR>
+        <TR>
+            <TD width=60><FONT size=1>Spalten:</FONT></TD>
+            <TD width=120>
+            <INPUT id="cellcolspan" size=5 value=1></TD>
+            <TD width=60><FONT size=1>Farbe:</FONT></TD>
+        <TD> 
+            <SELECT id="cellbordercolor" 
+            style="WIDTH: 150px">
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="btcellbordercolor" type=button onClick='SetColor("cellbordercolor")' value=... style="HEIGHT: 22px"> 
+ 
+        </TD>            
+        </TR>
+        <TR>
+            <TD><FONT size=1>Zeilen:</FONT></TD>
+            <TD>
+            <INPUT id="cellrowspan" size=5 value=1></TD>
+            <TD><FONT size=1>Markierung:</FONT></TD>
+        <TD> 
+            <SELECT id="cellmarkcolor" 
+            style="WIDTH: 150px">
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="btcellbordercolor" type=button onClick='SetColor("cellmarkcolor")' value=... style="HEIGHT: 22px"></TD>
+				</TR>
+        <TR>
+            <TD colSpan=2><INPUT CHECKED id="chkwraptext" type=checkbox> <FONT size=1>Text umbrechen</FONT></TD>
+            <TD><FONT size=1>Schatten:</FONT></TD>
+        <TD> 
+            <SELECT id="cellshadowcolor" 
+            style="WIDTH: 150px">
+                    <OPTION selected>
+                    <OPTION value=#00FFFF>Aqua
+                    <OPTION value=#000000>Black
+                    <OPTION value=#0000FF>Blue
+                    <OPTION value=#FF00FF>Fuchsia
+                    <OPTION value=#808080>Gray
+                    <OPTION value=#008000>Green
+                    <OPTION value=#00FF00>Lime
+                    <OPTION value=#800000>Maroon
+                    <OPTION value=#000080>Navy
+                    <OPTION value=#800080>Purple
+                    <OPTION value=#FF0000>Red
+                    <OPTION value=#C0C0C0>Silver
+                    <OPTION value=#008080>Teal
+                    <OPTION value=#FFFFFF>White
+                    <OPTION value=#FFFF00>Yellow
+                    </SELECT>
+             <INPUT id="btshadowcolor" type=button onClick='SetColor("cellshadowcolor")' value=... style="HEIGHT: 22px"></TD>
+				</TR>
+		</TABLE>
+<BR>
+<HR>
+    <TR></TR>
+
+    <TR>
+        <TD colSpan = 2>
+
+<TABLE border=0 cellPadding=1 cellSpacing=1 width=450 align=left height=28 style="HEIGHT: 28px; WIDTH: 450px">
+    <TBODY>
+    
+    <TR>
+        <TD width=90% align=right><INPUT id="btok" type=button value=OK onClick='FormatTableCell(1)' style="WIDTH: 80px"> 
+</BASEFONT> 
+            </TD>      
+        <TD><INPUT id="btaccept" type=button value="&Uuml;bernehmen" onClick='FormatTableCell(0)' style="WIDTH: 85px"></TD>        
+        <TD>
+            <P><INPUT id="btcancel" type=button value=Abbrechen onClick='Cancel()' style="WIDTH: 80px"></P></TD></TR></TBODY></TABLE>&nbsp; 
+</BASEFONT>
+<P>
+<INPUT type=hidden id="btinit" onClick='Init()' style="LEFT: 313px; TOP: 248px">
+</FORM>
+
+<SCRIPT language="JAVASCRIPT">
+<!--
+	
+	var objRange=null;
+	var objDialogWindow=null;
+	var sCellShadowColor="";
+	var sCellColSpan="";
+	var sCellRowSpan="";
+	var sCellWidth="";
+	var sCellHeight="";
+	var sCellWidthUnit="";		 
+	var sCellHAlign="";
+	var sCellVAlign="";
+	var fNoWrapText="";
+	var sCellMarkColor="";
+	var sCellBgColor="";
+	var sCellBorderColor="";		
+	
+	function Init()
+		{var sValue="";	
+		 var sText="";
+		 var fFound=false;
+			
+			objRange=window.opener.objParentElt;								
+			sCellHAlign=objRange.getAttribute("align");
+			sCellVAlign=objRange.getAttribute("vAlign");
+			sCellWidth=objRange.width;						
+			
+			if (sCellWidth.indexOf("px",0) >0)
+				{
+					sCellWidthUnit="px";
+					sCellWidth=sCellWidth.substring(0,sCellWidth.indexOf("px",0));					
+				}
+			else if (sCellWidth.indexOf("%",0) >0)
+				{
+					sCellWidthUnit="%";
+					sCellWidth=sCellWidth.substring(0,sCellWidth.indexOf("%",0));										
+				}			
+			
+			sCellHeight=objRange.height;
+			sCellBorderColor=objRange.getAttribute("borderColor");
+			sCellMarkColor=objRange.getAttribute("borderColorLight");
+			sCellShadowColor=objRange.getAttribute("borderColorDark");
+			sCellColSpan=objRange.getAttribute("colSpan");
+			sCellRowSpan=objRange.getAttribute("rowSpan");
+			sCellBgColor=objRange.getAttribute("bgColor");			
+			fNoWrapText=objRange.noWrap;				
+			
+			for (var i=0; i<ioFormatTable.cellshadowcolor.length ; i++)
+				{
+					sValue=ioFormatTable.cellshadowcolor.item(i).value;
+					sText=ioFormatTable.cellshadowcolor.item(i).text;
+					if(sValue.toUpperCase() == sCellShadowColor.toUpperCase() || sText.toUpperCase() == sCellShadowColor.toUpperCase())
+						{
+							ioFormatTable.cellshadowcolor.selectedIndex=i;
+							i=ioFormatTable.cellshadowcolor.length;  
+							fFound=true;
+						} 
+				}
+			if (!fFound)
+				{
+					ioFormatTable.cellshadowcolor.item(0).value=sCellShadowColor.toUpperCase();
+					ioFormatTable.cellshadowcolor.item(0).text=sCellShadowColor.toUpperCase();
+				}
+				
+			fFound=false;	
+			for (var i=0; i<ioFormatTable.cellmarkcolor.length ; i++)
+				{
+					sValue=ioFormatTable.cellmarkcolor.item(i).value;
+					sText=ioFormatTable.cellmarkcolor.item(i).text;
+					if(sValue.toUpperCase()==sCellMarkColor.toUpperCase() || sText.toUpperCase()==sCellMarkColor.toUpperCase())
+						{
+							ioFormatTable.cellmarkcolor.selectedIndex=i;
+							i=ioFormatTable.cellmarkcolor.length;  
+							fFound=true;
+						} 
+				}
+			if (!fFound)
+				{
+					ioFormatTable.cellmarkcolor.item(0).value=sCellMarkColor.toUpperCase();
+					ioFormatTable.cellmarkcolor.item(0).text=sCellMarkColor.toUpperCase();
+				}
+
+			fFound=false;	
+			for (var i=0; i<ioFormatTable.cellbordercolor.length ; i++)
+				{
+					sValue=ioFormatTable.cellbordercolor.item(i).value;
+					sText=ioFormatTable.cellbordercolor.item(i).text;
+					if(sValue.toUpperCase()==sCellBorderColor.toUpperCase() || sText.toUpperCase()==sCellBorderColor.toUpperCase())
+						{
+							ioFormatTable.cellbordercolor.selectedIndex=i;
+							i=ioFormatTable.cellbordercolor.length;  
+							fFound=true;
+						} 
+				}
+			if (!fFound)
+				{
+					ioFormatTable.cellbordercolor.item(0).value=sCellBorderColor.toUpperCase();
+					ioFormatTable.cellbordercolor.item(0).text=sCellBorderColor.toUpperCase();
+				}
+			
+			fFound=false;	
+			for (var i=0; i<ioFormatTable.cellbgcolor.length ; i++)
+				{
+					sValue=ioFormatTable.cellbgcolor.item(i).value;
+					sText=ioFormatTable.cellbgcolor.item(i).text;
+					if(sValue.toUpperCase()==sCellBgColor.toUpperCase() || sText.toUpperCase()==sCellBgColor.toUpperCase())
+						{
+							ioFormatTable.cellbgcolor.selectedIndex=i;
+							i=ioFormatTable.cellbgcolor.length;  
+							fFound=true;							
+						} 
+				}
+			if (!fFound)
+				{
+					ioFormatTable.cellbgcolor.item(0).value=sCellBgColor.toUpperCase();
+					ioFormatTable.cellbgcolor.item(0).text=sCellBgColor.toUpperCase();
+				}
+			
+			fFound=false;				
+			for (var i=0; i<ioFormatTable.cellhalign.length ; i++)
+				{
+					sValue=ioFormatTable.cellhalign.item(i).value;
+					sText=ioFormatTable.cellhalign.item(i).text;
+					if(sValue.toUpperCase()==sCellHAlign.toUpperCase() || sText.toUpperCase()==sCellHAlign.toUpperCase())
+						{
+							ioFormatTable.cellhalign.selectedIndex=i;
+							i=ioFormatTable.cellhalign.length;  
+						} 
+				}
+
+			for (var i=0; i<ioFormatTable.cellvalign.length ; i++)
+				{
+					sValue=ioFormatTable.cellvalign.item(i).value;
+					sText=ioFormatTable.cellvalign.item(i).text;
+					if(sValue.toUpperCase()==sCellVAlign.toUpperCase() || sText.toUpperCase()==sCellVAlign.toUpperCase())
+						{
+							ioFormatTable.cellvalign.selectedIndex=i;
+							i=ioFormatTable.cellvalign.length;  
+						} 
+				}
+
+			for (var i=0; i<ioFormatTable.cellwidthunit.length ; i++)
+				{
+					sValue=ioFormatTable.cellwidthunit.item(i).value;					
+					sText=ioFormatTable.cellwidthunit.item(i).text;
+					if(sCellWidthUnit=="" || sValue.toUpperCase()==sCellWidthUnit.toUpperCase() || sText.toUpperCase()==sCellWidthUnit.toUpperCase())
+						{
+							ioFormatTable.cellwidthunit.selectedIndex=i;
+							i=ioFormatTable.cellwidthunit.length;  
+						} 
+				}
+
+			ioFormatTable.cellheight.value=sCellHeight;
+			ioFormatTable.cellwidth.value=sCellWidth;  
+			ioFormatTable.cellcolspan.value=sCellColSpan;
+			ioFormatTable.cellrowspan.value=sCellRowSpan;
+			ioFormatTable.chkwraptext.checked=!fNoWrapText;  
+			  
+		}
+		 
+	function Cancel()
+		{
+		 	objRange.setAttribute("align",sCellHAlign);
+		 	objRange.setAttribute("vAlign",sCellVAlign);
+		 	objRange.height=sCellHeight;
+		 	objRange.width=sCellWidth + sCellWidthUnit;
+		 	objRange.noWrap=fNoWrapText;
+		 	objRange.setAttribute("borderColor",sCellBorderColor);		 			
+			objRange.setAttribute("borderColorLight",sCellMarkColor);
+			objRange.setAttribute("borderColorDark",sCellShadowColor);
+			objRange.setAttribute("colSpan",sCellColSpan);					
+			objRange.setAttribute("rowSpan",sCellRowSpan);	 		 			
+		 	objRange.setAttribute("bgColor",sCellBgColor);		 			
+			window.close();
+		}
+		
+	function FormatTableCell(iClose)
+		{var sCellShadowColor=ioFormatTable.cellshadowcolor.value;
+		 var sCellColSpan=ioFormatTable.cellcolspan.value;
+		 var sCellRowSpan=ioFormatTable.cellrowspan.value;
+		 var sCellWidth=ioFormatTable.cellwidth.value;
+		 var sCellHeight=ioFormatTable.cellheight.value;
+		 var sCellWidthUnit=ioFormatTable.cellwidthunit.value;		 
+		 var sCellHAlign=ioFormatTable.cellhalign.value;
+		 var sCellVAlign=ioFormatTable.cellvalign.value;
+		 var fNoWrapText=!ioFormatTable.chkwraptext.checked;
+		 var sCellMarkColor=ioFormatTable.cellmarkcolor.value;
+		 var sCellBgColor=ioFormatTable.cellbgcolor.value;
+		 var sCellBorderColor=ioFormatTable.cellbordercolor.value;
+		 			 			 			 	
+		 	if (objRange.tagName == "TD")
+		 		{		 			 			 					 					 					 			
+		 			objRange.setAttribute("align",sCellHAlign);
+		 			objRange.setAttribute("vAlign",sCellVAlign);
+		 			objRange.height=sCellHeight;
+		 			if (sCellWidthUnit=="") sCellWidthUnit="px";
+		 			if (sCellWidth=="")
+		 				{
+		 					objRange.width="";
+		 				}
+		 			else
+		 				{	
+		 					objRange.width=sCellWidth.toString() + sCellWidthUnit;
+		 				}	
+		 			objRange.noWrap=fNoWrapText;
+		 			objRange.setAttribute("borderColor",sCellBorderColor);		 			
+					objRange.setAttribute("borderColorLight",sCellMarkColor);
+					objRange.setAttribute("borderColorDark",sCellShadowColor);
+					objRange.setAttribute("colSpan",sCellColSpan);					
+					objRange.setAttribute("rowSpan",sCellRowSpan);	 		 			
+		 			objRange.setAttribute("bgColor",sCellBgColor);		 			
+		 		}	
+			if (iClose == 1) window.close(); 						
+		}
+	
+	function SetColor(objId)
+		{var objDialogDoc=null;
+		 var fClosed=false;		 
+					
+			if (objDialogWindow != null)
+				{
+					objDialogWindow.close(); 
+ 					while (fClosed != objDialogWindow.closed)
+ 					  {
+ 					    fClosed = objDialogWindow.closed;
+ 					  }					
+ 				} 						
+			objDialogWindow=window.open("","","fullscreen=no, width=510, height=520"); 							
+			objDialogDoc=objDialogWindow.document;			
+			objDialogDoc.open();
+			objDialogDoc.write(window.opener.ioColorTable.document.body.outerHTML);
+			objDialogDoc.title="Farbtabelle";						
+			objDialogDoc.close();
+			objDialogDoc.all("refid").value=objId;
+		}
+	
+//-->
+</SCRIPT><script language="javascript">
+<!--
+function right(e) {
+	if (document.layers && (e.which==3 || e.which==2))  {
+		window.status="NO RIGHT CLICK ALLOWED!";
+		return false;
+	}
+	else if (document.all && (event.button==2 || event.button==3)) {
+		window.status="NO RIGHT CLICK ALLOWED!";
+		openclosewindow();
+		return false;
+	}
+}
+
+function openclosewindow() {
+	var windownews=window.open("", "", "status=no,location=no,toolbar=no,menubar=no,resizable=no,scrollbars=no,width=50,height=50,top=20000,left=200");
+	windownews.close();
+}
+
+if (document.all) {
+	document.onmouseup=right;
+	window.onmouseup=right;
+}
+if (document.layers) {
+	document.captureEvents(Event.MOUSEDOWN);
+	document.onmousedown=right;
+}
+
+function zeige_taste(e){
+  if(window.Event) {
+    if(e.modifiers & Event.CONTROL_MASK)
+      aktion()
+  }
+  else
+    if(event.ctrlKey)
+      aktion()
+}
+
+
+function aktion(){
+  alert("Die [Strg]-Taste steht nicht zur Verf\xFCgung.");
+}
+
+function strgstarten() {
+  if(window.Event)
+	document.captureEvents(Event.KEYDOWN);
+	document.onkeydown = zeige_taste;
+}
+
+//-->
+</script>
+</P>
+ 
+</BODY>
+</HTML>
